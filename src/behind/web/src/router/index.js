@@ -15,3 +15,5 @@ var router = new VueRouter({
         }
     ] 
 })
+
+export default router

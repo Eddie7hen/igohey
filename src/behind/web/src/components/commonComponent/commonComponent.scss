@@ -1,0 +1,44 @@
+.el-table {
+    .warning-row {
+        background: oldlace;
+    }
+}
+
+  .el-table {
+      .success-row {
+        background: #f0f9eb;
+    }
+}
+
+.el-table th>.cell,.el-table td>.cell{
+    text-align:center;
+}
+
+#FunctionTop{
+    position: relative;
+    height:40px;
+    .el-select{
+        position: absolute;
+        right: 500px;
+        top:0;
+        >.el-input{
+            width:120px;
+        }
+    }
+    .inputBox{
+        position: absolute;
+        right:298px;
+        top:0;
+        width:200px;
+    }
+    .el-button--primary{
+        position: absolute;
+        right:226px;
+        top:0px;
+    }
+    .el-button--success{
+        position: absolute;
+        right:154px;
+        top:0;
+    }
+}
