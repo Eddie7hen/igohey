@@ -1,0 +1,120 @@
+#app{
+  height:100%;
+}
+.index_p{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  .head{
+    height:2.34375rem;
+    background-color:#ccc;
+  }
+  .main{
+    flex:1;
+    overflow-x:hidden;
+    .el-carousel__item img{
+      width:100%;
+      height: 4.8rem;
+    }
+    .mainB{
+      margin-top:0.266667rem;
+      .mainCom{
+        >p{
+          position: relative;
+          font-size:0.453333rem;
+          height:1.066667rem;
+          text-align:center;
+          span{
+            position: absolute;
+            top:0.16rem;
+            right:0.266667rem;
+            font-size:0.32rem;
+            i{
+              font-size:0.32rem;
+            }
+          }
+          >i{
+            display:inline-block;
+            width:0.533333rem;
+            border-bottom:0.106667rem solid #FFD600;
+            position: absolute;
+            bottom:0.133333rem;
+            left:50%;
+            transform:translateX(-50%);
+          }
+        }
+        div{
+          img{
+            height:2.373333rem;
+            width:9.173333rem;
+            border-radius:1.186667rem;
+            margin-left:0.333333rem;
+            margin-bottom:0.213333rem;
+          }
+        }
+        ul{
+          display:flex;
+          flex-direction:row;
+          justify-content:space-around;
+          margin-top:0.133333rem;
+          li{
+            width:2.666667rem;
+            >.img{
+              height:2.533333rem;
+              width:2.533333rem;
+              display:block;
+              padding-left:0.106667rem;
+              >img{
+                height:2.133333rem;
+                width:2.133333rem;
+                border-radius:1.066667rem;
+              }
+            }
+            >p{
+              padding-left:0.106667rem;
+              margin-bottom:0.2rem;
+              font-size:0.24rem;
+              height:0.746667rem;
+              overflow:hidden;
+              line-height:0.373333rem;
+              font-weight:bold;
+            }
+            >div{
+              height:1.0rem;
+              font-size:0.213333rem;
+              font-weight:bold;
+              padding-left:0.106667rem;
+              position: relative;
+              span{
+                color:#FF4400;
+              }
+              p:nth-child(2){
+                font-size:0.186667rem;
+              }
+              i{
+                display:inline-block;
+                font-size:0.266667rem;
+                border:0.026667rem solid #FFD600;
+                height:0.533333rem;
+                width:0.533333rem;
+                border-radius:0.266667rem;
+                text-align:center;
+                line-height:0.533333rem;
+                color:#FF4400;
+                font-weight:bold;
+                position: absolute;
+                right:0.133333rem;
+                bottom:0.466667rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .footer{
+    height:2.34375rem;
+    background-color:#ccc;
+  }
+}
+
