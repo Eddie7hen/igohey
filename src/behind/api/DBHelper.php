@@ -32,7 +32,31 @@
         $result = $conn->query($sql);
         $conn->close();//关闭连接
         return $result;
-    }    
+    }
+    
+    function multi_query_oop($sql){
+        $jsonData = [];
+        $conn = connect_oop();
+        $flag = 0;
+        if ($conn->multi_query($sql)) {
+            do {
+                $rows = array();
+                if ($result = $conn->store_result()) {
+                    while ($row = $result->fetch_assoc()) {
+                        $rows[] = $row;
+                    }
+                    $result->free();
+                }
+                $flag++;
+                $data = ["data".$flag=>$rows];
+                $jsonData = array_merge($jsonData, $data);
+                
+            } while ($conn->more_results() && $conn->next_result());
+        }
+
+        $conn->close();//关闭连接
+        return $jsonData;
+    }
 
     //初始化连接对象方法
     function connect(){
