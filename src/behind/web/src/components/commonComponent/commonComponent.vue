@@ -31,7 +31,7 @@
 </template>
 
 <script>
-    import '../commonComponent/commonComponent.scss'
+    import '../commonComponent/commonComponent.scss' //引入样式
     
     //引入axios封装
     import http from '../../utils/EdAxios'
