@@ -1,0 +1,14 @@
+#main{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .mainBody{
+        width: 100%;
+        height: 100%;
+        .mainContent{
+            float: right;
+            height: 100%;
+            overflow: hidden;
+        }
+    }
+}
