@@ -1,6 +1,6 @@
 <template>
     <div class="index_p">
-        <div class="head"></div>
+        <head_p class="head_p"></head_p>
         <div class="main">
         <!-- <vue-touch class="div" v-on:swipeleft="swipeleft"> -->
             <div class="block">
@@ -91,7 +91,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer"></div>
+        <foot_p class="footer_p"></foot_p>
     </div>
 </template>
 
@@ -99,6 +99,8 @@
     import './indexMain.scss';
     import http from '../../utils/reqAjax.js';
     import dateNow from '../../utils/dateFormat.js';
+    import footer from '../commonHtml/commonFoot/commonFoot'
+    import header from '../commonHtml/commonHead/commonHead.vue'
     export default {
         data: function(){
            return {
@@ -124,6 +126,10 @@
             })
         },
         methods:{
+        },
+        components:{
+            foot_p:footer,
+            head_p:header
         }
     }
 </script>
