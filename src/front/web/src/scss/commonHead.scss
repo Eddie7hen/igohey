@@ -1,10 +1,42 @@
 #commonHead{
+    height:1.707rem;
+    background-color: #FFD600;
+    padding-top:0.507rem;
+    display:flex;
+    justify-content:space-between;
     span{
-        display:block;
-        width:0.4rem;
-        height:0.667rem;
-        i{
-            font-size:0.267rem;
+        &:first-child{
+            width:1.333rem;
+            padding-top:0.24rem;
+            display:flex;
+            justify-content:center;
+            >i{
+                font-size:0.667rem;
+                color:#666;
+            }
+        }
+        &:last-child{
+            width:1.333rem;
+            padding-top:0.267rem;
+            display:flex;
+            justify-content:center;
+            >i{
+                font-size:0.667rem;
+            }
         }
     }
+    p{
+        text-align:center;
+        font-size:0.347rem;
+        line-height:1.2rem;
+        color:#333333;
+        >s{
+            margin:0rem 0.067rem;
+            font-size:0.4rem;
+        }
+        >i{
+            font-size:0.4rem;
+        }
+    }
+
 }

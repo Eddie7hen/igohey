@@ -1,0 +1,27 @@
+#w_footer{
+    height:1.347rem;
+    border-top:0.013rem solid #E0E0E0;
+    background-color: #F8F7F7;
+    display:flex;
+    justify-content:between;
+    >div{
+        flex:1;
+        display:flex;
+        padding:0.133rem 0rem;
+        flex-direction:column;
+        justify-content:space-around;
+        align-items:center;
+        >i{
+            font-size:0.613rem;
+            color:#333;
+        }
+        >span{
+            font-size:0.347rem;
+        }
+        &.active{
+            i{
+                color: #FFD600;
+            }
+        }
+    }
+}

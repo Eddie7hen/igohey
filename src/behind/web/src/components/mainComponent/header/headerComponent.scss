@@ -1,0 +1,36 @@
+$mainColor:#FED81B;
+$mainTitleSize:36px;
+
+#mainHeader{
+    width: 100%;
+    height: 60px;
+    border-bottom:1px solid #ddd;
+    .headerLeft{
+        float: left;
+        >a{
+            display: block;
+            width: 200px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            color:$mainColor;
+            text-decoration:none;
+            cursor:default;
+            font-size: $mainTitleSize;
+        }
+    }
+    .headerRight{
+        float:right;
+        >li{
+            float: left;
+            >a{
+                display: block;
+                width: 120px;
+                height: 60px;
+                text-align: center;
+                line-height: 60px;
+                color:#666;
+            }
+        }
+    }
+}
