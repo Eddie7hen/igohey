@@ -1,5 +1,3 @@
-import Vue from 'vue';
-
 const state = {
 
 }
@@ -12,7 +10,7 @@ const actions = {
 
 }
 
-export default {
+export default{
     state,
     mutations,
     actions

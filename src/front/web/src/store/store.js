@@ -7,10 +7,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import mycenter from '../components/mycenter/mycenter.vue';
+import shoppingCart from '../components/shoppingCart/shoppingCartComponent';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
-        mycenter
+        mycenter,
+        shoppingCart,
     }
 })
