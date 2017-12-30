@@ -15,7 +15,7 @@
 
 <script>
     import jsonp from 'jsonp';
-    import http from '../../../utils/reqAjax.js';
+    import http from '../../../utils/requestAjax.js';
     import '../../../scss/commonHead.scss';
 
     export default {

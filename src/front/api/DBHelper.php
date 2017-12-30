@@ -3,7 +3,7 @@
     function connect_oop(){
         // 配置参数
         $servername = '10.3.135.225';
-        $username = 'penglingda';
+        $username = 'huwanwan';
         $password = '123';
         $database = 'igohey';
 
@@ -14,7 +14,6 @@
         if($conn->connect_error){
             die('连接失败'.$conn->connect_error);
         }
-
         $conn->set_charset('utf8');
         return $conn;
     }
@@ -36,10 +35,10 @@
 
     //初始化连接对象方法
     function connect(){
-        $servername = "10.3.135.225";//
-        $username = "penglingda";
-        $password = "123";
-        $dbname = 'igohey'; 
+        $servername = '10.3.135.225';
+        $username = 'huwanwan';
+        $password = '123';
+        $dbname = 'igohey';
 
         //初始化连接，返回一个连接对象(包含所连接数据库的信息)
         $con = mysqli_connect($servername,$username,$password,$dbname); 

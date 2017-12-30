@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import mycenter from '../components/mycenter/mycenter.vue';
+import order from '../components/orderComponent/orderComponent.vue';
 Vue.use(VueRouter);
 Vue.use(ElementUI);
 // Vue.use(VueTouch, {name: 'vue-touch'})
@@ -15,6 +16,11 @@ let router = new VueRouter({
             path:'/',
             name:'mycenter',
             component: mycenter
+        },
+        {
+            path: '/order',
+            name: 'order',
+            component: order
         }
     ]
 })

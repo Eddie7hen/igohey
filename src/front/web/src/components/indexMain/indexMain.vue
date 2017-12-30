@@ -97,7 +97,7 @@
 
 <script type="text/javascript">
     import './indexMain.scss';
-    import http from '../../utils/reqAjax.js';
+    import http from '../../utils/requestAjax.js';
     import dateNow from '../../utils/dateFormat.js';
     export default {
         data: function(){
@@ -111,15 +111,15 @@
         },
         mounted(){
             //新品区的ajax请求
-            http.post({url:'indexMain.php', parmas:{type: 'new', addtime:dateNow()}}).then(res => {
+            http.post({url:'indexMain.php', params:{type: 'new', addtime:dateNow()}}).then(res => {
                 this.dataNew = res.data;
             })
             //折扣区的ajax请求
-            http.post({url:'indexMain.php', parmas:{type: 'discount', addtime:dateNow()}}).then(res => {
+            http.post({url:'indexMain.php', params:{type: 'discount', addtime:dateNow()}}).then(res => {
                 this.dataDiscount = res.data;
             })
             //热销区的ajax请求
-            http.post({url:'indexMain.php', parmas:{type: 'hot'}}).then(res => {
+            http.post({url:'indexMain.php', params:{type: 'hot'}}).then(res => {
                 this.dataHot = res.data;
             })
         },

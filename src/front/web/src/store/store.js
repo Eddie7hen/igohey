@@ -6,7 +6,7 @@
 */
 import Vue from 'vue';
 import Vuex from 'vuex';
-import mycenter from '../components/mycenter/mycenter.vue';
+import mycenter from '../components/mycenter/mycenter';
 
 Vue.use(Vuex);
 export default new Vuex.Store({
