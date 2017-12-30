@@ -7,7 +7,7 @@ import mycenter from '../components/mycenter/mycenter.vue';
 import commonHead from '../components/commonHtml/commonHead/commonHead.vue';
 import ShoppingCartComponent from '../components/shoppingCart/shoppingCartComponent.vue';
 // import VueTouch from 'vue-touch';
-
+import order from '../components/orderComponent/orderComponent.vue';
 Vue.use(VueRouter);
 Vue.use(ElementUI);
 // Vue.use(VueTouch, {name: 'vue-touch'})
@@ -25,6 +25,11 @@ let router = new VueRouter({
             path:'/shoppingcart',
             name:'shoppingcart',
             component: ShoppingCartComponent
+        },
+        {
+            path: '/order',
+            name: 'order',
+            component: order
         }
     ]
 })

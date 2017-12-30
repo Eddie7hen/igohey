@@ -28,7 +28,7 @@
             </div>
             <ul class='goodsList' v-if="dataset.length > 0" >
                 <li v-for="(obj, index) in dataset" :key="index" :id="obj.goodsid" >
-                    <h2 @click='iChecks' ><i class='iconfont iCheck' :class="iConActive == 0 ?  'icon-success': 'icon-success_fill iCheckActive' " ></i></h2>
+                    <h2 @click='iChecks' ><i class='iconfont icon-success iCheck' ></i></h2>
                     <h3>
                         <img :src="obj.imgurl" alt="">
                     </h3>
@@ -44,7 +44,7 @@
                 </li>
             </ul>
             <dl class='settle' >
-                <dd><i class='iconfont icon-success iCheckAll'></i></dd>
+                <dd @click='iChecksAll' ><i class='iconfont icon-success iCheckAll'></i></dd>
                 <dd>全选</dd>
                 <dd>
                     共￥<span class='money' >0</span>
@@ -74,11 +74,26 @@
         },
         methods:{
             iChecks(event){
-                console.log(event.target)
-                if(event.target.className == 'iconfont iCheck icon-success'){
-                    this.iConActive = '1';
-                }else if(event.target.className == 'iconfont iCheck icon-success_fill iCheckActive'){
-                    this.iConActive = '0';
+                if(event.target.classList.contains('icon-success')){
+                    event.target.classList.remove('icon-success');
+                    event.target.classList.add('icon-success_fill');
+                    event.target.classList.add('iCheckActive');
+                }else if(event.target.classList.contains('icon-success_fill')){
+                    event.target.classList.remove('icon-success_fill');
+                    event.target.classList.remove('iCheckActive');
+                    event.target.classList.add('icon-success');
+                }
+            },
+            iChecksAll(event){
+                console.log(event);
+                if(event.target.classList.contains('icon-success')){
+                    event.target.classList.remove('icon-success');
+                    event.target.classList.add('icon-success_fill');
+                    event.target.classList.add('iCheckAllActive');
+                }else if(event.target.classList.contains('icon-success_fill')){
+                    event.target.classList.remove('icon-success_fill');
+                    event.target.classList.remove('iCheckAllActive');
+                    event.target.classList.add('icon-success');
                 }
             }
         },

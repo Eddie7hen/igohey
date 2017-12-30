@@ -1,6 +1,6 @@
 <template>
     <footer id="w_footer">
-        <div v-for="(item,index) in list" :class="{active:limit == index}" :key="index" @click="leaveICur(index)">
+        <div v-for="(item,index) in list" :class="{active:limit == index}" :key="index" @click="checkList(index)">
             <i :class="item.icon"></i>
             <span v-text="item.tip"></span>
         </div>
@@ -31,8 +31,16 @@ export default {
                     icon:'iconfont icon-feedback_fill',
                     tip:'我的'
                 }
-            ]
+            ],
+            router:['home','goodslist','service','cart','mycenter'],
+            limit:0
         }
     },
+    methods:{
+        checkList:function(index){
+            this.limit = index;
+            // this.$router.push({name:this.router[index]});
+        }
+    }
 }
 </script>
