@@ -47,11 +47,11 @@ $mainSizeSmall:0.2933rem;
             }   
         }
         #main_cont{
-            margin-top:0.2133rem;
-            background-color:#FEFEFE;
+            margin-top:0.1333rem;
             .carousel{
                 height:3.4667rem;
-                margin-bottom:0.08rem;
+                margin-bottom:10px;
+                background-color:#fff;
                 >.el-carousel{
                     height:100%;
                     >.el-carousel__container{
@@ -60,12 +60,15 @@ $mainSizeSmall:0.2933rem;
                     .el-carousel__button{
                         display:none;
                     }
+                    .el-carousel__indicator{
+                        display:none;
+                    }
                 }
             }
             ul{
                 display:flex;
-                flex-direction:column;
-                border-top:1px solid #EEEEEE;
+                flex-direction:column;     
+                background-color:#FEFEFE;
                 li{
                     height:1.3067rem;
                     padding-left:0.2933rem;

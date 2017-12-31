@@ -106,6 +106,19 @@
                 .orderFoot{
                     border-top:0.0133rem solid #F1F1F1;
                     padding-right:0.4rem;
+                    display:flex;
+                    justify-content: space-between;
+                    align-items:center;
+                    >span{
+                        width:2.1067rem;
+                        height:0.72rem;
+                        line-height:0.72rem;
+                        text-align:center;
+                        color:#FFA800;
+                        border:0.0133rem solid $mainColor;
+                        border-radius:0.1333rem;
+                        font-size:$mainSizeCenter;
+                    }
                     p{    
                         height:1.3333rem;
                         line-height:1.3333rem;

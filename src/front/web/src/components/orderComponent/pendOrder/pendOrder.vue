@@ -19,6 +19,7 @@
                 </p>
             </div>
             <div class="orderFoot">
+                <span>删除订单</span>
                 <p v-html="'<span>应付:</span>￥'+item.price"></p>
             </div>
         </div>
