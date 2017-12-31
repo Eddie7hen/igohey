@@ -7,7 +7,7 @@
             <div class='EdCartAddress' >
                 <div class='EdCartNon' >
                     <P class='Nonp' >iGo瞎需要您的地址坐标</P>
-                     <i class="iconfont icon-enter Nonenter"></i>
+                    <i class="iconfont icon-enter Nonenter"></i>
                 </div>
                 <!-- <div class='EdCart' >
                     <h5>
@@ -28,7 +28,7 @@
             </div>
             <ul class='goodsList' v-if="dataset.length > 0" >
                 <li v-for="(obj, index) in dataset" :key="index" :id="obj.goodsid" >
-                    <h2 @click='iChecks' ><i class='iconfont icon-success iCheck' ></i></h2>
+                    <h2 @click='iChecks' ><i :ref="index+1" class='iconfont icon-success iCheck' ></i></h2>
                     <h3>
                         <img :src="obj.imgurl" alt="">
                     </h3>
@@ -37,14 +37,14 @@
                         <em>￥<span>{{obj.price*obj.goodsqty}}</span></em>
                     </h4>
                     <h5>
-                        <a>&minus;</a>
+                        <a @click="minus($event, obj.goodsid)" >&minus;</a>
                         <span v-text="obj.goodsqty" ></span>
-                        <a>&plus;</a>   
+                        <a @click="plus($event, obj.goodsid)">&plus;</a>   
                     </h5>
                 </li>
             </ul>
             <dl class='settle' >
-                <dd @click='iChecksAll' ><i class='iconfont icon-success iCheckAll'></i></dd>
+                <dd @click='iChecksAll' ><i ref='All' class='iconfont icon-success iCheckAll'></i></dd>
                 <dd>全选</dd>
                 <dd>
                     共￥<span class='money' >0</span>
@@ -68,12 +68,13 @@
             return{
                 username:'Ed',
                 dataset:[],
-                url:'EdCart.php',
-                iConActive:0,
+                url:this.$store.state.shoppingCart.url,
             }
         },
         methods:{
+            //勾选状态样式改变
             iChecks(event){
+                var iCheck = document.querySelectorAll('.iCheck');
                 if(event.target.classList.contains('icon-success')){
                     event.target.classList.remove('icon-success');
                     event.target.classList.add('icon-success_fill');
@@ -83,18 +84,53 @@
                     event.target.classList.remove('iCheckActive');
                     event.target.classList.add('icon-success');
                 }
+                this.$refs.All.classList.remove('icon-success');
+                this.$refs.All.classList.add('icon-success_fill');
+                this.$refs.All.classList.add('iCheckAllActive');
+                for(var i=0;i<iCheck.length;i++){
+                    if(!iCheck[i].classList.contains('icon-success_fill')){
+                        this.$refs.All.classList.remove('icon-success_fill');
+                        this.$refs.All.classList.remove('iCheckAllActive');
+                        this.$refs.All.classList.add('icon-success');
+                    }
+                }
             },
+            //全选勾选状态样式改变            
             iChecksAll(event){
-                console.log(event);
                 if(event.target.classList.contains('icon-success')){
                     event.target.classList.remove('icon-success');
                     event.target.classList.add('icon-success_fill');
                     event.target.classList.add('iCheckAllActive');
+                    for(var i=0;i<this.dataset.length;i++){
+                        this.$refs[i+1][0].classList.remove('icon-success')
+                        this.$refs[i+1][0].classList.add('icon-success_fill');
+                        this.$refs[i+1][0].classList.add('iCheckActive');
+                    }
                 }else if(event.target.classList.contains('icon-success_fill')){
                     event.target.classList.remove('icon-success_fill');
                     event.target.classList.remove('iCheckAllActive');
                     event.target.classList.add('icon-success');
+                    for(var i=0;i<this.dataset.length;i++){
+                        this.$refs[i+1][0].classList.remove('icon-success_fill');
+                        this.$refs[i+1][0].classList.remove('iCheckActive');
+                        this.$refs[i+1][0].classList.add('icon-success');
+                    }
                 }
+            },
+            //数量增加
+            plus(event, goodsid){
+                var goodsqty = ++event.target.previousElementSibling.innerText;      
+                var params = {
+                    goodsid:goodsid,
+                    goodsqty:goodsqty,
+                    username:this.username,
+                    status:'update',
+                }
+                this.$store.dispatch('count',params);
+            },
+            //数量减少
+            minus(event, goodsid){
+                console.log(event, goodsid);                
             }
         },
         beforeMount(){
@@ -103,7 +139,6 @@
                 status:'query',
             }
             http.post({url:this.url, params:params}).then((res)=>{
-                console.log(res);
                 //将返回的数据赋给dataset
                 if(res.status == '200' && res.data.length > 0){
                     this.dataset = res.data;
