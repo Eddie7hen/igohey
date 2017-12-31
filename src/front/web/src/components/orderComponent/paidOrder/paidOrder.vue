@@ -29,24 +29,10 @@
     export default {
         data(){
             return { 
-                paidList:[
-                    {
-                        id:1,
-                        'orderno':121212,
-                        'status':1,
-                        'addTime':'2015-09-22 11:41:20',
-                        goodsId:123,
-                        imgurl:'src/assets/imgs/caomei.jpg',
-                        details:'花果山 中国国产鲜草莓 30克/盒',
-                        'price':'11.32',
-                        'saleprice':'10.12',
-                        'standard':'g',
-                        'area':'瑞士',
-                        qty:1
-                    }
-                ]
+                
             }
-        }
+        },
+        props:["paidList"]
     }
 </script>
     

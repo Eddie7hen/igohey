@@ -2,11 +2,11 @@
     include './DBHelper.php';
     header('Access-Control-Allow-Origin:*');
     $type = isset($_POST["type"]) ? $_POST["type"] : "";
-    $status = isset($_POST["status"]) ? $_POST["status"] : "";
+    $status = isset($_POST["status"]) ? $_POST["status"] : "";  
     $orderno = isset($_POST["orderno"]) ? $_POST["orderno"] : "";
     $username = isset($_POST["username"]) ? $_POST["username"] : "";
-    $goodsid = isset($_POST["goodsid"]) ? $_POST["goodsid"] : "";
-
+    
+    $params = isset($_POST["dataset"]) ? $_POST["dataset"] : "";
     if($type=="get"){
         $sql = "select * from goods join orders on orders.goodsid=goods.id where username='$username'";
         if($status){
@@ -23,20 +23,9 @@
         $result = excute($sql);
         echo $result;
     }else if($type=="add"){
-        $array = explode(',',$goodsid);
         $sql = "";
-        for($i = 0;$i < count($array);$i++){
-            $sql.= "insert into orders (username,status,orderno,goodsid)values('$username','$status','$orderno','$array[$i]');";
-        }
-        if(strrchr($sql,",")=="," ){
-            $sql = substr($sql,0,-1);
-        }
-        $result = multi_query_oop($sql);
-        if($result){
-            echo "ok";
-        }else{
-            // 输出失败;
-            echo "Error: " .$sql ."<br>" .$cont->error; 
+        for($i = 0;$i < count($params);$i++){
+            $sql .= "insert into orders "
         }
     }
 
