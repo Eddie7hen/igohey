@@ -50,7 +50,7 @@
                 <dd>
                     共￥<span class='money' >0</span>
                 </dd>
-                <dd>选好了</dd>
+                <dd @click="createBill">选好了</dd>
             </dl>
         </div>
         <Ed-footer></Ed-footer>
@@ -61,6 +61,7 @@
     import '../shoppingCart/shoppingCartComponent.scss';
     import footer from '../commonHtml/commonFoot/commonFoot.vue';
     import http from '../../utils/requestAjax';
+    import msec from '../../utils/getMsec';
     export default {
         components:{
             'Ed-footer': footer,
@@ -171,6 +172,27 @@
                 }
                 total.innerText = totalMoney.toFixed(2);
                 
+            },
+            createBill(){
+                var liAll = document.querySelectorAll('li');
+                var strId = '';
+                for(var i=0;i<liAll.length;i++){
+                    if(liAll[i].children[0].children[0].classList.contains('icon-success_fill')){
+                        strId += liAll[i].id + ',';
+                    }
+                }
+                strId = strId.slice(0,-1);
+                var params = {
+                    type:'add',
+                    orderno:msec(),
+                    username:this.username,
+                    goodsid:strId,
+                    status:'2',
+                }
+                this.$store.dispatch('createOrder', params);
+                // if(this.$store.state.shoppingCart.createRes){
+                    
+                // }
             }
         },
         beforeMount(){

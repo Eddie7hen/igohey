@@ -2,7 +2,7 @@
     include './DBHelper.php';
     header('Access-Control-Allow-Origin:*');
     $type = isset($_POST["type"]) ? $_POST["type"] : "";
-    $status = isset($_POST["status"]) ? $_POST["status"] : "";
+    $status = isset($_POST["status"]) ? $_POST["status"] : "";//1:已支付,2:未支付,3:退货
     $orderno = isset($_POST["orderno"]) ? $_POST["orderno"] : "";
     $username = isset($_POST["username"]) ? $_POST["username"] : "";
     $goodsid = isset($_POST["goodsid"]) ? $_POST["goodsid"] : "";
@@ -27,9 +27,6 @@
         $sql = "";
         for($i = 0;$i < count($array);$i++){
             $sql.= "insert into orders (username,status,orderno,goodsid)values('$username','$status','$orderno','$array[$i]');";
-        }
-        if(strrchr($sql,",")=="," ){
-            $sql = substr($sql,0,-1);
         }
         $result = multi_query_oop($sql);
         if($result){
