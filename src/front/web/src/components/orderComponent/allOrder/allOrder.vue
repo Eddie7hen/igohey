@@ -19,6 +19,7 @@
                 </p>
             </div>
             <div class="orderFoot">
+                <span>删除订单</span>
                 <p v-html="item.status == 1 ? '<span>实付:</span>￥'+item.price : item.status == 2 ? '<span>应付:</span>￥'+item.price : '<span>退付款:</span>￥'+item.price"></p>
             </div>
         </div>
