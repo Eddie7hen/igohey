@@ -34,13 +34,14 @@
                     </h3>
                     <h4>
                         <em v-text="obj.details" ></em>
-                        <em>￥<span>{{obj.price*obj.goodsqty}}</span></em>
+                        <em>￥<span>{{obj.price}}</span></em>
                     </h4>
                     <h5>
                         <a @click="minus($event, obj.goodsid)" >&minus;</a>
                         <span v-text="obj.goodsqty" ></span>
                         <a @click="plus($event, obj.goodsid)">&plus;</a>   
                     </h5>
+                    <div @click="deletes($event, obj.goodsid)" ><i id="btnDelete" class="iconfont icon-empty" ></i></div>
                 </li>
             </ul>
             <dl class='settle' >
@@ -94,6 +95,7 @@
                         this.$refs.All.classList.add('icon-success');
                     }
                 }
+                this.total();
             },
             //全选勾选状态样式改变            
             iChecksAll(event){
@@ -116,6 +118,7 @@
                         this.$refs[i+1][0].classList.add('icon-success');
                     }
                 }
+                this.total();
             },
             //数量增加
             plus(event, goodsid){
@@ -130,7 +133,44 @@
             },
             //数量减少
             minus(event, goodsid){
-                console.log(event, goodsid);                
+                var goodsqty = --event.target.nextElementSibling.innerText;
+                if(goodsqty < 1){
+                    goodsqty = 1;
+                    event.target.nextElementSibling.innerText = 1;
+                    return false;
+                }
+                var params = {
+                    goodsid:goodsid,
+                    goodsqty:goodsqty,
+                    username:this.username,
+                    status:'update',
+                }
+                this.$store.dispatch('count',params);             
+            },
+            //删除购物车商品
+            deletes(event, goodsid){
+                var params = {
+                    goodsid:goodsid,
+                    username:this.username,
+                    status:'delete',
+                }
+                this.$store.dispatch('deleteOrder', params);
+                if(this.$store.state.shoppingCart.deleteRes){
+                    event.target.parentNode.parentNode.remove()
+                }
+            },
+            //计算总价
+            total(){
+                var liAll = document.querySelectorAll('li');
+                var total = document.querySelector('.money');
+                var totalMoney = total.innerText*0;              
+                for(var i=0;i<liAll.length;i++){
+                    if(liAll[i].children[0].children[0].classList.contains('icon-success_fill')){
+                        totalMoney +=Number(liAll[i].children[2].children[1].children[0].innerText)*Number(liAll[i].children[3].children[1].innerText);
+                    }
+                }
+                total.innerText = totalMoney.toFixed(2);
+                
             }
         },
         beforeMount(){
@@ -144,7 +184,9 @@
                     this.dataset = res.data;
                 }
             })
-        }
+        },
+        // updated(){
+        // }
     }
 </script>
 

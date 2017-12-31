@@ -17,6 +17,11 @@
         $sql = "UPDATE carts AS c SET c.goodsqty='$goodsqty' WHERE c.username='$username' AND c.goodsid='$goodsid'";
         $result = excute_oop($sql);
         break;
+        case 'delete':
+        $sql = "DELETE FROM carts WHERE username='$username' AND goodsid='$goodsid'";
+        echo $sql;
+        $result = excute_oop($sql);
+        break;
     }
     
 

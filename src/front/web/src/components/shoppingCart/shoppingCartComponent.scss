@@ -100,6 +100,7 @@ $cartTitleFontSize:.453333rem;
                 height: 2.133333rem;
                 display: flex;
                 border-bottom: .013333rem solid #F1F1F1;
+                position: relative;
                 >h2{
                     width: .826667rem;
                     text-align:center;
@@ -150,6 +151,12 @@ $cartTitleFontSize:.453333rem;
                         color:#FF4400;
                         margin: 0 .08rem;
                     }
+                }
+                #btnDelete{
+                    position:absolute;
+                    right:.266667rem;
+                    top: .293333rem;
+                    color:$mainColor;
                 }
             }
         }
