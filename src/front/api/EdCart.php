@@ -17,6 +17,15 @@
         $sql = "UPDATE carts AS c SET c.goodsqty='$goodsqty' WHERE c.username='$username' AND c.goodsid='$goodsid'";
         $result = excute_oop($sql);
         break;
+        case 'delete':
+        $array = explode(',', $goodsid);
+        
+        $sql = "";
+        for($i=0; $i<count($array); $i++){
+            $sql .= "DELETE FROM carts WHERE username='$username' AND goodsid='$array[$i]'".';';
+        }
+        $result = multi_excute_oop($sql);
+        break;
     }
     
 
