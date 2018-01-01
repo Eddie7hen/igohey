@@ -12,31 +12,32 @@
             </ul>
         </nav>
         <main id="w_main"> 
-            <AllOrder v-if="iCurTips == 0" :allList="this.$store.state.orders.orderList"></AllOrder>
-            <Paid v-if="iCurTips == 1" :paidList="this.$store.state.orders.paidList"></Paid>
-            <Pending v-if="iCurTips == 2" :pend="this.$store.state.orders.pendList"></Pending>
-            <OutOrder v-if="iCurTips == 3" :outList="this.$store.state.orders.outList"></OutOrder>
+            <AllOrder :allList="this.$store.state.orders[orderList[iCurTips]]"></AllOrder>
+            <!-- <Paid v-if="iCurTips == 1"></Paid>
+            <Pending v-if="iCurTips == 2"></Pending>
+            <OutOrder v-if="iCurTips == 3"></OutOrder> -->
         </main>
     </div>
 </template>
 <script>
     import AllOrder from './allOrder/allOrder.vue';
-    import Paid from './paidOrder/paidOrder.vue';
-    import Pending from './pendOrder/pendOrder.vue';
-    import OutOrder from './outOrder/outOrder.vue';
+    // import Paid from './paidOrder/paidOrder.vue';
+    // import Pending from './pendOrder/pendOrder.vue';
+    // import OutOrder from './outOrder/outOrder.vue';
     import './orderComponent.scss';
     export default {
         data:function(){
             return {
                 orderTips:['全部','已支付','待支付','退款/售后'],
-                iCurTips:0
+                iCurTips:0,
+                orderList:['orderList','paidList','pendList','outList']
             }
         },
         components:{
-            AllOrder,
-            Paid,
-            Pending,
-            OutOrder
+            AllOrder
+            // Paid,
+            // Pending,
+            // OutOrder
         },
         methods:{
             changeTips(idx){
@@ -48,7 +49,7 @@
         },
         mounted(){
             this.iCurTips = this.$route.query.iCurShow;
-            this.$store.dispatch('selectOrder',{ url: 'order.php', params: { type: 'get', username: 222 } });
+            this.$store.dispatch('selectOrder',{ url: 'order.php', params: { type: 'get', username: 'Ed' } });
         }
 
     }

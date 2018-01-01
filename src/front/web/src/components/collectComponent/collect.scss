@@ -1,0 +1,117 @@
+@import '../../scss/fontSize.scss';
+#collect{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    #w_header{
+        height:1.7067rem;
+        display:flex;
+        align-items:center;
+        padding:0.5067rem 0.88rem 0rem 0.24rem;
+        border-bottom:0.0133rem solid #B2B2B2;
+        h1{
+            flex:1;
+            text-align:center;
+            font-size:$titleSize;
+        }
+    }
+    #w_main{
+        flex:1;
+        overflow-x:hidden;
+        background-color:#F9F9F8;
+        >div{
+            display:flex;
+            height:192px;   
+            align-items:center;
+            padding:0rem 0.1333rem;
+            background-color:#fff;
+            border-bottom:1px solid #E0E0E0;
+            i{
+                margin:0rem 0.2667rem;
+                &.active{
+                    color:$mainColor;
+                }
+            }
+            img{
+                width:2rem;
+                height:2rem;
+                margin:0rem 0.1333rem;
+            }
+            >p{
+                display:flex;
+                flex-direction:column;
+                &:nth-child(3){
+                    width:3.7333rem;
+                    span{
+                        height:0.6rem;
+                        font-size:$mainSizeCenter;
+                        line-height:0.6rem;
+                        &:first-child{
+                            font-size:$mainSizeBig;
+                        }
+                        &:last-child{
+                            margin-top:0.1333rem;
+                            color:#878787;
+                            height:0.8rem;
+                            line-height:0.4rem;
+                            font-size:$mainSizeCenter;
+                            padding-right:0.1333rem;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                        }
+                    }
+                }
+                &:last-child{   
+                    flex:1;
+                    height:0.8rem;
+                    text-align:right;
+                    span{
+                        font-size:$mainSizeCenter;
+                        line-height:0.4rem;
+                        &:first-child{
+                            color:#FF4400;
+
+                        }
+                        &:last-child{
+                            color:#999999;
+                            margin-top:0.2667rem;
+                            font-size:$mainSizeSmall;
+                            text-decoration:line-through;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #w_footer{
+        height:1.1733rem;
+        display:flex;
+        padding:0rem 0.2667rem;
+        align-items:center;
+        justify-content: space-between;
+        color:#000000;
+        p{
+            display:flex;
+            align-items:center;
+            i{
+                margin:0rem 0.2667rem;
+                &.active{
+                    color:$mainColor;
+                }
+            }    
+            >span{
+                font-size:$mainSizeBig;
+            }
+        }
+        >span{
+            font-size:$mainSizeBig;
+            height:0.6933rem;
+            width:1.9733rem;
+            text-align:center;
+            line-height:0.6933rem;
+            background-color:#FFD600;
+            border-radius:0.16rem;
+        }
+    }
+}
