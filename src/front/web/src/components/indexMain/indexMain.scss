@@ -10,6 +10,7 @@ $mainSizeSmall:0.2933rem;
   display:flex;
   flex-direction:column;
   height:100%;
+  position: relative;
   .head_p{
     background-color:#ccc;
   }
@@ -82,33 +83,49 @@ $mainSizeSmall:0.2933rem;
               overflow:hidden;
               line-height:0.373333rem;
               font-weight:bold;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
             }
-            >div{
-              height:1.0rem;
+            >div:nth-child(3){
+              // height:1.0rem;
               font-size:$mainSizeSmall;
               font-weight:bold;
               padding-left:0.106667rem;
-              position: relative;
-              span{
-                color:#FF4400;
-              }
-              p:nth-child(2){
+              // position: relative;
+              height:0.8rem;
+              p{
                 font-size:$mainSizeSmall;
+                span{
+                  color:#FF4400;
+                }
               }
-              i{
-                display:inline-block;
-                font-size:0.266667rem;
+              // i{
+              //   display:inline-block;
+              //   font-size:0.266667rem;
+              //   border:0.026667rem solid #FFD600;
+              //   height:0.533333rem;
+              //   width:0.533333rem;
+              //   border-radius:0.266667rem;
+              //   text-align:center;
+              //   line-height:0.533333rem;
+              //   color:#FF4400;
+              //   font-weight:bold;
+              //   position: absolute;
+              //   right:0.133333rem;
+              //   bottom:0.466667rem;
+              // }
+            }
+            >div:nth-child(4){
+              text-align:center;
+              padding-bottom:0.266667rem;
+              >span{
+                font-size:$mainSizeSmall;
+                padding:0.133333rem;
                 border:0.026667rem solid #FFD600;
-                height:0.533333rem;
-                width:0.533333rem;
-                border-radius:0.266667rem;
-                text-align:center;
-                line-height:0.533333rem;
                 color:#FF4400;
-                font-weight:bold;
-                position: absolute;
-                right:0.133333rem;
-                bottom:0.466667rem;
+                border-radius:0.266667rem;
+                background-color:#FFD600;
               }
             }
           }
@@ -119,6 +136,24 @@ $mainSizeSmall:0.2933rem;
   .footer_p{
     height:2.34375rem;
     background-color:#ccc;
+  }
+  .showupWin{
+    position: absolute;
+    bottom:2.666667rem;
+    left:50%;
+    transform:translateX(-1.866667rem);
+    height:1.066667rem;
+    width:3.733333rem;
+    font-size:$mainSizeBig;
+    background-color:rgba(0,0,0,0.7);
+    color:#FFF;
+    border-radius:0.533333rem;
+    text-align:center;
+    line-height:1.066667rem;//80
+    display:none;
+    &.win_active{
+      display:block;
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
     <div id="mycenter">
-        <header id="w_main">
+        <main id="w_main">
             <div id="headTop">
                 <span><i class="iconfont icon-setup"></i></span>
                 <p>
@@ -10,7 +10,16 @@
                 </p>
                 <span><i class="iconfont icon-systemprompt"></i></span>
             </div>
-        </header>
+            <div id="main_cont">
+                <ul>
+                    <li>
+                        <i class="iconfont icon-coupons_fill"></i>
+                        <span>代付款</span>
+                        <i class="iconfont icon-enter"></i>
+                    </li>
+                </ul>
+            </div>
+        </main>
     </div>
 </template>
 <script>

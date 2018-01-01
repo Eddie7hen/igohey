@@ -10,6 +10,8 @@ Vue.use(ElementUI);
 // Vue.use(VueTouch, {name: 'vue-touch'})
 
 import indexMainComponent from '../components/indexMain/indexMain.vue'
+import classifyComponent from '../components/classifyMain/classifyMain.vue'
+import detailsComponent from '../components/details_p/details.vue'
 let router = new VueRouter({
     mode: 'history',
     routes:[
@@ -22,6 +24,16 @@ let router = new VueRouter({
             path:'/index',
             name:'index',
             component: indexMainComponent
+        },
+        {
+            path:'/classify',
+            name:'classify',
+            component: classifyComponent
+        },
+        {
+            path:'/details',
+            name:'details',
+            component: detailsComponent
         }
     ]
 })
