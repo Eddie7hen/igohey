@@ -3,7 +3,7 @@ import http from '../../utils/requestAjax';
 
 const state = {
     url:'EdCart.php',
-    api:'order.php',
+    api:'EdOrder.php',
     updateRes:'',
     deleteRes:'',
     createRes:'',

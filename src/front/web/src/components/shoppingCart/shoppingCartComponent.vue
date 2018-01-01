@@ -131,6 +131,7 @@
                     status:'update',
                 }
                 this.$store.dispatch('count',params);
+                this.total();
             },
             //数量减少
             minus(event, goodsid){
@@ -146,7 +147,8 @@
                     username:this.username,
                     status:'update',
                 }
-                this.$store.dispatch('count',params);             
+                this.$store.dispatch('count',params);
+                this.total();                     
             },
             //删除购物车商品
             deletes(event, goodsid){
@@ -155,10 +157,8 @@
                     username:this.username,
                     status:'delete',
                 }
-                this.$store.dispatch('deleteOrder', params);
-                if(this.$store.state.shoppingCart.deleteRes){
-                    event.target.parentNode.parentNode.remove()
-                }
+                this.$store.dispatch('deleteOrder', params);                  
+                event.target.parentNode.parentNode.remove();
             },
             //计算总价
             total(){
@@ -175,24 +175,24 @@
             },
             createBill(){
                 var liAll = document.querySelectorAll('li');
-                var strId = '';
+                var dataset = [];
                 for(var i=0;i<liAll.length;i++){
                     if(liAll[i].children[0].children[0].classList.contains('icon-success_fill')){
-                        strId += liAll[i].id + ',';
+                        var opt  = {
+                            goodsid:liAll[i].id,
+                            qty:liAll[i].children[3].children[1].innerText
+                        };
+                        dataset.push(opt);
                     }
                 }
-                strId = strId.slice(0,-1);
                 var params = {
-                    type:'add',
+                    type:'create',
                     orderno:msec(),
                     username:this.username,
-                    goodsid:strId,
                     status:'2',
+                    dataset:JSON.stringify(dataset),
                 }
                 this.$store.dispatch('createOrder', params);
-                // if(this.$store.state.shoppingCart.createRes){
-                    
-                // }
             }
         },
         beforeMount(){
