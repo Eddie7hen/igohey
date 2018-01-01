@@ -1,0 +1,135 @@
+@import '../../scss/fontSize.scss';
+#allOrder{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    #w_header{
+        height:1.7067rem;
+        display:flex;
+        align-items:center;
+        padding:0.5067rem 0.88rem 0rem 0.24rem;
+        h1{
+            flex:1;
+            text-align:center;
+            font-size:$titleSize;
+        }
+    }
+    #w_nav{
+        .main_tips{
+            height:1.2rem;
+            background-color:#fff;
+            border-top:0.0133rem solid #B2B2B2;
+            display:flex;
+            li{
+                flex:1;
+                height:100%;
+                margin:0rem 0.2667rem;
+                line-height:1.1467rem;
+                font-size:$mainSizeBig;
+                text-align:center;
+                &.active{
+                    border-bottom:0.0533rem solid #FFA800;
+                }
+            }
+        }
+    }
+    #w_main{
+        flex:1;
+        overflow-x:hidden;
+        background-color:#F9F9F8;
+        padding-top:0.2667rem;
+        .main_cont{
+            >div{
+                margin-bottom:0.1333rem;
+                background-color:#fff;
+                padding-left:0.4rem;
+                >p{
+                    height:1.2rem;
+                    border-bottom:0.0133rem solid #F1F1F1;
+                    padding-right:0.4rem;
+                    display:flex;
+                    align-items:center;
+                    justify-content:space-between;
+                    >span{
+                        font-size:$mainSizeBig;
+                    }
+                    >s{
+                        font-size:$mainSizeBig;
+                        color:#FF4400;
+                    }
+                }
+                .orderCont{
+                    padding:0.16rem 0.4rem 0.16rem 0rem;
+                    display:flex;
+                    img{
+                        width:2rem;
+                        height:2rem;
+                        margin-right:0.2667rem;
+                    }
+                    >div{
+                        display:flex;
+                        flex-direction:column;
+                        p{
+                            /*
+                                多层省略;
+                            */
+                            height:0.8rem;
+                            font-size:$mainSizeCenter;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                        }
+                        span{
+                            margin-top:0.1067rem;
+                            font-size:$mainSizeSmall;
+                            color:#9C9C9C;
+                        }
+                    }
+                    >p{
+                        flex:1;
+                        text-align:right;
+                        font-size:$mainSizeCenter;
+                        display:flex;
+                        flex-direction:column;
+                        >span{
+                            margin:0.0667rem 0rem;
+                            &:nth-child(2){
+                                color:#9C9C9C;
+                                text-decoration:line-through;
+                            }
+                            &:last-child{
+                                margin-top:0.4rem;
+                            }
+                        }
+                    }
+                }
+                .orderFoot{
+                    border-top:0.0133rem solid #F1F1F1;
+                    padding-right:0.4rem;
+                    display:flex;
+                    justify-content: space-between;
+                    align-items:center;
+                    >span{
+                        width:2.1067rem;
+                        height:0.72rem;
+                        line-height:0.72rem;
+                        text-align:center;
+                        color:#FFA800;
+                        border:0.0133rem solid $mainColor;
+                        border-radius:0.1333rem;
+                        font-size:$mainSizeCenter;
+                    }
+                    p{    
+                        height:1.3333rem;
+                        line-height:1.3333rem;
+                        font-size:$mainSizeBig;
+                        text-align:right;
+                        span{
+                            color:#878787;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

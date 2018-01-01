@@ -1,0 +1,202 @@
+@import '../../scss/fontSize.scss';
+
+$cartTitleFontSize:.453333rem;
+
+#Edcart{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .EdCartHeader{
+        border-bottom: .013333rem solid #AEAEAD;
+        height: 1.706667rem;
+        padding-top: .506667rem;
+        >p{
+            margin:0;
+            font-size:$cartTitleFontSize;
+            text-align: center;
+            padding:.373333rem 0;
+            color:#333333;
+            letter-spacing: .053333rem;
+        }
+    }
+    .EdCartContent{
+        flex:1;
+        background-color:#F9F9F8;
+        overflow-x:hidden;
+        .EdCartAddress{
+            padding:.28rem 0;
+            .EdCartNon{
+                position: relative;
+                .Nonp{
+                    height: 1.333333rem;
+                    border:.013333rem dashed $mainColor;
+                    background-color:#fff;
+                    color:#FB2B07;
+                    font-size:$mainSizeBig;
+                    line-height: 1.333333rem;
+                    padding-left:.426667rem;
+                }
+                .Nonenter{
+                    position: absolute;
+                    right:.133333rem;
+                    top: .32rem;
+                }
+            }
+            .EdCart{
+                >h5{
+                    height: 2.32rem;
+                    border: .013333rem dashed $mainColor;
+                    margin: 0;
+                    background-color:#fff;
+                    display: flex;
+                    >h2{
+                        width: 1.173333rem;
+                        text-align: center;
+                    }
+                    >h3{
+                        width: 6.986667rem;
+                        padding-left: .133333rem;
+                        >p{
+                            height:1.173333rem;
+                            display:flex;
+                            align-items:center;
+                            >span{
+                                font-size:$mainSizeCenter;
+                                color:#666;
+                                padding-left: .133333rem;
+                            }
+                        }
+                    }
+                    >h4{
+                        flex:1;
+                        position: relative;
+                        >span{
+                            display: block;
+                            font-size:$mainSizeBig;
+                            color:#59B7EF;
+                            padding:.96rem 0;
+                        }
+                        .enter{
+                            position: absolute;
+                            right:.133333rem;
+                            top: .88rem;
+                        }
+                    }
+                }
+            }
+        }
+        .EdflashSend{
+            height: 1.546667rem;
+            border-top: .013333rem solid #ddd;
+            border-bottom: .013333rem solid #ddd;
+            >img{
+                width: 100%;
+            }
+        }
+        .goodsList{
+            background: #fff;
+            padding-left: .373333rem;
+            >li{
+                height: 2.133333rem;
+                display: flex;
+                border-bottom: .013333rem solid #F1F1F1;
+                position: relative;
+                >h2{
+                    width: .826667rem;
+                    text-align:center;
+                    display:flex;
+                    .iCheck{
+                        align-self: center;
+                        &.iCheckActive{
+                            color:$mainColor;
+                        }
+                    }
+                }
+                >h3{
+                    width: 2.053333rem;
+                    display:flex;
+                    >img{
+                        width: 2.053333rem;
+                        align-self: center;
+                        
+                    }
+                }
+                >h4{
+                    width: 4.16rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    padding-left: .133333rem;
+                    >em{
+                        font-size:$mainSizeBig;
+                        &:nth-child(2){
+                            color:#FF4501;
+                        }
+                    }
+                }
+                >h5{
+                    width: 2.586667rem;
+                    margin: 0;
+                    text-align: center;
+                    font-weight: normal;
+                    font-size: $mainSizeCenter;
+                    padding-top: 1.333333rem;
+                    >a{
+                        display: inline-block;
+                        width: .666667rem;
+                        height: .666667rem;
+                        line-height: .64rem;
+                        border: .013333rem solid #FF4400dd;
+                        border-radius:50%;
+                        color:#FF4400;
+                        margin: 0 .08rem;
+                    }
+                }
+                #btnDelete{
+                    position:absolute;
+                    right:.266667rem;
+                    top: .293333rem;
+                    color:$mainColor;
+                }
+            }
+        }
+        .settle{
+            height: 1.333333rem;
+            display: flex;
+            padding-left: .373333rem;
+            background-color: #fff;
+            >dd{
+                &:nth-child(1){
+                    width:.826667rem;
+                    display: flex;
+                    .iCheckAll{
+                        align-self: center;
+                        &.iCheckAllActive{
+                            color:$mainColor;
+                        }
+                    }
+                }
+                &:nth-child(2){
+                    width: 1.146667rem;
+                    font-size: $mainSizeBig;
+                    color:#333333;
+                    line-height: 1.333333rem;
+                }
+                &:nth-child(3){
+                    width: 4.986667rem;
+                    font-size:$mainSizeBig;
+                    line-height: 1.333333rem;
+                    color:#FF4400;
+                }
+                &:nth-child(4){
+                    flex:1;
+                    background-color:$mainColor;
+                    font-size: .453333rem;
+                    text-align:center;
+                    line-height:1.333333rem;
+                    color:#333333;
+                }
+            }
+        }
+    }
+}

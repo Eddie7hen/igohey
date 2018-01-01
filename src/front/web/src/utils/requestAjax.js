@@ -2,7 +2,8 @@
 * @Author: Marte
 * @Date:   2017-12-07 17:33:59
 * @Last Modified by:   Marte
-* @Last Modified time: 2017-12-30 15:12:05
+<<<<<<< HEAD
+* @Last Modified time: 2018-01-01 17:40:49
 */
 import axios from 'axios';
 import qs from 'qs';
@@ -38,7 +39,6 @@ export default {
             }).catch((error) => {
                 reject(error);
             });
-
         })
     }
 }
