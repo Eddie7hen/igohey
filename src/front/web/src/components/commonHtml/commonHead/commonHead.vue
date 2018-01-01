@@ -31,7 +31,6 @@
         },
         mounted(){
             // this.limit = this.$store.limit;
-            console.log(this.$router)
             http.get({url:'http://10.3.135.254:1993/getIp.php'}).then((res)=>{
                 if(res.data){ 
                     let url = 'https://api.map.baidu.com/location/ip?ip=' + res.data + '&ak=u0ButxxjGgLFZKgv8GSTRuQ8gERRXdU3&coor=bd09ll';

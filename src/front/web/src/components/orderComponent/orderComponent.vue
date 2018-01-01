@@ -12,10 +12,10 @@
             </ul>
         </nav>
         <main id="w_main"> 
-            <AllOrder v-if="iCurTips == 0" :allList="orderList"></AllOrder>
-            <Paid v-if="iCurTips == 1"></Paid>
-            <Pending v-if="iCurTips == 2" :pend="pendList"></Pending>
-            <OutOrder v-if="iCurTips == 3"></OutOrder>
+            <AllOrder v-if="iCurTips == 0" :allList="this.$store.state.orders.orderList"></AllOrder>
+            <Paid v-if="iCurTips == 1" :paidList="this.$store.state.orders.paidList"></Paid>
+            <Pending v-if="iCurTips == 2" :pend="this.$store.state.orders.pendList"></Pending>
+            <OutOrder v-if="iCurTips == 3" :outList="this.$store.state.orders.outList"></OutOrder>
         </main>
     </div>
 </template>
@@ -29,110 +29,7 @@
         data:function(){
             return {
                 orderTips:['全部','已支付','待支付','退款/售后'],
-                iCurTips:0,
-                orderList:[
-                    {
-                        id:1,
-                        'orderno':121212,
-                        'status':1,
-                        'addTime':'2015-09-22 11:41:20',
-                        goodsId:123,
-                        imgurl:'src/assets/imgs/caomei.jpg',
-                        details:'花果山 中国国产鲜草莓 30克/盒',
-                        'price':'11.32',
-                        'saleprice':'10.12',
-                        'standard':'g',
-                        'area':'瑞士',
-                        qty:1
-                    },
-                     {
-                        id:1,
-                        'orderno':121,
-                        'status':1,
-                        'addTime':'2015-09-22 11:41:20',
-                        goodsId:123,
-                        imgurl:'src/assets/imgs/caomei.jpg',
-                        details:'花果山 中国国产鲜草莓 30克/盒',
-                        'price':'11.32',
-                        'saleprice':'10.12',
-                        'standard':'g',
-                        'area':'瑞士',
-                        qty:1
-                    },
-                     {
-                        id:1,
-                        'orderno':1213434212,
-                        'status':2,
-                        'addTime':'2015-09-22 11:41:20',
-                        goodsId:123,
-                        imgurl:'src/assets/imgs/caomei.jpg',
-                        details:'花果山 中国国产鲜草莓 30克/盒',
-                        'price':'11.32',
-                        'saleprice':'10.12',
-                        'standard':'g',
-                        'area':'瑞士',
-                        qty:1
-                    },
-                     {
-                        id:1,
-                        'orderno':1216565212,
-                        'status':2,
-                        'addTime':'2015-09-22 11:41:20',
-                        goodsId:123,
-                        imgurl:'src/assets/imgs/caomei.jpg',
-                        details:'花果山 中国国产鲜草莓 30克/盒',
-                        'price':'11.32',
-                        'saleprice':'10.12',
-                        'standard':'g',
-                        'area':'瑞士',
-                        qty:1
-                    }
-
-                ],
-                pendList:[
-                    {
-                        id:1,
-                        'orderno':1987,
-                        'status':1,
-                        'addTime':'2015-09-22 11:41:20',
-                        goodsId:123,
-                        imgurl:'src/assets/imgs/caomei.jpg',
-                        details:'花果山 中国国产鲜草莓 30克/盒',
-                        'price':'11.32',
-                        'saleprice':'10.12',
-                        'standard':'g',
-                        'area':'瑞士',
-                        qty:1
-                    },
-                     {
-                        id:1,
-                        'orderno':9897,
-                        'status':1,
-                        'addTime':'2015-09-22 11:41:20',
-                        goodsId:123,
-                        imgurl:'src/assets/imgs/caomei.jpg',
-                        details:'花果山 中国国产鲜草莓 30克/盒',
-                        'price':'11.32',
-                        'saleprice':'10.12',
-                        'standard':'g',
-                        'area':'瑞士',
-                        qty:1
-                    },
-                     {
-                        id:1,
-                        'orderno':168,
-                        'status':2,
-                        'addTime':'2015-09-22 11:41:20',
-                        goodsId:123,
-                        imgurl:'src/assets/imgs/caomei.jpg',
-                        details:'花果山 中国国产鲜草莓 30克/盒',
-                        'price':'11.32',
-                        'saleprice':'10.12',
-                        'standard':'g',
-                        'area':'瑞士',
-                        qty:1
-                    }
-                ]
+                iCurTips:0
             }
         },
         components:{
@@ -151,6 +48,7 @@
         },
         mounted(){
             this.iCurTips = this.$route.query.iCurShow;
+            this.$store.dispatch('selectOrder',{ url: 'order.php', params: { type: 'get', username: 222 } });
         }
 
     }

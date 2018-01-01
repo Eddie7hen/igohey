@@ -2,25 +2,25 @@
     <div class="main_cont">
         <div v-for="item in allList" :key="item.orderno">
             <p>
-                <span>{{item.addTime}}</span>
-                <s v-text="item.status == 1 ? '已完成' : item.status == 2 ? '待支付' : '退款'"></s>
+                <span>{{item[0].addtime}}</span>
+                <s v-text="item[0].status == 1 ? '已完成' : item[0].status == 2 ? '待支付' : '退款'"></s>
             </p>
-            <div class="orderCont">
-                <img :src="item.imgurl" />
+            <div class="orderCont" v-for="goods in item" :id="goods.id" :key="goods.id">
+                <img :src="goods.imgurl" />
                 <div>
-                    <p v-text="item.details"></p>
-                    <span>产地:{{item.area}}</span>
-                    <span>规格:{{item.standard}}</span>
+                    <p v-text="goods.details"></p>
+                    <span>产地:{{goods.area}}</span>
+                    <span>规格:{{goods.standard}}</span>
                 </div>
                 <p>
-                    <span>￥{{item.price}}</span>
-                    <span>￥{{item.saleprice}}</span>
-                    <span>件数:{{item.qty}}</span>
+                    <span>￥{{goods.saleprice}}</span>
+                    <span>￥{{goods.price}}</span>
+                    <span>件数:{{goods.qty}}</span>
                 </p>
             </div>
             <div class="orderFoot">
                 <span>删除订单</span>
-                <p v-html="item.status == 1 ? '<span>实付:</span>￥'+item.price : item.status == 2 ? '<span>应付:</span>￥'+item.price : '<span>退付款:</span>￥'+item.price"></p>
+                <p v-html="item[0].status == 1 ? '<span>实付:</span>￥'+item[0].total : item[0].status == 2 ? '<span>应付:</span>￥'+item[0].total : '<span>退付款:</span>￥'+item[0].total"></p>
             </div>
         </div>
     </div>
