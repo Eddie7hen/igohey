@@ -1,6 +1,6 @@
 <template>
     <div class="index_p">
-        <div class="head"></div>
+        <head_p class="head_p"></head_p>
         <div class="main">
         <!-- <vue-touch class="div" v-on:swipeleft="swipeleft"> -->
             <div class="block">
@@ -16,21 +16,23 @@
                     <p>
                         <i></i>
                         新 品
-                        <span>更多 <i class="iconfont icon-enter"></i></span>
+                        <span @click="skiplist('new')">更多 <i class="iconfont icon-enter"></i></span>
                     </p>
                     <div>
                         <img src="/src/assets/images/poster1.jpg" />
                     </div>
                     <ul>
-                        <li v-for="(obj, idx) in dataNew" :key="idx">
+                        <li v-for="(obj, idx) in dataNew" :key="idx" :data-id="obj.id" @click="skipdetails(obj.id)">
                             <div class="img">
                                 <img :src="obj.imgurl" alt="" />    
                             </div>
                             <p v-text="obj.details"></p>
                             <div>
-                                <p>现价：￥<span v-text="obj.price"></span></p>
-                                <p>折扣价：￥<span v-text="obj.saleprice || '无'"></span></p>
-                                <i class='iconfont icon-add'></i>
+                                <p v-if="obj.saleprice">原价：￥<span v-text="obj.price" style="text-decoration:line-through;"></span></p>
+                                <p>现价：￥<span v-text="obj.saleprice || obj.price"></span></p>
+                            </div>
+                            <div>
+                                <span @click="joinCart">加入购物车</span>
                             </div>
                         </li>
                         <!-- <li>
@@ -47,21 +49,23 @@
                     <p>
                         <i></i>
                         折 扣 区
-                        <span>更多 <i class="iconfont icon-enter"></i></span>
+                        <span @click="skiplist('discount')">更多 <i class="iconfont icon-enter"></i></span>
                     </p>
                     <div>
                         <img src="/src/assets/images/poster2.jpg" />
                     </div>
                     <ul>
-                        <li v-for="(obj, idx) in dataDiscount" :key="idx">
+                        <li v-for="(obj, idx) in dataDiscount" :key="idx" :data-id="obj.id" @click="skipdetails(obj.id)">
                             <div class="img">
                                 <img :src="obj.imgurl" alt="" />    
                             </div>
                             <p v-text="obj.details"></p>
                             <div>
-                                <p>现价：￥<span v-text="obj.price"></span></p>
-                                <p>折扣价：￥<span v-text="obj.saleprice || (obj.price*0.5).toFixed(2)"></span></p>
-                                <i class='iconfont icon-add'></i>
+                                <p v-if="obj.saleprice">原价：￥<span v-text="obj.price" style="text-decoration:line-through;"></span></p>
+                                <p>现价：￥<span v-text="obj.saleprice || obj.price"></span></p>
+                            </div>
+                            <div>
+                                <span @click="joinCart">加入购物车</span>
                             </div>
                         </li>
                     </ul>
@@ -70,28 +74,33 @@
                     <p>
                         <i></i>
                         热 销 区
-                        <span>更多 <i class="iconfont icon-enter"></i></span>
+                        <span @click="skiplist('hot')">更多 <i class="iconfont icon-enter"></i></span>
                     </p>
                     <div>
                         <img src="/src/assets/images/poster3.jpg" />
                     </div>
                     <ul>
-                        <li v-for="(obj, idx) in dataHot" :key="idx">
+                        <li v-for="(obj, idx) in dataHot" :key="idx" :data-id="obj.id" @click="skipdetails(obj.id)">
                             <div class="img">
                                 <img :src="obj.imgurl" alt="" />    
                             </div>
                             <p v-text="obj.details"></p>
                             <div>
-                                <p>现价：￥<span v-text="obj.price"></span></p>
-                                <p>折扣价：￥<span v-text="obj.saleprice || (obj.price*0.8).toFixed(2)"></span></p>
-                                <i class='iconfont icon-add'></i>
+                                <p v-if="obj.saleprice">原价：￥<span v-text="obj.price" style="text-decoration:line-through;"></span></p>
+                                <p>现价：￥<span v-text="obj.saleprice || obj.price"></span></p>
+                            </div>
+                            <div>
+                                <span @click="joinCart">加入购物车</span>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="footer"></div>
+        <foot_p class="footer_p"></foot_p>
+        <div class="showupWin">
+                已加入购物车
+        </div>
     </div>
 </template>
 
@@ -99,6 +108,8 @@
     import './indexMain.scss';
     import http from '../../utils/requestAjax.js';
     import dateNow from '../../utils/dateFormat.js';
+    import footer from '../commonHtml/commonFoot/commonFoot'
+    import header from '../commonHtml/commonHead/commonHead.vue'
     export default {
         data: function(){
            return {
@@ -110,12 +121,14 @@
            }
         },
         mounted(){
+            var dateObj = dateNow();
+            console.log(dateObj);
             //新品区的ajax请求
-            http.post({url:'indexMain.php', params:{type: 'new', addtime:dateNow()}}).then(res => {
+            http.post({url:'indexMain.php', params:{type: 'new', addtime:dateObj.dateNow}}).then(res => {
                 this.dataNew = res.data;
             })
             //折扣区的ajax请求
-            http.post({url:'indexMain.php', params:{type: 'discount', addtime:dateNow()}}).then(res => {
+            http.post({url:'indexMain.php', params:{type: 'discount', addtime:dateObj.dateNow}}).then(res => {
                 this.dataDiscount = res.data;
             })
             //热销区的ajax请求
@@ -124,6 +137,37 @@
             })
         },
         methods:{
+            joinCart(event){
+                // console.log(event.target);
+                var upwin = document.getElementsByClassName('showupWin')[0];
+                var goodsid = event.target.parentElement.parentElement.dataset.id;
+                http.post({url:'indexMain.php', params:{type:'join', username:'dada', goodsid:goodsid}}).then(res => {
+                    if(res.data == 'ok'){
+                        upwin.classList.add('win_active');  
+                    }else{
+                        upwin.innerHTML = '加入购物车失败';
+                        upwin.classList.add('win_active');  
+                    }
+                })
+                setTimeout(function(){
+                    upwin.classList.remove('win_active');
+                },1000)
+            },
+            skipdetails(goodsid){
+                if(event.target.innerHTML !== '加入购物车'){
+                    console.log('66',goodsid)
+                }
+            },
+            skiplist(txt){
+                this.$router.push({
+                    name:'classify',
+                    query:{type:txt}
+                })
+            }
+        },
+        components:{
+            foot_p:footer,
+            head_p:header
         }
     }
 </script>

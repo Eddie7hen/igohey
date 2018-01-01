@@ -1,0 +1,19 @@
+$mainSizeBig:0.3733rem;
+$mainSizeCenter:0.32rem;
+$mainSizeSmall:0.2933rem;
+
+
+
+.details_p{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    .header{
+        position: relative;
+        height:1.706667rem;//128
+        font-size:0.453333rem;//34
+        i{
+            
+        }
+    }
+}
