@@ -34,30 +34,15 @@
             }
         }
     }
-    #w_main{
+    #w_main{ 
         flex:1;
-        overflow-x:hidden;
         background-color:#F9F9F8;
-        padding-top:0.2667rem;
-        .el-loading-mask{
-            height:100%;
-            .el-loading-spinner{
-                position:fixed;
-                top:50%;
-                transfrom:translateY(-50%);
-                .el-icon-loading{
-                    color:$mainColor;
-                }
-                .el-loading-text{
-                    font-size:$mainSizeCenter;
-                    color:#878787;
-                }
-            }
-        }
-        .main_cont{
+        padding-top:0.2667rem;  
+        overflow-x:hidden;
+        .main_cont{  
             >div{
                 margin-bottom:0.1333rem;
-                background-color:#fff;
+                background-color:#fff;    
                 padding-left:0.4rem;
                 >p{
                     height:1.2rem;

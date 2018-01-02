@@ -8,7 +8,7 @@
     
     $params = isset($_POST["dataset"]) ? $_POST["dataset"] : "";
     if($type=="get"){
-        $sql = "select * from goods join orders on orders.goodsid=goods.id where username='$username'";
+        $sql = "select * from goods join orders on orders.goodsid=goods.id where username='$username' order by orders.addtime desc;";
         if($status){
             $sql.=" and status='$status'";
         }
