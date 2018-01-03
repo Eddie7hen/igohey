@@ -122,7 +122,6 @@
         },
         mounted(){
             var dateObj = dateNow();
-            console.log(dateObj);
             //新品区的ajax请求
             http.post({url:'indexMain.php', params:{type: 'new', addtime:dateObj.dateNow}}).then(res => {
                 this.dataNew = res.data;
@@ -155,7 +154,10 @@
             },
             skipdetails(goodsid){
                 if(event.target.innerHTML !== '加入购物车'){
-                    console.log('66',goodsid)
+                    this.$router.push({
+                        name:'details',
+                        query:{goodsid:goodsid}
+                    })
                 }
             },
             skiplist(txt){
