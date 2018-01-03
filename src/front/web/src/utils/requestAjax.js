@@ -2,8 +2,7 @@
 * @Author: Marte
 * @Date:   2017-12-07 17:33:59
 * @Last Modified by:   Marte
-<<<<<<< HEAD
-* @Last Modified time: 2018-01-01 17:40:49
+* @Last Modified time: 2018-01-03 17:27:04
 */
 import axios from 'axios';
 import qs from 'qs';

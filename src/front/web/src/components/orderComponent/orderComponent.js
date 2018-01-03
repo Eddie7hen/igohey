@@ -3,17 +3,17 @@ const state = {
     orderList: [],
     pendList: [],
     outList: [],
-    paidList: [] 
+    paidList: [],
+    loading: true
 }
 
 const mutations = {
-    getOrders(data,params){
+    getOrders(data, params){
         let orders = {
             orderList: [],
             pendList: [],
             outList: [],
-            paidList: []
-            
+            paidList: [] 
         }
         var len = params.length;
         var total;
@@ -24,8 +24,6 @@ const mutations = {
                 if (params[i].orderno == params[j].orderno) {
                     total += params[j].saleprice ? params[j].saleprice * params[j].qty : params[j].price * params[j].qty;
                     singorder.push(params[j]);
-                    params.splice(params[j], 1);
-                    len--;
                 } 
             }
             if(!/\.[\d]{2}$/.test(total)){
@@ -33,6 +31,17 @@ const mutations = {
             }
             singorder[0].total = total;
             orders.orderList.push(singorder);
+        }
+        delSame(orders.orderList);
+        function delSame(order){
+            for(var i = 0;i < order.length;i++){
+                for(var j = i+1 ;j < order.length;j++){
+                    if(order[i][0].orderno == order[j][0].orderno){
+                        order.splice(j,1);
+                        delSame(order);
+                    }
+                }
+            }
         }
         orders.orderList.forEach((item)=>{
             if(item[0].status == "1"){
@@ -46,11 +55,14 @@ const mutations = {
         return orders;
     },
     selectOrder(data,params){
-        let datas = mutations.getOrders(data,params);
-        state.orderList = datas.orderList;
-        state.pendList = datas.pendList;
-        state.outList = datas.outList;
-        state.paidList = datas.paidList;
+        if(params !== "fail"){
+            let datas = mutations.getOrders(data, params);
+            state.orderList = datas.orderList;
+            state.pendList = datas.pendList;
+            state.outList = datas.outList;
+            state.paidList = datas.paidList;
+        }
+        state.loading = false;
     }
 }
 
@@ -59,6 +71,14 @@ const actions = {
         http.post(params).then((res) => {
             let data = res.data;
             event.commit('selectOrder',data);
+        })
+    },
+    delOrder(event,params){
+        state.loading = true;
+        http.post(params).then((res) => {
+            if(res.data){
+                event.commit('selectOrder', res.data);
+            }
         })
     }
 }

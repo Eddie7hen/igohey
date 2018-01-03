@@ -10,12 +10,14 @@ import classifyChild from '../components/classifyMain/classifyMain';
 import mycenter from '../components/mycenter/mycenter.vue';
 import shoppingCart from '../components/shoppingCart/shoppingCartComponent';
 import orders from '../components/orderComponent/orderComponent';
+import collect from '../components/collectComponent/collectComponent.js';
 Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
         mycenter,
         classifyChild,
         shoppingCart,
-        orders
+        orders,
+        collect
     }
 })
