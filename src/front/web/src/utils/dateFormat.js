@@ -2,6 +2,7 @@
 var dateNow = function(){
     var dateNow = '';
     var now = new Date();
+    var dateObj = {};
 
     // 提取年月日、时分秒
     var year = now.getFullYear();
@@ -17,7 +18,11 @@ var dateNow = function(){
     min = (min<10 ? '0' : '') + min
     sec = (sec<10 ? '0' : '') + sec
 
-    return dateNow = year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec;
+    dateNow = year + '-' + month + '-' + date + ' ' + hour + ':' + min + ':' + sec;
+    dateObj['dateNow'] = dateNow;
+    dateObj['month'] = month;
+
+    return dateObj;
 }
 
 export default dateNow;

@@ -38,17 +38,20 @@
         },
         methods:{
             plusAdres(){
-                var toolBar = {
+                var toolBar = [{
                     title:'添加地址',
                     text:'保存',
                     AddEvent:()=>{
-                        var params = {
-                            username:this.username,
+                        if(!this.$store.state.cretAdres.opt.nickname){
+                            alert('收货名不能为空')
                         }
-                        this.$store.dispatch('createAdres', params)
+                        // var params = {
+                        //     username:this.username,
+                        // }
+                        // this.$store.dispatch('createAdres', params)
                     },
                     username:'Ed'
-                }
+                }]
                 this.$store.dispatch('plusAdres', toolBar);
                 this.$router.push({name:'createaddress'});
             },

@@ -1,7 +1,7 @@
 import http from '../../../utils/requestAjax';
 
 const state = {
-    toolBar:{},
+    toolBar:[],
     opt:{
         nickname:'',
         phone:'',
