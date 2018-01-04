@@ -63,6 +63,17 @@ const mutations = {
             state.paidList = datas.paidList;
         }
         state.loading = false;
+    },
+    delOrder(data,res){
+        if(res != "fail"){
+            for (var i = 0; i < state.orderList.length; i++) {
+                if (state.orderList[i][0].orderno == res.params.orderno) {
+                    state.orderList.splice(i, 1);
+                }
+            }
+            mutations.selectOrder(data,state.orderList)
+        }else{
+        }
     }
 }
 
@@ -76,8 +87,11 @@ const actions = {
     delOrder(event,params){
         state.loading = true;
         http.post(params).then((res) => {
-            if(res.data){
-                event.commit('selectOrder', res.data);
+            state.loading = false;
+            if(res.data == 1){
+                event.commit('delOrder', params);
+            }else{
+                event.commit('delOrder', 'fail');
             }
         })
     }

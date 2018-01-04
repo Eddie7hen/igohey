@@ -10,7 +10,9 @@ import classifyChild from '../components/classifyMain/classifyMain';
 import mycenter from '../components/mycenter/mycenter.vue';
 import shoppingCart from '../components/shoppingCart/shoppingCartComponent';
 import orders from '../components/orderComponent/orderComponent';
-import collect from '../components/collectComponent/collectComponent.js';
+import collect from '../components/collectComponent/collectComponent';
+import dialog from '../components/dialogComponent/dialog';
+import viewHistory from '../components/historyComponent/history';
 Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
@@ -18,6 +20,8 @@ export default new Vuex.Store({
         classifyChild,
         shoppingCart,
         orders,
-        collect
+        collect,
+        dialog,
+        viewHistory
     }
 })

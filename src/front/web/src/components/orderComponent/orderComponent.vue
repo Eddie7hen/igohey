@@ -11,19 +11,19 @@
                 </li>
             </ul>
         </nav>
-        <main id="w_main"> 
-            <AllOrder :allList="this.$store.state.orders[orderList[iCurTips]]"></AllOrder>
-            <!-- <Paid v-if="iCurTips == 1"></Paid>
-            <Pending v-if="iCurTips == 2"></Pending>
-            <OutOrder v-if="iCurTips == 3"></OutOrder> -->
-        </main>
+        <AllOrder v-show="iCurTips == 0"></AllOrder>
+        <Paid v-show="iCurTips == 1"></Paid>
+        <Pending v-show="iCurTips == 2"></Pending>
+        <OutOrder v-show="iCurTips == 3"></OutOrder>
+        <DialogComponent></DialogComponent>
     </div>
 </template>
 <script>
     import AllOrder from './allOrder/allOrder.vue';
-    // import Paid from './paidOrder/paidOrder.vue';
-    // import Pending from './pendOrder/pendOrder.vue';
-    // import OutOrder from './outOrder/outOrder.vue';
+    import Paid from './paidOrder/paidOrder.vue';
+    import Pending from './pendOrder/pendOrder.vue';
+    import OutOrder from './outOrder/outOrder.vue';
+    import DialogComponent from '../dialogComponent/dialogComponent.vue';
     import './orderComponent.scss';
     export default {
         data:function(){
@@ -34,10 +34,11 @@
             }
         },
         components:{
-            AllOrder
-            // Paid,
-            // Pending,
-            // OutOrder
+            AllOrder,
+            Paid,
+            Pending,
+            OutOrder,
+            DialogComponent
         },
         methods:{
             changeTips(idx){
@@ -48,7 +49,7 @@
             }
         },
         mounted(){
-            this.iCurTips = this.$route.query.iCurShow;
+            this.iCurTips = this.$route.params.iCurShow;
             this.$store.dispatch('selectOrder',{ url: 'order.php', params: { type: 'get', username: 'Ed' } });
         }
 

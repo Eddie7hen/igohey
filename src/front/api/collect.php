@@ -12,13 +12,35 @@
     $username = isset($_POST["username"]) ? $_POST["username"] : "";
     $goodsid = isset($_POST["goodsid"]) ? $_POST["goodsid"] : "";
     $sql = "select * from collect where username='$username'";
-    if($type){
+    if($type == "get"){
         $sql .= " and goodsid='$goodsid';";
         $result = query($sql);
         if(count($result)>0){
             echo "has";
         }else{
             echo "hasn't";
+        }
+    }else if($type == "del"){
+        if(strpos($goodsid,',')){
+            $sql = "";
+            $array = explode(',',$goodsid);
+            for($i = 0;$i < count($array);$i++){
+               $sql .= "delete from collect where goodsid='$array[$i]';"; 
+            }
+            $result = multi_excute_oop($sql);
+            if($result == "true" || $result == 1){
+               echo "ok";
+            }else{
+                echo "fail";
+            };
+        }else{     
+            $sql = "delete from collect where goodsid='$goodsid';";
+            $result = excute($sql);
+            if($result == 1){
+                echo "ok";
+            }else{
+                echo "fail";
+            }
         }
     }else if($goodsid){
         $sql = "insert into collect (username,goodsid)values('$username','$goodsid');";
