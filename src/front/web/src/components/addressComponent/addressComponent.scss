@@ -9,7 +9,7 @@
         border-bottom: .013333rem solid #AEAEAD;
         // padding-top: .506667rem;
         // position: relative;
-        height:1.7067rem;
+        height: 1.7067rem;
         display:flex;
         align-items:center;
         padding:0.5067rem 0.88rem 0rem 0.24rem;
@@ -29,6 +29,7 @@
     .mainAdres{
         flex:1;
         background-color: #F9F9F8;
+        overflow-x: hidden;
         .adresList{
             height: 100%;
             >li{

@@ -21,11 +21,13 @@
                 <p>删除当前地址</p>
             </footer>
         </div>
+        <DialogComponent></DialogComponent> 
     </div>
 </template>
 
 <script>
     import './createAddressComponent.scss';
+    import DialogComponent from '../../dialogComponent/dialogComponent.vue';
     export default {
         data(){
             return{
@@ -55,7 +57,7 @@
                set(newVal){
                    this.$store.dispatch('changeAdres', newVal);
                }
-           }
+           },
         },
         methods:{
             handler(cb){
@@ -63,6 +65,9 @@
                     cb();
                 }
             },
+        },
+        components:{
+            DialogComponent
         },
     }
 </script>

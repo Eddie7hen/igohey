@@ -13,6 +13,8 @@ import orders from '../components/orderComponent/orderComponent';
 import address from '../components/addressComponent/addressComponent';
 import cretAdres from '../components/addressComponent/createAddressComponent/createAddressComponent';
 import collect from '../components/collectComponent/collectComponent.js';
+import dialog from '../components/dialogComponent/dialog';
+import viewHistory from '../components/historyComponent/history';
 Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
@@ -22,6 +24,8 @@ export default new Vuex.Store({
         orders,
         address,
         cretAdres,
-        collect
+        collect,
+        dialog,
+        viewHistory
     }
 })

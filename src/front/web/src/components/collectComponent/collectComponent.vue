@@ -21,6 +21,10 @@
                     <span v-if="item.saleprice">原价:￥{{item.price}}</span>
                 </p>
             </div>
+            <p v-if="this.$store.state.collect.collectList.length == 0" class="nothing">
+                <i class="el-icon-tickets"></i>
+                <span>你还没有商品收藏哦~</span>
+            </p> 
         </main>
         <footer id="w_footer">
             <p @click="allCheck">
@@ -29,17 +33,21 @@
             </p>
             <span @click="delCollect">删除</span>
         </footer>
+        <DialogComponent></DialogComponent>
     </div>
 </template>
 
 <script>
     import './collect.scss';
+    import DialogComponent from '../dialogComponent/dialogComponent.vue';
     export default {
         data(){
             return {
-                collectList:[],
                 checkAll:false
             }
+        },
+        components:{
+            DialogComponent
         },
         methods:{
             goBack(){
@@ -62,14 +70,49 @@
                 })
             },
             delCollect(){
-                let goodsid = '';
+                var goodsid = '';
                 this.$store.state.collect.collectList.forEach((item)=>{
                     if(item.select){
-                        goodsid += item.id;
+                        goodsid += item.id + ',';
                     }
                 })
                 if(goodsid == ""){
-                   
+                   this.$store.dispatch('createDialog',{
+                        iCon:'iconfont icon-delete',
+                        content:'你还没有选中任何商品哦~',
+                   })
+                }else{
+                    goodsid = goodsid.slice(0,-1);
+                    this.$store.dispatch('createDialog',{
+                        content:'你确定要删除吗?',
+                        btnEvent:{
+                            cancel:{
+                                cn:'取消',
+                                event:()=>{
+                                    this.checkAll = false;
+                                    this.$store.state.collect.collectList.forEach((item)=>{
+                                       item.select = false;
+                                    })
+                                    this.$store.dispatch('autoClose');
+                                }
+                            },
+                            enter:{
+                                cn:'确定',
+                                event:()=>{
+                                    this.checkAll = false;
+                                    this.$store.dispatch('delCollect',{
+                                        url:'collect.php',
+                                        params:{
+                                            type:'del',
+                                            username:'Ed',
+                                            goodsid:goodsid
+                                        }
+                                    });
+                                }
+                            }
+                        }
+
+                    })
                 }
             }
         },

@@ -12,6 +12,7 @@ import CreateAddressComponent from '../components/addressComponent/createAddress
 // import VueTouch from 'vue-touch';
 import order from '../components/orderComponent/orderComponent.vue';
 import collect from '../components/collectComponent/collectComponent.vue';
+import history from '../components/historyComponent/historyComponent.vue';
 Vue.use(VueRouter);
 Vue.use(ElementUI);
 
@@ -23,6 +24,11 @@ let router = new VueRouter({
     routes:[
         {
             path: '/',
+            name: 'history',
+            component: history
+        },
+        {
+            path: '/collect',
             name: 'collect',
             component: collect
         },

@@ -10,23 +10,23 @@
             style="width: 100%"
         >
             <div class='EdCartAddress' >
-                <div class='EdCartNon' >
+                <div class='EdCartNon' v-if="this.$store.state.shoppingCart.adres.length < 0" >
                     <P class='Nonp' >iGo瞎需要您的地址坐标</P>
                     <i class="iconfont icon-enter Nonenter"></i>
                 </div>
-                <!-- <div class='EdCart' >
+                <div class='EdCart' v-for="(obj, index) in this.$store.state.shoppingCart.adres" >
                     <h5>
                         <h2><i class="iconfont icon-coordinates" ></i></h2>
                         <h3>
-                            <p><span>Eddie Chen</span><span>15625142968</span></p>
-                            <p><span>智汇创意园Park</span><span>E座五楼</span></p>
+                            <p><span>{{obj.nickname}}</span><span>{{obj.phone}}</span></p>
+                            <p><span>{{obj.address}}</span></p>
                         </h3>
-                        <h4>
+                        <h4 @click="jumpRouter" >
                             <span>修改</span>
                             <i class="iconfont icon-enter enter"></i>
                         </h4>
                     </h5>
-                </div> -->
+                </div>
             </div>
             <div class='EdflashSend'>
                 <img src="../../assets/flashSend.png" alt="">
@@ -206,6 +206,10 @@
                     goodsid:strId
                 }
                 this.$store.dispatch('deleteCart', opt);
+            },
+            //跳转选择地址页面
+            jumpRouter(){
+                this.$router.push({name: 'address'});
             }
         },
         beforeMount(){
@@ -214,6 +218,12 @@
                 status:'query',
             }
             this.$store.dispatch('getData', params);
+            var getAdres = {
+                username: this.username,
+                type: 'defaultAdres',
+                status: '1'
+            }
+            this.$store.dispatch('getAdres', getAdres);
         },
     }
 </script>

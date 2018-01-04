@@ -9,6 +9,8 @@ const state = {
     createRes:'',
     loading:true,
     dataset:[],
+    adresApi:'EdAddress.php',
+    adres:[],
 }
 
 const mutations = {
@@ -37,6 +39,13 @@ const mutations = {
                 state.loading = false;
             }
         })
+    },
+    getAdres:(arg1, params, arg3)=>{
+        http.post({url: state.adresApi, params: params}).then(res=>{
+            if(res.status == '200' && res.data.length > 0){
+                state.adres = res.data;
+            }
+        })
     }
 }
 
@@ -56,6 +65,9 @@ const actions = {
     getData:(store, params)=>{
         store.commit('getData', params);
         state.loading = true;
+    },
+    getAdres:(store, params)=>{
+        store.commit('getAdres', params);
     }
 }
 
