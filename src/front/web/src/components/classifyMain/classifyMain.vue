@@ -27,7 +27,7 @@
                         <li @click="sortCut('sales')">按销量</li>
                     </ul>
                 </div>
-                <classifyChild :params="params"></classifyChild>
+                <classifyChild></classifyChild>
             </div>
         </div>
         <foot_p class="footer_p"></foot_p>
@@ -135,7 +135,11 @@
             this.params['type'] = classify || 'hot';
             this.params['sortType'] = 'synthesize';
             this.$store.dispatch('increment',this.params);
-            this.$refs[classify].classList.add('li_active');
+            if(classify){
+                this.$refs[classify].classList.add('li_active');
+            }else{
+                this.$refs.hot.classList.add('li_active');
+            }
             document.querySelectorAll('.main_rt ul li')[0].classList.add('liactive');
             // http.post({url:'classify_p.php',params:{type:this.type,sortType:'综合'}}).then(res => {
             //     console.log(res.data)
