@@ -19,7 +19,6 @@
         break;
         case 'delete':
         $array = explode(',', $goodsid);
-        
         $sql = "";
         for($i=0; $i<count($array); $i++){
             $sql .= "DELETE FROM carts WHERE username='$username' AND goodsid='$array[$i]'".';';
@@ -27,6 +26,9 @@
         $result = multi_excute_oop($sql);
         break;
     }
+
+    $sql = "SELECT * FROM carts AS c INNER JOIN goods AS gds on gds.id = c.goodsid WHERE c.username ='$username'";
+    $result = query($sql);
     
 
     echo json_encode($result, JSON_UNESCAPED_UNICODE);

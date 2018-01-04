@@ -199,4 +199,14 @@ $cartTitleFontSize:.453333rem;
             }
         }
     }
+    .el-loading-mask{
+        .el-icon-loading{
+            color:$mainColor;
+        }
+        .el-loading-text{
+            font-size:$mainSizeCenter;
+            color:#878787;
+        }
+    }
+        
 }

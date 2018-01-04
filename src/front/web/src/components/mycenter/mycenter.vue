@@ -55,7 +55,8 @@
                     },
                     {
                         icon:'iconfont icon-collection_fill',
-                        text:'商品收藏'
+                        text:'商品收藏',
+                        'goRoute':'collect'
                     },
                     {
                         icon:'iconfont icon-coordinates',
@@ -79,7 +80,7 @@
             leaveIcur(target,params){
                 this.$router.push({
                     name:target,
-                    query:{'iCurShow':params}
+                    params:{'iCurShow':params}
                 })
             }
         },
