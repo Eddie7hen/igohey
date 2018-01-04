@@ -1,0 +1,166 @@
+@import '../../scss/fontSize.scss';
+$titleSize:0.453333rem;
+$mainSizeBig:0.3733rem;
+$mainSizeCenter:0.32rem;
+$mainSizeSmall:0.2933rem;
+$mainColor:#F8CC0B;
+
+.activity_p{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    position: relative;
+    .header{
+        position: relative;
+        height:1.706667rem;//128
+        font-size:$titleSize;
+        text-align:center;
+        line-height:1.706667rem;//128
+        border-bottom:0.026667rem solid #ddd;
+        background-color:#fff;
+        i:nth-child(1){
+            position: absolute;
+            left:0.266667rem;
+            top:0;
+        }
+        i:nth-child(2){
+            position: absolute;
+            right:0.266667rem;
+            top:0;
+        }
+    }
+    .main{
+        flex:1;
+        overflow-x:hidden;
+        position: relative;
+        .activeimg{
+            height:5.0rem;
+            background-color:orange;
+            img{
+                height:5.0rem;
+                width:100%;
+            }
+        }
+        .activeMain{
+            >div:nth-child(1){
+                height:1.266667rem;
+                font-size:$titleSize;
+                line-height:1.266667rem;
+                text-align:center;
+            }
+            ul{
+                height:100%;
+                display:flex;
+                flex-wrap:wrap;
+                justify-content: space-around;
+                li{
+                    width:45%;
+                    height:7.666667rem;
+                    background-color:#fff;
+                    margin:0.266667rem 0;
+                    border:0.013333rem solid #ccc;
+                    div.productimg{
+                        padding:0.4rem;
+                        img{
+                            height:3.733333rem;
+                            width:100%;
+                        }
+                    }
+                    >p{
+                        line-height:0.533333rem;
+                        font-size:$mainSizeBig;
+                        padding:0 0.266667rem;
+                        &:nth-child(2){
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                            overflow:hidden;
+                            margin-bottom:0.266667rem;
+                        }
+                        span:nth-child(1){
+                            color:#FF4401;
+                            margin-right:0.266667rem;
+                        }
+                        span:nth-child(2){
+                            font-size:$mainSizeCenter;
+                            text-decoration:line-through;
+                        }
+                    }
+                    >div.shop{
+                        height:1.333333rem;
+                        position: relative;
+                        >span{
+                            display:inline-block;
+                            padding:0.133333rem 0.266667rem;
+                            font-size:$mainSizeBig;
+                            background-color:#D70F2D;
+                            position: absolute;
+                            top:0.266667rem;
+                            left:50%;
+                            transform:translateX(-50%);
+                            color:#fff;
+                        }
+                    }
+                }
+            }
+        }
+        .rule{
+            height:3.733333rem;
+            p:nth-child(1){
+                height:1.266667rem;
+                font-size:$titleSize;
+                line-height:1.266667rem;
+                text-align:center;
+            }
+            p:nth-child(2){
+               font-size:$titleSize; 
+               padding:0 0.533333rem;
+            }
+        }
+        .carts{
+            position: fixed;
+            right:0.266667rem;
+            bottom:0.266667rem;
+            z-index:100;
+            background-color:#F8CC0B;
+            height:1.466667rem;//110
+            width:1.466667rem;
+            border:0.106667rem solid #fff;
+            border-radius:50%;
+            text-align:center;
+            padding-top:0.133333rem;
+            i{
+                font-size:1.066667rem;
+                color:#fff;
+            }
+            span{
+                position: absolute;
+                bottom:0.986667rem;
+                right:-0.053333rem;
+                padding:0.133333rem 0.24rem;
+                border-radius:50%;
+                background-color:#FF4400;
+                font-size:$mainSizeCenter;
+                color:#fff;
+            }
+        }
+    }
+    .showupWin{
+        position: absolute;
+        bottom:2.666667rem;
+        left:50%;
+        transform:translateX(-1.866667rem);
+        height:1.066667rem;
+        width:3.733333rem;
+        font-size:$mainSizeBig;
+        background-color:rgba(0,0,0,0.7);
+        color:#FFF;
+        border-radius:0.533333rem;
+        text-align:center;
+        line-height:1.066667rem;//80
+        display:none;
+        &.win_active{
+            display:block;
+        }
+    }
+}

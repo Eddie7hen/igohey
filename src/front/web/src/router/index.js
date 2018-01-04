@@ -16,6 +16,7 @@ Vue.use(ElementUI);
 import indexMainComponent from '../components/indexMain/indexMain.vue'
 import classifyComponent from '../components/classifyMain/classifyMain.vue'
 import detailsComponent from '../components/details_p/details.vue'
+import activityComponent from '../components/activity_p/activity.vue'
 let router = new VueRouter({
     mode: 'history',
     routes:[
@@ -53,6 +54,11 @@ let router = new VueRouter({
             path: '/order',
             name: 'order',
             component: order
+        },
+        {
+            path:'/activity',
+            name:'activity',
+            component: activityComponent
         }
     ]
 })

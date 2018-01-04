@@ -1,5 +1,9 @@
 <template>
-    <div class="index_p">
+    <div class="index_p" v-loading="this.$store.state.indexMain.loading"
+        element-loading-text="加载ing..."
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(255, 255, 255, 0.8)"
+        style="width: 100%;">
         <head_p class="head_p"></head_p>
         <div class="main">
         <!-- <vue-touch class="div" v-on:swipeleft="swipeleft"> -->
@@ -120,20 +124,15 @@
                 dataHot: '',//热门区ajax请求返回的结果
            }
         },
-        mounted(){
+        updated(){
+            this.dataNew = this.$store.state.indexMain.dataNew;
+            this.dataDiscount = this.$store.state.indexMain.dataDiscount;
+            this.dataHot = this.$store.state.indexMain.dataHot;
+        },
+        beforeMount(){
             var dateObj = dateNow();
-            //新品区的ajax请求
-            http.post({url:'indexMain.php', params:{type: 'new', addtime:dateObj.dateNow}}).then(res => {
-                this.dataNew = res.data;
-            })
-            //折扣区的ajax请求
-            http.post({url:'indexMain.php', params:{type: 'discount', addtime:dateObj.dateNow}}).then(res => {
-                this.dataDiscount = res.data;
-            })
-            //热销区的ajax请求
-            http.post({url:'indexMain.php', params:{type: 'hot'}}).then(res => {
-                this.dataHot = res.data;
-            })
+            var params = {type: 'init',addtime:dateObj.dateNow}
+            this.$store.dispatch('initData',params);
         },
         methods:{
             joinCart(event){
