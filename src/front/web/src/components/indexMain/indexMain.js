@@ -4,6 +4,7 @@ const state = {
     dataNew: [],//新品区ajax请求返回的结果
     dataDiscount: [],//折扣区ajax请求返回的结果
     dataHot: [],//热门区ajax请求返回的结果
+    dataActive: [],
     loading: false
 }
 
@@ -15,6 +16,7 @@ const mutations = {
                 state.dataNew = res.data.data1;
                 state.dataDiscount = res.data.data2;
                 state.dataHot = res.data.data3;
+                state.dataActive = res.data.data4;
             }
         })
     }

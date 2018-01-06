@@ -18,7 +18,7 @@
         $sql = "select * from goods where addtime < '$addtime' order by addtime desc limit ".$start.",".$qty;
         $sql .= ";select * from goods where saleprice > 0 order by addtime asc limit ".$start.",".$qty;
         $sql .= ";select * from goods where saleqty order by saleqty desc limit ".$start.",".$qty;
-
+        $sql .= ";select * from active";
         $result = multi_query_oop($sql);
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
     }else if($type == 'join'){

@@ -2,7 +2,7 @@
 * @Author: Marte
 * @Date:   2017-12-17 14:46:08
 * @Last Modified by:   Marte
-* @Last Modified time: 2018-01-04 21:41:21
+* @Last Modified time: 2018-01-06 21:26:50
 */
 import Vue from 'vue';
 import Vuex from 'vuex';
@@ -18,6 +18,7 @@ import indexMain from '../components/indexMain/indexMain.js';
 import activity from '../components/activity_p/activity.js';
 import dialog from '../components/dialogComponent/dialog';
 import viewHistory from '../components/historyComponent/history';
+import repertoire from '../components/repertoire/repertoireComponent';
 Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
@@ -32,6 +33,7 @@ export default new Vuex.Store({
         cretAdres,
         collect,
         dialog,
-        viewHistory
+        viewHistory,
+        repertoire
     }
 })

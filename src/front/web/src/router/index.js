@@ -20,6 +20,7 @@ import indexMainComponent from '../components/indexMain/indexMain.vue'
 import classifyComponent from '../components/classifyMain/classifyMain.vue'
 import detailsComponent from '../components/details_p/details.vue'
 import activityComponent from '../components/activity_p/activity.vue'
+import repertoireComponent from '../components/repertoire/repertoireComponent.vue'
 let router = new VueRouter({
     mode: 'history',
     routes:[
@@ -77,6 +78,11 @@ let router = new VueRouter({
             path: '/createaddress',
             name: 'createaddress',
             component: CreateAddressComponent
+        },
+        {
+            path: '/repertoire',
+            name: 'repertoire',
+            component: repertoireComponent
         }
     ]
 })

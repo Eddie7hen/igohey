@@ -94,7 +94,6 @@
             }
         },
         updated(){
-            console.log(this.$store.state.activity)
             this.goodsData = this.$store.state.activity.goodsData;
             this.activeData = this.$store.state.activity.activeData[0];
             this.activeCart = this.$store.state.activity.activeCart;
