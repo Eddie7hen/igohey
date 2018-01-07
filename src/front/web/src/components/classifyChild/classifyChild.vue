@@ -8,7 +8,7 @@
                     <div class="goodsdetils">
                         <p>{{val.details}}</p>
                         <div>
-                            <p v-if="val.saleprice">原价：￥<span v-text="val.price" style="text-decoration:line-through;"></span></p>
+                            <p v-show="val.saleprice">原价：￥<span v-text="val.price" style="text-decoration:line-through;"></span></p>
                             <p>现价：￥<span v-text="val.saleprice || val.price"></span></p>
                         </div>
                         <i class="iconfont icon-add" @click="joinCart(val.id)"></i>

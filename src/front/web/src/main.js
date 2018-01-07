@@ -6,6 +6,7 @@ import rem from './utils/getRem';
 import './scss/base.scss';
 import './libs/iconFont/iconfont.css';
 
+
 rem.rem();
 new Vue({
   el: '#app',
