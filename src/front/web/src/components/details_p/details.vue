@@ -43,7 +43,7 @@
                     <img src="src/assets/images/logo.png" alt="" />
                 </div>
                 <div>
-                    掌上便利店30分钟速达
+                    掌上便利店
                 </div>
             </div>
         </div> 
@@ -80,7 +80,7 @@
 <script type="text/javascript">
     import http from "../../utils/requestAjax.js";
     import './details.scss';
-
+    import wx from 'weixin-js-sdk'
     export default {
         data(){
             return {

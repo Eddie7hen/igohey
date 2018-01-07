@@ -13,8 +13,12 @@ import CreateAddressComponent from '../components/addressComponent/createAddress
 import order from '../components/orderComponent/orderComponent.vue';
 import collect from '../components/collectComponent/collectComponent.vue';
 import history from '../components/historyComponent/historyComponent.vue';
+
+import PaiedComponent from '../components/paiedComponent/paiedComponent.vue';
+import BillPayComponent from '../components/billPayComponent/billPayComponent.vue';
 Vue.use(VueRouter);
 Vue.use(ElementUI);
+
 import login from '../components/login/login.vue';
 import register from '../components/register/register.vue';
 import indexMainComponent from '../components/indexMain/indexMain.vue';
@@ -26,6 +30,8 @@ import searchlist from '../components/searchComponent/searchlist/searchlist.vue'
 import historysearch from '../components/searchComponent/keyHistory/history.vue';
 import activityComponent from '../components/activity_p/activity.vue';
 import repertoireComponent from '../components/repertoire/repertoireComponent.vue';
+
+
 let router = new VueRouter({
     routes:[
         {
@@ -90,7 +96,7 @@ let router = new VueRouter({
             component: detailsComponent
         },
         {
-            path:'/shoppingcart',
+            path:'/cart',
             name:'cart',
             component: ShoppingCartComponent
         },
@@ -113,6 +119,16 @@ let router = new VueRouter({
             path: '/createaddress',
             name: 'createaddress',
             component: CreateAddressComponent
+        },
+        {
+            path: '/paied',
+            name: 'paied',
+            component: PaiedComponent
+        },
+        {
+            path: '/billpay',
+            name: 'billpay',
+            component: BillPayComponent
         },
         {
             path: '/repertoire',

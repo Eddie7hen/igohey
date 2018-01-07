@@ -9,10 +9,15 @@
             element-loading-background="rgba(255, 255, 255, 0.8)"
             style="width: 100%"
         >
-            <div class='EdCartAddress' >
-                <div class='EdCartNon' v-if="this.$store.state.shoppingCart.adres.length < 0" >
+            <p class="EdCartNothing" v-if="this.$store.state.shoppingCart.dataset.length <= 0"  >
+                <i class="iconfont icon-publishgoods_fill" ></i>
+                <span>亲，购物车空空的耶~赶紧去挑好吃的吧</span>
+                <em>去逛逛</em>
+            </p>
+            <div class='EdCartAddress' v-if="this.$store.state.shoppingCart.dataset.length > 0" >
+                <div class='EdCartNon' v-if="this.$store.state.shoppingCart.adres.length <= 0" >
                     <P class='Nonp' >iGo瞎需要您的地址坐标</P>
-                    <i class="iconfont icon-enter Nonenter"></i>
+                    <i @click="jumpRouter" class="iconfont icon-enter Nonenter"></i>
                 </div>
                 <div class='EdCart' v-for="(obj,index) in this.$store.state.shoppingCart.adres" >
                     <h5>
@@ -28,16 +33,13 @@
                     </h5>
                 </div>
             </div>
-            <div class='EdflashSend'>
-                <img src="../../assets/flashSend.png" alt="">
-            </div>
             <ul class='goodsList' v-if="this.$store.state.shoppingCart.dataset.length > 0" >
                 <li v-for="(obj, index) in this.$store.state.shoppingCart.dataset" :key="index" :id="obj.goodsid" >
                     <h2 @click='iChecks' ><i :ref="index+1" class='iconfont icon-success iCheck' ></i></h2>
-                    <h3>
+                    <h3 @click="jumpDetails($event, obj.goodsid)" >
                         <img :src="obj.imgurl" alt="">
                     </h3>
-                    <h4>
+                    <h4 @click="jumpDetails($event, obj.goodsid)" >
                         <em v-text="obj.details" ></em>
                         <em>￥<span>{{obj.price}}</span></em>
                     </h4>
@@ -49,7 +51,8 @@
                     <div @click="deletes($event, obj.goodsid)" ><i id="btnDelete" class="iconfont icon-empty" ></i></div>
                 </li>
             </ul>
-            <dl class='settle' >
+
+            <dl class='settle' v-if="this.$store.state.shoppingCart.dataset.length > 0" >
                 <dd @click='iChecksAll' ><i ref='All' class='iconfont icon-success iCheckAll'></i></dd>
                 <dd>全选</dd>
                 <dd>
@@ -59,21 +62,23 @@
             </dl>
         </div>
         <Ed-footer></Ed-footer>
+        <DialogComponent></DialogComponent>
     </div>
 </template>
 
 <script>
     import '../shoppingCart/shoppingCartComponent.scss';
     import footer from '../commonHtml/commonFoot/commonFoot.vue';
-    import http from '../../utils/requestAjax';
+    import DialogComponent from '../dialogComponent/dialogComponent.vue';
     import msec from '../../utils/getMsec';
     export default {
         components:{
             'Ed-footer': footer,
+            DialogComponent,
         },
         data(){
             return{
-                username:'Ed',
+                username:'',
                 url:this.$store.state.shoppingCart.url,
             }
         },
@@ -108,7 +113,7 @@
                     event.target.classList.remove('icon-success');
                     event.target.classList.add('icon-success_fill');
                     event.target.classList.add('iCheckAllActive');
-                    for(var i=0;i<this.dataset.length;i++){
+                    for(var i=0;i<this.$store.state.shoppingCart.dataset.length;i++){
                         this.$refs[i+1][0].classList.remove('icon-success')
                         this.$refs[i+1][0].classList.add('icon-success_fill');
                         this.$refs[i+1][0].classList.add('iCheckActive');
@@ -117,7 +122,7 @@
                     event.target.classList.remove('icon-success_fill');
                     event.target.classList.remove('iCheckAllActive');
                     event.target.classList.add('icon-success');
-                    for(var i=0;i<this.dataset.length;i++){
+                    for(var i=0;i<this.$store.state.shoppingCart.dataset.length;i++){
                         this.$refs[i+1][0].classList.remove('icon-success_fill');
                         this.$refs[i+1][0].classList.remove('iCheckActive');
                         this.$refs[i+1][0].classList.add('icon-success');
@@ -156,12 +161,28 @@
             },
             //删除购物车商品
             deletes(event, goodsid){
-                var params = {
-                    goodsid:goodsid,
-                    username:this.username,
-                    status:'delete',
-                }
-                this.$store.dispatch('deleteCart', params);
+                this.$store.dispatch('createDialog', {
+                content:'你确定要删除吗?',
+                    btnEvent:{
+                        cancel:{
+                            cn:'取消',
+                            event:()=>{
+                                this.$store.dispatch('autoClose');
+                            }
+                        },
+                        enter:{
+                            cn:'确定',
+                            event:()=>{
+                                var params = {
+                                    goodsid:goodsid,
+                                    username:this.username,
+                                    status:'delete',
+                                }
+                                this.$store.dispatch('deleteCart', params);
+                            }
+                        }
+                    }
+                })
             },
             //计算总价
             total(){
@@ -190,13 +211,23 @@
                         dataset.push(opt);
                     }
                 }
+                var orderno = msec();
                 //生成订单
                 var params = {
                     type:'create',
-                    orderno:msec(),
+                    orderno: orderno,
                     username:this.username,
                     status:'2',
                     dataset:JSON.stringify(dataset),
+                    jumpEvent:()=>{
+                        this.$router.push({
+                            name:'paied',
+                            query:{
+                                orderno: orderno,
+                                username:this.username,
+                            }
+                        })
+                    }
                 }
                 this.$store.dispatch('createOrder', params);
                 //生成订单后,删除购物车勾选状态的商品
@@ -210,6 +241,37 @@
             //跳转选择地址页面
             jumpRouter(){
                 this.$router.push({name: 'address'});
+            },
+            jumpDetails(event, goodsid){
+                this.$router.push({
+                    name: 'details',
+                    query:{
+                        goodsid: goodsid,
+                    }
+                })
+            }
+        },
+        created(){
+            if(!window.sessionStorage.getItem('username')){
+                this.$store.dispatch('createDialog', {
+                content:'亲，请先进行登录',
+                    btnEvent:{
+                        cancel:{
+                            cn:'取消',
+                            event:()=>{
+                                this.$router.push({name: 'index'})
+                            }
+                        },
+                        enter:{
+                            cn:'确定',
+                            event:()=>{
+                                this.$router.push({name: 'login'})
+                            }
+                        }
+                    }
+                })
+            }else if(window.sessionStorage.getItem('username')){
+                this.username = window.sessionStorage.getItem('username');
             }
         },
         beforeMount(){

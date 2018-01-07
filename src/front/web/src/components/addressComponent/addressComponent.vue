@@ -1,7 +1,7 @@
 <template>
     <div id="Address" >
         <header class="headerAdres" >
-            <i class='iconfont icon-return' ></i>
+            <i @click="goback" class='iconfont icon-return' ></i>
             <p>用户地址</p>
         </header>
         <main class="mainAdres" v-loading="this.$store.state.address.loading"
@@ -10,7 +10,7 @@
             element-loading-background="rgba(255, 255, 255, 0.8)"
             style="width: 100%"
         >
-            <img src="../../assets/nonAdres.png" v-if="this.$store.state.address.dataset.length < 0" >
+            <img src="../../assets/nonAdres.png" v-if="this.$store.state.address.dataset.length <= 0" >
             <ul class="adresList" v-if="this.$store.state.address.dataset.length > 0" >
                 <li v-for="(obj, index) in this.$store.state.address.dataset" :key="index" :id="obj.id" >
                     <div class="adresDefault" :class="{'adresActive':obj.status == 1}" ></div>
@@ -33,7 +33,7 @@
     export default {
         data(){
             return{
-                username:'Ed',
+                username:'',
             }
         },
         methods:{
@@ -98,11 +98,17 @@
                     status: '1',
                     type: 'update',
                     jumpEvent:()=>{
-                        this.$router.push({name:'shoppingcart'})
+                        this.$router.push({name:'cart'})
                     }
                 }
                 this.$store.dispatch('chgDefaultAdres', params);
+            },
+            goback(){
+                this.$router.go(-1);
             }
+        },
+        created(){
+            this.username = window.sessionStorage.getItem('username');
         },
         beforeMount(){
             var params = {

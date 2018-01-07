@@ -32,7 +32,7 @@
                             </div>
                             <p v-text="obj.details"></p>
                             <div>
-                                <p v-if="obj.saleprice">原价：￥<span v-text="obj.price" style="text-decoration:line-through;"></span></p>
+                                <p v-show="obj.saleprice">原价：￥<span v-text="obj.price" style="text-decoration:line-through;"></span></p>
                                 <p>现价：￥<span v-text="obj.saleprice || obj.price"></span></p>
                             </div>
                             <div>
@@ -65,7 +65,7 @@
                             </div>
                             <p v-text="obj.details"></p>
                             <div>
-                                <p v-if="obj.saleprice">原价：￥<span v-text="obj.price" style="text-decoration:line-through;"></span></p>
+                                <p v-show="obj.saleprice">原价：￥<span v-text="obj.price" style="text-decoration:line-through;"></span></p>
                                 <p>现价：￥<span v-text="obj.saleprice || obj.price"></span></p>
                             </div>
                             <div>
@@ -90,7 +90,7 @@
                             </div>
                             <p v-text="obj.details"></p>
                             <div>
-                                <p v-if="obj.saleprice">原价：￥<span v-text="obj.price" style="text-decoration:line-through;"></span></p>
+                                <p v-show="obj.saleprice">原价：￥<span v-text="obj.price" style="text-decoration:line-through;"></span></p>
                                 <p>现价：￥<span v-text="obj.saleprice || obj.price"></span></p>
                             </div>
                             <div>

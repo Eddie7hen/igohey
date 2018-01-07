@@ -148,7 +148,10 @@
                 var times = getDate();
                 var md55 = accountSid + token + times;
                 var codes = this.randomNumber(999999,100000);
+<<<<<<< HEAD
                 this.code = codes;
+=======
+>>>>>>> 68325956c39f4f05ab2051ba6bbb562f129d9858
                 var time = '30';
                 this.registMation.checkcode = codes;
                 let opt = {
@@ -158,8 +161,13 @@
                         to:this.registMation.username,
                         timestamp:times,
                         sig:md5(md55),
+<<<<<<< HEAD
                         templateid: '146790384',
                         param: `${codes}`,
+=======
+                        templateid: '113994847',
+                        param: `${codes},${time}`,
+>>>>>>> 68325956c39f4f05ab2051ba6bbb562f129d9858
                     }
                 }
                 this.$store.dispatch('getCode',opt);
