@@ -2,7 +2,7 @@
     function connect_oop() {
         // 配置参数
         $servername = '10.3.135.225';
-        $username = 'huwanwan';
+        $username = 'penglingda';
         $password = '123';
         $database = 'igohey';
         header('Access-Control-Allow-Origin:*');
@@ -79,7 +79,7 @@ function multi_excute_oop($sql){
 //初始化连接对象方法
 function connect() {
     $servername = '10.3.135.225';
-    $username = 'huwanwan';
+    $username = 'penglingda';
     $password = '123';
     $dbname = 'igohey';
     //初始化连接，返回一个连接对象(包含所连接数据库的信息)
