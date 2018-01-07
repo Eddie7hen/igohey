@@ -2,7 +2,7 @@
     <div id="CreateAdres" >
         <div v-for="(obj, index) in this.$store.state.cretAdres.toolBar" >
             <header class="CretAdresHeader" >
-                <div class="headerLeft iconfont icon-return" ></div>
+                <div @click="goback" class="headerLeft iconfont icon-return" ></div>
                 <div class="headerCent" >
                     <p>{{obj.title ? obj.title : '添加地址'}}</p>
                 </div>
@@ -65,6 +65,9 @@
                     cb();
                 }
             },
+            goback(){
+                this.$router.go(-1);
+            }
         },
         components:{
             DialogComponent

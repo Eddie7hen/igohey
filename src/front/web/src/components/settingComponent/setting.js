@@ -1,6 +1,7 @@
 import http from '../../utils/requestAjax';
 const state = {
-    userData:{}
+    userData:{},
+    wxData:[]
 }
 
 const mutations = {
