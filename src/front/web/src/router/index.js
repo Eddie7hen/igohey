@@ -91,7 +91,7 @@ let router = new VueRouter({
         },
         {
             path:'/shoppingcart',
-            name:'shoppingcart',
+            name:'cart',
             component: ShoppingCartComponent
         },
         {

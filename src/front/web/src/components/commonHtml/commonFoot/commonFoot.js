@@ -13,13 +13,20 @@ const mutations = {
     leaveThis(data,params){
         state.limit = params.iCur;
         params.route.push({name:state.routeList[state.limit],params:state.limit}); 
+    },
+    pageInit(data){
+        state.limit = 0;
     }
 }
 
 const actions = {
     leaveIcur(event,params){
-        event.commit('leaveThis',params)
+        event.commit('leaveThis',params);
+    },
+    pageInit(event){
+        event.commit('pageInit', params);
     }
+
 }
 export default {
     state,

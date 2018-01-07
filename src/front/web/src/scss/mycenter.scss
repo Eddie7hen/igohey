@@ -7,16 +7,17 @@ $mainSizeSmall:0.2933rem;
     flex-direction: column;
     #w_main{ 
         flex:1; 
-        background-color:#F8F8F8;
+        overflow-x:hidden;
+        background-color:#fff;
         #headTop{
-            height:4.8rem;
+            height:4.1867rem;
             background-color:#FFDA21;
             display:flex;
             justify-content: space-between;
             >span{
                 width:1.3333rem;
+                height:0.64rem;
                 text-align:center;
-                padding-top:0.5rem;
             }
             p{
                 flex:1;
@@ -77,6 +78,9 @@ $mainSizeSmall:0.2933rem;
                     justify-content:space-between;
                     align-items:center;
                     border-bottom:1px solid #EEEEEE;
+                    &:last-child{
+                        border-bottom:0 none;
+                    }
                     i{
                         color:#666;
                         font-size:0.64rem;

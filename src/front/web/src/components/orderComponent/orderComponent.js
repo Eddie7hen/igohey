@@ -70,6 +70,7 @@ const mutations = {
     selectOrder(data,params){
         if(params !== "fail"){
             let datas = mutations.getOrders(data, params);
+            console.log(datas)
             state.orderList = datas.orderList;
             state.pendList = datas.pendList;
             state.outList = datas.outList;
@@ -78,7 +79,7 @@ const mutations = {
         state.loading = false;
     },
     delOrder(data,res){
-        if(res != "fail"){
+        if(res != "fail"){ 
             for (var i = 0; i < state.orderList.length; i++) {
                 if (state.orderList[i][0].orderno == res.params.orderno) {
                     state.orderList.splice(i, 1);
