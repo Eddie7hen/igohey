@@ -1,19 +1,17 @@
 <template>
     <footer id="w_footer">
-        <div v-for="(item,index) in list" :class="{active:limit == index}" :key="index" @click="checkList(index)">
+        <div v-for="(item,index) in list" :class="{'active':limit == index}" :key="index" @click="checkList(index)">
             <i :class="item.icon"></i>
             <span v-text="item.tip"></span>
         </div>
     </footer>
 </template>
-
 <script>
 import '../../../scss/commonFoot.scss';
 export default {
    data:function(){
         return {
-            iCur:'',
-            limit:0,
+            limit:this.$store.state.footComponent.limit,
             list:[
                 {
                     icon:'iconfont icon-homepage_fill',
@@ -31,15 +29,15 @@ export default {
                     icon:'iconfont icon-feedback_fill',
                     tip:'我的'
                 }
-            ],
-            router:['home','goodslist','service','cart','mycenter'],
-            limit:0
+            ]
         }
     },
     methods:{
         checkList:function(index){
-            this.limit = index;
-            // this.$router.push({name:this.router[index]});
+            this.$store.dispatch('leaveIcur',{
+                iCur:index,
+                route:this.$router
+            })
         }
     }
 }

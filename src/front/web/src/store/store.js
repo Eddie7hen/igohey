@@ -13,6 +13,11 @@ import orders from '../components/orderComponent/orderComponent';
 import collect from '../components/collectComponent/collectComponent';
 import dialog from '../components/dialogComponent/dialog';
 import viewHistory from '../components/historyComponent/history';
+import setting from '../components/settingComponent/setting';
+import search from '../components/searchComponent/search';
+import register from '../components/register/register';
+import login from '../components/login/login';
+import footComponent from '../components/commonHtml/commonFoot/commonFoot';
 Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
@@ -22,6 +27,11 @@ export default new Vuex.Store({
         orders,
         collect,
         dialog,
-        viewHistory
+        viewHistory,
+        setting,
+        search,
+        register,
+        login,
+        footComponent
     }
 })

@@ -35,11 +35,15 @@
             img{
                 width:2rem;
                 height:2rem;
-                margin:0rem 0.1333rem;
+                margin-right:0.2667rem;
             }
             >p{
                 display:flex;
                 flex-direction:column;
+                em{
+                    font-size:$mainSizeCenter;
+                    margin-top:0.8rem;
+                }
                 &:nth-child(3){
                     width:3.7333rem;
                     align-self: flex-start;
@@ -49,7 +53,7 @@
                         font-size:$mainSizeCenter;
                         line-height:0.6rem;
                         &:first-child{
-                            font-size:$mainSizeBig;
+                            font-size:$mainSizeCenter;
                         }
                         &:last-child{
                             margin-top:0.1333rem;
@@ -67,22 +71,21 @@
                 &:last-child{  
                     flex:1;
                     height:0.8rem;
-                    
                     text-align:right;
                     span{
                         font-size:$mainSizeCenter;
                         line-height:0.4rem;
                         &:first-child{
                             color:#FF4400;
-
                         }
-                        &:last-child{
+                        &.oldPrice{
                             color:#999999;
                             margin-top:0.2667rem;
                             font-size:$mainSizeSmall;
                             text-decoration:line-through;
                         }
                     }
+                   
                 }
             }
         }

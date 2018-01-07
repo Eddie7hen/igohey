@@ -13,12 +13,12 @@
                 <i :class="{'iconfont icon-success_fill':item.select,'iconfont icon-success':!item.select}" @click="clickSingle(item)"></i>
                 <img :src="item.imgurl" />
                 <p>
-                    <span v-text="item.name"></span>
                     <span v-text="item.details"></span>
+                    <em>产地:{{item.area}}</em>
                 </p>
                 <p>
                     <span>当季价:￥{{item.saleprice ? item.saleprice : item.price}}</span>
-                    <span v-if="item.saleprice">原价:￥{{item.price}}</span>
+                    <span v-if="item.saleprice" class="oldPrice">原价:￥{{item.price}}</span>
                 </p>
             </div>
             <p v-if="this.$store.state.collect.collectList.length == 0" class="nothing">
@@ -43,6 +43,7 @@
     export default {
         data(){
             return {
+                username:'',
                 checkAll:false
             }
         },
@@ -104,7 +105,7 @@
                                         url:'collect.php',
                                         params:{
                                             type:'del',
-                                            username:'Ed',
+                                            username:this.username,
                                             goodsid:goodsid
                                         }
                                     });
@@ -117,12 +118,15 @@
             }
         },
         mounted(){
-            this.$store.dispatch('viewCollect',{
-                url:'collect.php',
-                params:{
-                    username:'Ed'
-                }
-            })
+            if(window.sessionStorage.getItem('username')){
+                this.username = window.sessionStorage.getItem('username');
+                this.$store.dispatch('viewCollect',{
+                    url:'collect.php',
+                    params:{
+                        username:this.username
+                    }
+                })
+            }
         }
     }
 </script>

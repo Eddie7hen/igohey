@@ -1,0 +1,120 @@
+@import '../../scss/userHeader.scss';
+@import '../../scss/fontSize.scss';
+#register{
+    background-color:#ffffff;
+    height:100%;
+    #w_main{
+        .form{
+            display:flex;
+            flex-direction:column;
+            border-bottom:1px solid #A8A8A8;
+            p{
+                height:1.2rem;
+                line-height:1.2rem;
+                padding-left:0.4rem;
+                display:flex;
+                border-bottom:1px solid #A8A8A8;
+                &:first-child{
+                    border-top:1px solid #A8A8A8;
+                }
+                label{
+                    width:1.52rem;
+                    font-size:$mainSizeBig;
+                }
+                input{
+                    flex:1;
+                    font-size:$mainSizeBig;
+                }
+                em{
+                    width:2.6667rem;
+                    text-align:center;
+                    font-size:$mainSizeBig;
+                }
+                .active{
+                    color:#9A9A9A !important;
+                    border-left: 0 none !important;
+                    background-color: #F1F1F1;
+                }
+                span{
+                    width:1.333rem;
+                    align-self:center;
+                    i{
+                        height:100%;
+                        font-size:0.48rem;
+                        line-height:100%;
+                        &.el-icon-error{
+                            color:#C1272D;
+                        }
+                        &.el-icon-success{
+                            color:#58bc58;
+                        }
+                    }
+                }
+                &:last-child{
+                    border-bottom:0 none;
+                    >em{
+                        padding:0rem 0.2667rem;
+                        border-left:0.0133rem solid#A8A8A8;
+                        color:#000;
+                        font-size:$mainSizeBig;
+                    }
+                }
+            }
+            span{
+                padding-left:0.4rem;
+                height:0.562rem;
+                font-size:0.281rem;
+                line-height:0.562rem;
+            }
+        }
+        >p{
+            margin-top:0.3467rem;
+            height:1.562rem;
+            font-size:0.312rem;
+            color:#ED5512;
+            display:flex;
+            flex-direction:column;
+            padding-left:0.4rem;
+            span{
+                height:0.781rem;
+                line-height:0.781rem;
+            }
+        }
+        .disUser{
+            height:0.8rem;
+            line-height:0.8rem;
+            font-size:0.453rem;
+            color:#ff0000;
+            margin:0.133rem;
+        }
+    }
+    #w_loginFoot{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        p{
+            font-size:0.32rem;
+            color:#9A9A9A;
+            padding:0.267rem;
+        }
+        b{
+            font-size:0.347rem;
+            text-decoration:underline;
+        }
+        .regist{
+            width:8.64rem;
+            height:1.2rem;
+            border-radius:0.8rem;
+            font-size:0.4rem;
+            margin-top:0.8rem;
+            background-color: #FFD600;
+            color:#ffffff;
+            border:0 none;
+        }
+        .disregist{
+            color:#9A9A9A;
+            background-color: #F1F1F1;
+        }
+    }
+}

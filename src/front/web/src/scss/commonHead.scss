@@ -1,20 +1,18 @@
+@import '../scss/fontSize.scss';
 #commonHead{
     height:1.707rem;
     background-color: #FFD600;
     padding-top:0.507rem;
+    padding-left:0.1333rem;
     display:flex;
     justify-content:space-between;
+    align-items:center;
+    img{
+        width:0.8rem;
+        height:0.8rem;
+        margin-left:0.2667rem;
+    }
     span{
-        &:first-child{
-            width:1.333rem;
-            padding-top:0.24rem;
-            display:flex;
-            justify-content:center;
-            >i{
-                font-size:0.667rem;
-                color:#666;
-            }
-        }
         &:last-child{
             width:1.333rem;
             padding-top:0.267rem;
@@ -26,16 +24,26 @@
         }
     }
     p{
-        text-align:center;
-        font-size:0.347rem;
-        line-height:1.2rem;
-        color:#333333;
-        >s{
-            margin:0rem 0.067rem;
-            font-size:0.4rem;
+        flex:1;
+        margin-left:0.56rem;
+        position:relative;
+        display:flex;
+        align-items:center;
+        input{  
+            width:7.3333rem;
+            height:0.803rem;
+            border-radius:0.4rem;
+            line-height:0.803rem;
+            padding-left:0.8rem;
+            background-color: #ECEFE6;
+            font-size:$mainSizeBig;
         }
-        >i{
-            font-size:0.4rem;
+        i{
+            width:0.64rem;
+            position:absolute;
+            top:0.1467rem;
+            left:0.2667rem;
+            font-size:$titleSize;
         }
     }
 

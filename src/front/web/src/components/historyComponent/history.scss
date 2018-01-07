@@ -18,8 +18,54 @@
     #w_main{
         flex:1;
         overflow-x:hidden;
+        background-color:#F9F9F8;
         .main_cont{
+            >div{
+                height:2.8rem;
+                border-bottom:1px solid #F1F1F1;
+                background-color:#fff;
+                margin-top:0.1333rem;
+                display:flex;
+                padding:0rem 0.2667rem;
+                justify-content: space-between;
+                align-items:center;
+                >img{
+                    width:2rem;
+                    height:2rem;
+                }
+                >p{
+                    height:2rem;
+                    display:flex;
+                    flex-direction:column;
+                    justify-content:space-between;
+                    span{
+                        font-size:$mainSizeBig;
+                        line-height:0.5333rem;
+                        color:#333;
+                        >em{
+                            font-size:0.4267rem;
+                            color:#F5726C;
+                        }
+                        &:first-child{
+                            width:100%;
+                            overflow:hidden;
+                            text-overflow:ellipsis;
+                            color:#000;
+                        }
+                        &:last-child{
+                            font-size:$mainSizeBig;
+                            color:#666;
+                            line-height:0.48rem;
+                        }
 
+                    }
+                    i{
+                        color:$mainColor;
+                    }
+                    
+                }
+
+            }
         }
         >p{
             display:flex;

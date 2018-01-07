@@ -1,0 +1,33 @@
+#searchGoods{
+    #w_main{
+        flex:1;
+        background-color: #FFFFFF;
+        overflow-x:hidden;
+        padding:0rem 0.333rem;
+        h3{
+            height:1.173rem;
+            font-size:0.373rem;
+            line-height:1.173rem;
+            display:flex;
+            justify-content:space-between;
+            span{
+                font-size:0.32rem;
+                color:#666;
+            }
+        }
+        p{
+            display:flex;
+            flex-wrap:wrap;
+            span{
+                height:0.56rem;
+                line-height:0.56rem;
+                font-size:0.347rem;
+                padding:0rem 0.267rem;
+                background-color: #E9E9E9;
+                letter-spacing:0.027rem;
+                border-radius:0.267rem;
+                margin:0.2rem;
+            }
+        }
+    }
+}
