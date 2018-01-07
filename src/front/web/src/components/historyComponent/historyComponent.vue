@@ -7,8 +7,8 @@
         <main id="w_main">
             <div class="main_cont">
                 <div v-for="(item) in this.$store.state.viewHistory.historyList" :key="item.id">
-                    <img :src="item.imgurl" :alt="item.name" :title="item.name" />
-                    <p>
+                    <img :src="item.imgurl" :alt="item.name" :title="item.name" @click="goDetails(item.id)" />
+                    <p @click="goDetails(item.id)">
                         <span v-text="item.details"></span>
                         <span>应季价:<em>￥{{item.saleprice ? item.saleprice : item.price}}</em></span>
                         <span>累计销量: {{item.saleqty}}件</span>
@@ -59,7 +59,7 @@
                                 this.$store.dispatch('delhistory',{
                                                         url:'viewHistory.php',
                                                         params:{type:'del',
-                                                        username:'Ed',
+                                                        username:this.user,
                                                         goodsid:goodsid
                                                     }}
                                 )
@@ -68,15 +68,26 @@
                     }
                 } 
                 this.$store.dispatch('createDialog',opt);
+            },
+            goDetails(goodsid){
+                this.$router.push({
+                    name:'details',
+                    query:{
+                        goodsid
+                    }
+                })
             }
         },
         mounted(){
-            this.$store.dispatch('getViewData',{
-                url:'viewHistory.php',
-                params:{
-                    username:'Ed'
-                }
-            })
+            if(window.sessionStorage.getItem('username')){
+                this.user = window.sessionStorage.getItem('username');
+                this.$store.dispatch('getViewData',{
+                    url:'viewHistory.php',
+                    params:{
+                        username:this.user
+                    }
+                })
+            }
         }
     }
 </script>

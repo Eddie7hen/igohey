@@ -14,7 +14,7 @@
                     <P class='Nonp' >iGo瞎需要您的地址坐标</P>
                     <i class="iconfont icon-enter Nonenter"></i>
                 </div>
-                <div class='EdCart' v-for="(obj, index) in this.$store.state.shoppingCart.adres" >
+                <div class='EdCart' v-for="(obj,index) in this.$store.state.shoppingCart.adres" >
                     <h5>
                         <h2><i class="iconfont icon-coordinates" ></i></h2>
                         <h3>

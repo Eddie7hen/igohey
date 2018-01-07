@@ -11,8 +11,8 @@
         style="width: 100%;">
             <div v-for="(item) in this.$store.state.collect.collectList" :key="item.id">
                 <i :class="{'iconfont icon-success_fill':item.select,'iconfont icon-success':!item.select}" @click="clickSingle(item)"></i>
-                <img :src="item.imgurl" />
-                <p>
+                <img :src="item.imgurl" @click="goDetails(item.id)" />
+                <p @click="goDetails(item.id)">
                     <span v-text="item.details"></span>
                     <em>产地:{{item.area}}</em>
                 </p>
@@ -53,6 +53,14 @@
         methods:{
             goBack(){
                 this.$router.go(-1);
+            },
+            goDetails(goodsid){
+                this.$router.push({
+                    name:'details',
+                    query:{
+                        goodsid
+                    }
+                })
             },
             clickSingle(obj){
                 obj.select = !obj.select;

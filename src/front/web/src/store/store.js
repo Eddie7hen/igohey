@@ -18,15 +18,12 @@ import indexMain from '../components/indexMain/indexMain.js';
 import activity from '../components/activity_p/activity.js';
 import dialog from '../components/dialogComponent/dialog';
 import viewHistory from '../components/historyComponent/history';
-<<<<<<< HEAD
 import setting from '../components/settingComponent/setting';
 import search from '../components/searchComponent/search';
 import register from '../components/register/register';
 import login from '../components/login/login';
 import footComponent from '../components/commonHtml/commonFoot/commonFoot';
-=======
 import repertoire from '../components/repertoire/repertoireComponent';
->>>>>>> ee6b17beb80434aa872060e1cfb9efd44ac6f5f4
 Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
@@ -42,14 +39,11 @@ export default new Vuex.Store({
         collect,
         dialog,
         viewHistory,
-<<<<<<< HEAD
         setting,
         search,
         register,
         login,
-        footComponent
-=======
+        footComponent,
         repertoire
->>>>>>> ee6b17beb80434aa872060e1cfb9efd44ac6f5f4
     }
 })

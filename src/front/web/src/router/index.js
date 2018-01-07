@@ -17,19 +17,15 @@ Vue.use(VueRouter);
 Vue.use(ElementUI);
 import login from '../components/login/login.vue';
 import register from '../components/register/register.vue';
-import indexMainComponent from '../components/indexMain/indexMain.vue'
-import classifyComponent from '../components/classifyMain/classifyMain.vue'
-<<<<<<< HEAD
+import indexMainComponent from '../components/indexMain/indexMain.vue';
+import classifyComponent from '../components/classifyMain/classifyMain.vue';
 import detailsComponent from '../components/details_p/details.vue';
 import setting from '../components/settingComponent/settingComponent.vue';
 import search from '../components/searchComponent/search.vue';
 import searchlist from '../components/searchComponent/searchlist/searchlist.vue';
 import historysearch from '../components/searchComponent/keyHistory/history.vue';
-=======
-import detailsComponent from '../components/details_p/details.vue'
-import activityComponent from '../components/activity_p/activity.vue'
-import repertoireComponent from '../components/repertoire/repertoireComponent.vue'
->>>>>>> ee6b17beb80434aa872060e1cfb9efd44ac6f5f4
+import activityComponent from '../components/activity_p/activity.vue';
+import repertoireComponent from '../components/repertoire/repertoireComponent.vue';
 let router = new VueRouter({
     routes:[
         {

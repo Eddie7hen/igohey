@@ -10,7 +10,7 @@
                     <span>{{item[0].addtime}}</span>
                     <s v-text="item[0].status == 1 ? '已完成' : item[0].status == 2 ? '待支付' : '退款'"></s>
                 </p>
-                <div class="orderCont" v-for="goods in item" :id="goods.id" :key="goods.id">
+                <div class="orderCont" v-for="goods in item" :id="goods.id" :key="goods.id" @click="goDetails(goods.id)">
                     <img :src="goods.imgurl" />
                     <div>
                         <p v-text="goods.details"></p>
@@ -62,7 +62,7 @@
                                                     {
                                                         url:'order.php',
                                                         params:{type:'del',
-                                                        username:'Ed',
+                                                        username:this.user,
                                                         orderno:orderId
                                                     }
                                 });
@@ -71,10 +71,21 @@
                     }
 
                 })
+            },
+            goDetails(goodsid){
+                this.$router.push({
+                    name:'details',
+                    query:{
+                        goodsid
+                    }
+                })
             }
         },
         mounted(){
-            this.$store.dispatch('selectOrder',{ url: 'order.php', params: { type: 'get', username: 'Ed' } });
+            if(window.sessionStorage.getItem('username')){
+                this.user = window.sessionStorage.getItem('username');
+                this.$store.dispatch('selectOrder',{ url: 'order.php', params: { type: 'get', username: this.user } });
+            }
         }
     }
 </script>
