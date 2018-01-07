@@ -80,7 +80,7 @@
 <script type="text/javascript">
     import http from "../../utils/requestAjax.js";
     import './details.scss';
-
+    import wx from 'weixin-js-sdk'
     export default {
         data(){
             return {

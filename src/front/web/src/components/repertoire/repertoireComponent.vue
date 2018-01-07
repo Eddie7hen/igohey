@@ -1,5 +1,5 @@
 <template>
-    <div class="repertoire_p" v-loading="this.$store.state.details.loading"
+    <div class="repertoire_p" v-loading="this.$store.state.repertoire.loading"
         element-loading-text="加载ing..."
         element-loading-spinner="el-icon-loading"
         element-loading-background="rgba(255, 255, 255, 0.8)"
@@ -34,11 +34,10 @@
         },
         updated(){
             this.dataset = this.$store.state.repertoire.dataset;
-            console.log(this.dataset)
         },
         beforeMount(){
-            var orderno = this.$route.query.orderno || '1234';
-            var username = 'Ed'
+            var orderno = this.$route.query.orderno;
+            var username = window.sessionStorage.getItem('username');
             var params = {orderno:orderno,username};
             this.$store.dispatch('initRep',params);
         }
