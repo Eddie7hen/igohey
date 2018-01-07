@@ -1,28 +1,16 @@
 <?php
     header('Access-Control-Allow-Origin:*');
 
-    include "DBHelper.php";
+    include "DBHelper.php";  
 
-    // 获取前端传递的参数
-    $pageNo = isset($_POST['pageNo']) ? $_POST['pageNo'] : 1;
-    $qty = isset($_POST['qty']) ? $_POST['qty'] : 3;//10
-    $type = isset($_POST['type']) ? $_POST['type'] : '';
-    $addtime = isset($_POST['addtime']) ? $_POST['addtime'] : '';
-    $saleqty = isset($_POST['saleqty']) ? $_POST['saleqty'] : '';
+    $active = isset($_POST['active']) ? $_POST['active'] : ''; 
     $username = isset($_POST['username']) ? $_POST['username'] : '';
-    $goodsqty = isset($_POST['goodsqty']) ? $_POST['goodsqty'] : 1;
+    $type = isset($_POST['type']) ? $_POST['type'] : '';
     $goodsid = isset($_POST['goodsid']) ? $_POST['goodsid'] : '';
+    $goodsqty = isset($_POST['goodsqty']) ? $_POST['goodsqty'] : 1;
 
-    $start = ($pageNo-1)*$qty;
-    if($type == 'init'){
-        $sql = "select * from goods where addtime < '$addtime' order by addtime desc limit ".$start.",".$qty;
-        $sql .= ";select * from goods where saleprice > 0 order by addtime asc limit ".$start.",".$qty;
-        $sql .= ";select * from goods where saleqty order by saleqty desc limit ".$start.",".$qty;
-        $sql .= ";select * from active";
-        $result = multi_query_oop($sql);
-        echo json_encode($result, JSON_UNESCAPED_UNICODE);
-    }else if($type == 'join'){
-         //加入购物车
+    if($type == 'join'){
+        //加入购物车
         $sql3 = "select * from carts where goodsid='$goodsid' and username='$username'";
         $result3 = query($sql3);
         if(count($result3)>0){
@@ -45,5 +33,20 @@
                echo 'no';
             }
         }
+
+    }else{
+        if($active == '超值力荐'){
+            $sql = "select * from active where active = '$active';select * from goods order by addtime desc limit 0,14";
+        }else if($active == '限时折扣'){
+            $sql = "select * from active where active = '$active';select * from goods where saleprice > 0 order by addtime asc limit 0,14";
+        }else if($active == '热卖专场'){
+            $sql = "select * from active where active = '$active';select * from goods where saleqty order by saleqty desc limit 0,14";
+        }
+
+        $sql .= ";select * from carts where username = '$username'";
+
+        $result = multi_query_oop($sql);
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
     }
+
 ?>

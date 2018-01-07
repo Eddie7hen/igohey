@@ -1,0 +1,105 @@
+@import '../../scss/fontSize.scss';
+
+#Address{
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    .headerAdres{
+        // height: 1.706667rem;
+        border-bottom: .013333rem solid #AEAEAD;
+        // padding-top: .506667rem;
+        // position: relative;
+        height: 1.7067rem;
+        display:flex;
+        align-items:center;
+        padding:0.5067rem 0.88rem 0rem 0.24rem;
+        >p{
+            width: 2.4rem;
+            height: .72rem;
+            line-height: .72rem;
+            font-size: .346667rem;
+            color:#383732;
+            background:#F9D748;
+            text-align: center;
+            border-radius: .08rem;
+            margin:0 auto;
+            text-align:center;
+        }
+    }
+    .mainAdres{
+        flex:1;
+        background-color: #F9F9F8;
+        overflow-x: hidden;
+        .adresList{
+            height: 100%;
+            >li{
+                height: 2.133333rem;
+                background-color: #ffffff;
+                border-bottom: .013333rem solid #dddddd;
+                margin-top: .266667rem;
+                display: flex;
+                align-items: center;
+                .adresDefault{
+                    width: .133333rem;
+                    height: 1.866667rem;
+                    margin-right:.266667rem;
+                    &.adresActive{
+                        background: $mainColor;
+                    }
+                }
+                .adresInfo{
+                    width: 7.493333rem;
+                    height: 1.866667rem;
+                    border-right: .026667rem solid #D9D8D9;
+                    display: flex;
+                    flex-direction: column;
+                    >span{
+                        height: .933333rem;
+                        display: flex;
+                        align-items: center;
+                        &:nth-child(2){
+                            >a{
+                                color:#B7B7B7;
+                            }
+                        }
+                        >a{
+                            font-size: .4rem;
+                            color:#272727;
+                            padding-right: .133333rem;
+                        }
+                    }
+                }
+                .btnEdt{
+                    height: 1.866667rem;
+                    flex:1;
+                    text-align: center;
+                    color:$mainColor;
+                }
+            }
+        }
+    }
+    .el-loading-mask{
+        .el-icon-loading{
+            color:$mainColor;
+        }
+        .el-loading-text{
+            font-size:$mainSizeCenter;
+            color:#878787;
+        }
+    }
+    .footerAdres{
+        height: 1.52rem;
+        border-top: .013333rem solid #E0E0E0;
+        >p{
+            width: 6.533333rem;
+            height: .986667rem;
+            background-color:$mainColor;
+            font-size:$mainSizeBig;
+            margin: .266667rem auto;
+            border-radius: .08rem;
+            color:#000000;
+            text-align: center;
+            line-height: .986667rem;
+        }
+    }
+}

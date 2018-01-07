@@ -1,0 +1,79 @@
+@import '../../../scss/fontSize.scss';
+
+#CreateAdres{
+    height: 100%;
+    // display: flex;
+    // flex-direction: column;
+    >div{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        .CretAdresHeader{
+            height: 1.706667rem;
+            border-bottom: .013333rem solid #AEAEAD;
+            padding-top: 0.92rem;
+            letter-spacing: .026667rem;
+            display: flex;
+            .headerLeft{
+                width: 1.52rem;
+                padding-left: .4rem;
+            }
+            .headerCent{
+                width: 6.96rem;
+                >p{
+                    font-size: .453333rem;
+                    text-align: center;
+                    color: #333333;
+                }
+            }
+            .headerRight{
+                width: 1.52rem;
+                >p{
+                    font-size: .4rem;
+                    color:$mainColor;
+                    text-align: center;
+                }
+            }
+        }
+        .CretAdresMain{
+            flex: 1;
+            background-color: #F9F9F8;
+            .CretAdresInfo{
+                margin-top: .266667rem;
+                background-color: #fff;
+                padding-left: .4rem;
+                >li{
+                    height: 1.333333rem;
+                    border-bottom: .013333rem solid #DCDCE0;
+                    display: flex;
+                    >h3{
+                        width: 1.813333rem;
+                        font-size: $mainSizeBig;
+                        line-height: 1.333333rem;
+                        color:#333333;
+                    }
+                    >input{
+                        flex:1;
+                        font-size:$mainSizeBig;
+                    }
+                }
+            }
+        }
+        .CretAdresFooter{
+            background-color: #fff;
+            height: 1.36rem;
+            padding: .266667rem;
+            >p{
+                height: .826667rem;
+                width: 6.533333rem;
+                background-color: $mainColor;
+                font-size: .4rem;
+                text-align: center;
+                line-height: .826667rem;
+                margin: 0 auto;
+                border-radius: .08rem;
+            }
+        }
+
+    }
+}

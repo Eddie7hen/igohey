@@ -1,5 +1,9 @@
 <template>
-    <div class="classify_p">
+    <div class="classify_p" v-loading="this.$store.state.classifyChild.loading"
+        element-loading-text="加载ing..."
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(255, 255, 255, 0.8)"
+        style="width: 100%;">
         <head_p class="head_p"></head_p>
         <div class="main">
             <div class="main_l">

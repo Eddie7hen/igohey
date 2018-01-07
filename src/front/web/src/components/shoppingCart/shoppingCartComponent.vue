@@ -1,33 +1,38 @@
 <template>
-    <div id="Edcart" >
+    <div id="Edcart">
         <div class='EdCartHeader' >
             <p>购物车</p>
         </div>
-        <div class='EdCartContent' >
+        <div class='EdCartContent' v-loading="this.$store.state.shoppingCart.loading"
+            element-loading-text="加载ing..."
+            element-loading-spinner="el-icon-loading"
+            element-loading-background="rgba(255, 255, 255, 0.8)"
+            style="width: 100%"
+        >
             <div class='EdCartAddress' >
-                <div class='EdCartNon' >
+                <div class='EdCartNon' v-if="this.$store.state.shoppingCart.adres.length < 0" >
                     <P class='Nonp' >iGo瞎需要您的地址坐标</P>
                     <i class="iconfont icon-enter Nonenter"></i>
                 </div>
-                <!-- <div class='EdCart' >
+                <div class='EdCart' v-for="(obj, index) in this.$store.state.shoppingCart.adres" >
                     <h5>
                         <h2><i class="iconfont icon-coordinates" ></i></h2>
                         <h3>
-                            <p><span>Eddie Chen</span><span>15625142968</span></p>
-                            <p><span>智汇创意园Park</span><span>E座五楼</span></p>
+                            <p><span>{{obj.nickname}}</span><span>{{obj.phone}}</span></p>
+                            <p><span>{{obj.address}}</span></p>
                         </h3>
-                        <h4>
+                        <h4 @click="jumpRouter" >
                             <span>修改</span>
                             <i class="iconfont icon-enter enter"></i>
                         </h4>
                     </h5>
-                </div> -->
+                </div>
             </div>
             <div class='EdflashSend'>
                 <img src="../../assets/flashSend.png" alt="">
             </div>
-            <ul class='goodsList' v-if="dataset.length > 0" >
-                <li v-for="(obj, index) in dataset" :key="index" :id="obj.goodsid" >
+            <ul class='goodsList' v-if="this.$store.state.shoppingCart.dataset.length > 0" >
+                <li v-for="(obj, index) in this.$store.state.shoppingCart.dataset" :key="index" :id="obj.goodsid" >
                     <h2 @click='iChecks' ><i :ref="index+1" class='iconfont icon-success iCheck' ></i></h2>
                     <h3>
                         <img :src="obj.imgurl" alt="">
@@ -48,7 +53,7 @@
                 <dd @click='iChecksAll' ><i ref='All' class='iconfont icon-success iCheckAll'></i></dd>
                 <dd>全选</dd>
                 <dd>
-                    共￥<span class='money' >0</span>
+                    共￥<span class='money' >0.00</span>
                 </dd>
                 <dd @click="createBill">选好了</dd>
             </dl>
@@ -69,7 +74,6 @@
         data(){
             return{
                 username:'Ed',
-                dataset:[],
                 url:this.$store.state.shoppingCart.url,
             }
         },
@@ -157,8 +161,7 @@
                     username:this.username,
                     status:'delete',
                 }
-                this.$store.dispatch('deleteOrder', params);                  
-                event.target.parentNode.parentNode.remove();
+                this.$store.dispatch('deleteCart', params);
             },
             //计算总价
             total(){
@@ -176,15 +179,18 @@
             createBill(){
                 var liAll = document.querySelectorAll('li');
                 var dataset = [];
+                var strId = '';
                 for(var i=0;i<liAll.length;i++){
                     if(liAll[i].children[0].children[0].classList.contains('icon-success_fill')){
                         var opt  = {
                             goodsid:liAll[i].id,
                             qty:liAll[i].children[3].children[1].innerText
                         };
+                        strId += liAll[i].id + ',';
                         dataset.push(opt);
                     }
                 }
+                //生成订单
                 var params = {
                     type:'create',
                     orderno:msec(),
@@ -193,6 +199,17 @@
                     dataset:JSON.stringify(dataset),
                 }
                 this.$store.dispatch('createOrder', params);
+                //生成订单后,删除购物车勾选状态的商品
+                var opt = {
+                    status:'delete',
+                    username:this.username,
+                    goodsid:strId
+                }
+                this.$store.dispatch('deleteCart', opt);
+            },
+            //跳转选择地址页面
+            jumpRouter(){
+                this.$router.push({name: 'address'});
             }
         },
         beforeMount(){
@@ -200,15 +217,14 @@
                 username:this.username,
                 status:'query',
             }
-            http.post({url:this.url, params:params}).then((res)=>{
-                //将返回的数据赋给dataset
-                if(res.status == '200' && res.data.length > 0){
-                    this.dataset = res.data;
-                }
-            })
+            this.$store.dispatch('getData', params);
+            var getAdres = {
+                username: this.username,
+                type: 'defaultAdres',
+                status: '1'
+            }
+            this.$store.dispatch('getAdres', getAdres);
         },
-        // updated(){
-        // }
     }
 </script>
 
