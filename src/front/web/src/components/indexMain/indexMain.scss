@@ -101,6 +101,9 @@ $mainSizeSmall:0.2933rem;
                 span{
                   color:#FF4400;
                 }
+                &:nth-child(1) span{
+                  color:#ccc;
+                }
               }
               // i{
               //   display:inline-block;
