@@ -4,7 +4,7 @@ const state = {
     pendList: [],
     outList: [],
     paidList: [],
-    loading: true
+    loading: false
 }
 
 const mutations = {
@@ -53,12 +53,24 @@ const mutations = {
                     orders.outList.push(item);
                 }
             })
+        }else{
+            params[0].total = params[0].saleprice ? params[0].saleprice : params[0].price;
+            if (params[0].status == "1") {
+                orders.paidList.push(params);
+            } else if (params[0].status == "2") {
+                orders.pendList.push(params);
+            } else if (params[0].status == "3") {
+                orders.outList.push(params);
+            }
+            orders.orderList.push(params);
+
         }
         return orders;
     },
     selectOrder(data,params){
         if(params !== "fail"){
             let datas = mutations.getOrders(data, params);
+            console.log(datas)
             state.orderList = datas.orderList;
             state.pendList = datas.pendList;
             state.outList = datas.outList;
@@ -67,7 +79,7 @@ const mutations = {
         state.loading = false;
     },
     delOrder(data,res){
-        if(res != "fail"){
+        if(res != "fail"){ 
             for (var i = 0; i < state.orderList.length; i++) {
                 if (state.orderList[i][0].orderno == res.params.orderno) {
                     state.orderList.splice(i, 1);

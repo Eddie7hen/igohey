@@ -112,8 +112,8 @@
     import './indexMain.scss';
     import http from '../../utils/requestAjax.js';
     import dateNow from '../../utils/dateFormat.js';
-    import footer from '../commonHtml/commonFoot/commonFoot'
-    import header from '../commonHtml/commonHead/commonHead.vue'
+    import footer from '../commonHtml/commonFoot/commonFoot.vue';
+    import header from '../commonHtml/commonHead/commonHead.vue';
     export default {
         data: function(){
            return {

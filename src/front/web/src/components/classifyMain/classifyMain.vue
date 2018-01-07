@@ -42,9 +42,9 @@
     import './classifyMain.scss';
     import http from '../../utils/requestAjax.js';
     import dateNow from '../../utils/dateFormat.js';
-    import footer from '../commonHtml/commonFoot/commonFoot'
-    import header from '../commonHtml/commonHead/commonHead.vue'
-    import classifyChild from '../classifyChild/classifyChild.vue'
+    import footer from '../commonHtml/commonFoot/commonFoot.vue';
+    import header from '../commonHtml/commonHead/commonHead.vue';
+    import classifyChild from '../classifyChild/classifyChild.vue';
     export default {
         data(){
             return {

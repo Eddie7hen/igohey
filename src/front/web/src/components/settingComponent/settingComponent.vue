@@ -67,6 +67,9 @@
 
 <script>
     import './setting.scss';
+    import wx from 'weixin-js-sdk';
+    import axios from 'axios';
+    import qs from 'qs';
     import DialogComponent from '../dialogComponent/dialogComponent';
     export default {
         data(){
@@ -93,7 +96,25 @@
                 this.show = !this.show;
             },
             changeHead(){
-                
+                axios.get('http://www.igohey.com/index/sample.php').then((res) => {
+                    wx.config({debug: true,
+                                appId: res[0],
+                                timestamp: res[1],
+                                nonceStr: res[2],
+                                signature: res[3],
+                                jsApiList:['chooseImage']
+                    })
+                    wx.ready(()=>{
+                        wx.chooseImage({
+                            count: 1, // 默认9
+                            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                            success: function (res) {
+                            this.userhead = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                                }
+                        });        
+                    })
+                })
             },
             saveData(){
                 let params = {
@@ -115,6 +136,7 @@
             },
             loginOut(){
                 window.sessionStorage.clear();
+                this.$store.dispatch('pageInit');
                 this.$router.push({
                     name:'index'
                 })
@@ -140,6 +162,7 @@
             if(window.sessionStorage.getItem('username')){
                 this.username = window.sessionStorage.getItem('username');
             }
+            
         }
     }
 </script>
