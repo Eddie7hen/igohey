@@ -7,13 +7,12 @@
 
 const state = {
     limit:0,
-    routeList:['home','typelist','cart','mycenter']
+    routeList: ['index','classify','cart','mycenter']
 }
 const mutations = {
     leaveThis(data,params){
-        // console.log(params.icur)
-        data.limit = params.icur;
-        params.route.push({name:data.routeList[data.limit],params:data.limit}); 
+        state.limit = params.iCur;
+        params.route.push({name:state.routeList[state.limit],params:state.limit}); 
     }
 }
 

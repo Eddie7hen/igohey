@@ -11,10 +11,10 @@
                 </li>
             </ul>
         </nav>
-        <AllOrder v-show="iCurTips == 0"></AllOrder>
-        <Paid v-show="iCurTips == 1"></Paid>
-        <Pending v-show="iCurTips == 2"></Pending>
-        <OutOrder v-show="iCurTips == 3"></OutOrder>
+        <AllOrder v-if="iCurTips == 0"></AllOrder>
+        <Paid v-if="iCurTips == 1"></Paid>
+        <Pending v-if="iCurTips == 2"></Pending>
+        <OutOrder v-if="iCurTips == 3"></OutOrder>
         <DialogComponent></DialogComponent>
     </div>
 </template>
@@ -50,7 +50,10 @@
         },
         mounted(){
             this.iCurTips = this.$route.params.iCurShow;
-            this.$store.dispatch('selectOrder',{ url: 'order.php', params: { type: 'get', username: 'Ed' } });
+            if(window.sessionStorage.getItem('username')){
+                this.user = window.sessionStorage.getItem('username');
+                this.$store.dispatch('selectOrder',{ url: 'order.php', params: { type: 'get', username: this.user } });
+            }
         }
 
     }

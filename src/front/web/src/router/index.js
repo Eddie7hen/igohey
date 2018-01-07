@@ -14,19 +14,59 @@ import order from '../components/orderComponent/orderComponent.vue';
 import collect from '../components/collectComponent/collectComponent.vue';
 import history from '../components/historyComponent/historyComponent.vue';
 
-import indexMainComponent from '../components/indexMain/indexMain.vue'
-import classifyComponent from '../components/classifyMain/classifyMain.vue'
-import detailsComponent from '../components/details_p/details.vue'
 import PaiedComponent from '../components/paiedComponent/paiedComponent.vue';
 import BillPayComponent from '../components/billPayComponent/billPayComponent.vue';
 Vue.use(VueRouter);
 Vue.use(ElementUI);
 
+import login from '../components/login/login.vue';
+import register from '../components/register/register.vue';
+import indexMainComponent from '../components/indexMain/indexMain.vue';
+import classifyComponent from '../components/classifyMain/classifyMain.vue';
+import detailsComponent from '../components/details_p/details.vue';
+import setting from '../components/settingComponent/settingComponent.vue';
+import search from '../components/searchComponent/search.vue';
+import searchlist from '../components/searchComponent/searchlist/searchlist.vue';
+import historysearch from '../components/searchComponent/keyHistory/history.vue';
+import activityComponent from '../components/activity_p/activity.vue';
+import repertoireComponent from '../components/repertoire/repertoireComponent.vue';
+
+
 let router = new VueRouter({
-    mode: 'history',
     routes:[
         {
-            path: '/',
+            path: '/search',
+            name: 'search',
+            component: search,
+            children:[{
+                path: '/searchlist',
+                name: 'searchlist',
+                component: searchlist
+            },
+            {
+                path: '/historysearch',
+                name: 'historysearch',
+                component: historysearch
+            }
+            ]
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: register
+        },
+        {
+            path:'/login',
+            name:'login',
+            component: login  
+        },
+        {
+            path: '/setting',
+            name: 'setting',
+            component: setting
+        },
+        {
+            path: '/history',
             name: 'history',
             component: history
         },
@@ -41,7 +81,7 @@ let router = new VueRouter({
             component: mycenter
         },
         {
-            path:'/index',
+            path:'/',
             name:'index',
             component: indexMainComponent
         },
@@ -56,14 +96,19 @@ let router = new VueRouter({
             component: detailsComponent
         },
         {
-            path:'/shoppingcart',
-            name:'shoppingcart',
+            path:'/cart',
+            name:'cart',
             component: ShoppingCartComponent
         },
         {
             path: '/order',
             name: 'order',
             component: order
+        },
+        {
+            path:'/activity',
+            name:'activity',
+            component: activityComponent
         },
         {
             path: '/address',
@@ -84,6 +129,11 @@ let router = new VueRouter({
             path: '/billpay',
             name: 'billpay',
             component: BillPayComponent
+        },
+        {
+            path: '/repertoire',
+            name: 'repertoire',
+            component: repertoireComponent
         }
     ]
 })

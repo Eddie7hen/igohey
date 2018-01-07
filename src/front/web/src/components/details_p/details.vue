@@ -1,5 +1,9 @@
 <template>
-    <div class="details_p">
+    <div class="details_p" v-loading="this.$store.state.details.loading"
+        element-loading-text="加载ing..."
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="rgba(255, 255, 255, 0.8)"
+        style="width: 100%;">
         <div class="header">
             <i class="iconfont icon-return" @click="getBack"></i>
             {{dataset.name}}
@@ -55,7 +59,7 @@
             <div class="foot_r">
                 <span>添加商品：</span>
                 <i class="el-icon-minus" @click="qtyChange('sub')"></i>
-                <span ref="qty">0</span>
+                <span class="qty" ref="qty">0</span>
                 <i class="el-icon-plus" @click="qtyChange('add')"></i>
             </div>
         </div> 
@@ -79,26 +83,29 @@
         },
         methods:{
             enshrine(){
-                // console.log(this.params);
                 var collect = document.querySelector('.foot_l');
                 var win = document.querySelector('.showupWin');
                 if(collect.classList.contains('active')){
                     this.params['type'] = 'del';
                     http.post({url:'details_p.php',params:this.params}).then(res => {
-                        this.dataset = res.data.data1[0];
-                        this.collect = res.data.data2;
-                        collect.classList.remove('active');
-                        win.innerHTML = '取消收藏';
-                        win.classList.add('win_active');
+                        if(res.data == 'ok'){
+                            collect.classList.remove('active'); 
+                            win.innerHTML = '取消收藏';
+                        }else{
+                            win.innerHTML = '取消失败';
+                        }
+                        win.classList.add('win_active');    
                     })
                 }else{
                     this.params['type'] = 'inc';
                     http.post({url:'details_p.php',params:this.params}).then(res => {
-                        this.dataset = res.data.data1[0];
-                        this.collect = res.data.data2;
-                        collect.classList.add('active');
-                        win.innerHTML = '已收藏';
-                        win.classList.add('win_active');
+                        if(res.data == 'ok'){
+                            collect.classList.add('active'); 
+                            win.innerHTML = '已收藏';
+                        }else{
+                            win.innerHTML = '收藏失败';
+                        }
+                        win.classList.add('win_active');   
                     })
                 }
 
@@ -136,23 +143,26 @@
                 })
             }
         },
-        mounted(){
+        updated(){
+            this.collect = this.$store.state.details.collect;
+            this.dataset = this.$store.state.details.dataDetails;
+            this.cart = this.$store.state.details.cart;
+            if(this.collect.length > 0){
+                document.querySelector('.foot_l').classList.add('active');
+            }else{
+                document.querySelector('.foot_l').classList.remove('active');
+            }
+            if(this.cart.length>0){
+                document.querySelector('.foot_r .qty').innerHTML = this.$store.state.details.cart[0].goodsqty;
+            }else{
+                document.querySelector('.foot_r .qty').innerHTML = 0;
+            }
+        },
+        beforeMount(){
             var goodsid = this.$route.query.goodsid;
-            this.params['goodsid'] = goodsid || '12';
+            this.params['goodsid'] = goodsid || '1';
             this.params['username'] = 'Ed';
-            http.post({url:'details_p.php',params:this.params}).then(res => {
-                this.dataset = res.data.data1[0];
-                this.collect = res.data.data2;
-                this.cart = res.data.data3;
-                if(this.collect.length>0){
-                    document.querySelector('.foot_l').classList.add('active');
-                }
-                if(this.cart.length>0){
-                    this.$refs.qty.innerHTML = this.cart[0].goodsqty;
-                }else{
-                    this.$refs.qty.innerHTML = 0;
-                }
-            })
+            this.$store.dispatch('detailsData',this.params);
         }
     }
 

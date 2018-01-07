@@ -29,18 +29,20 @@ $mainSizeSmall:0.2933rem;
           font-size:0.453333rem;//34px
           height:1.066667rem;
           text-align:center;
+          letter-spacing:0.133333rem;
           span{
             position: absolute;
             top:0.16rem;
             right:0.266667rem;
             font-size:0.32rem;
+            letter-spacing:0;
             i{
               font-size:0.32rem;
             }
           }
           >i{
             display:inline-block;
-            width:0.533333rem;
+            width:0.933333rem;
             border-bottom:0.106667rem solid #FFD600;
             position: absolute;
             bottom:0.133333rem;

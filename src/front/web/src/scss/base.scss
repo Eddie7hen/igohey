@@ -29,7 +29,7 @@ label{
 input{
     outline:none;
     border:0 none;
-    caret-color:#FFD600;
+    caret-color:#F8CC0B;
 }
 header,footer,section,main,nav{
     display:block;}
@@ -49,7 +49,7 @@ s,i,em{font-style:normal;text-decoration:none;}
         .el-loading-spinner{
             position:fixed;
             top:50%;
-            transfrom:translateY(-50%);
+            transform:translateY(-50%);
             .el-icon-loading{
                 color:#F8CC0B;
             }

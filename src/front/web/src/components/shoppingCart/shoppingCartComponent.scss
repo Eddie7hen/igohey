@@ -45,7 +45,8 @@ $cartTitleFontSize:.453333rem;
             .EdCart{
                 >h5{
                     height: 2.32rem;
-                    border: .013333rem dashed $mainColor;
+                    border-top: .013333rem solid $mainColor;
+                    border-bottom: .013333rem solid $mainColor;
                     margin: 0;
                     background-color:#fff;
                     display: flex;
@@ -86,14 +87,6 @@ $cartTitleFontSize:.453333rem;
                         }
                     }
                 }
-            }
-        }
-        .EdflashSend{
-            height: 1.546667rem;
-            border-top: .013333rem solid #ddd;
-            border-bottom: .013333rem solid #ddd;
-            >img{
-                width: 100%;
             }
         }
         .goodsList{
@@ -199,6 +192,32 @@ $cartTitleFontSize:.453333rem;
                     line-height:1.333333rem;
                     color:#333333;
                 }
+            }
+        }
+        .EdCartNothing{
+            display: flex;
+            margin-top: 2.666667rem;
+            flex-direction: column;
+            align-items: center;
+            >i{
+                font-size: 4.373333rem;
+                color: #E0E0E0;
+            }
+            >span{
+                font-size: 0.3733rem;
+                color: #B1B1B1;
+                margin-top: 0.2667rem;
+            }
+            >em{
+                height: .8rem;
+                width: 3.866667rem;
+                font-size: .4rem;
+                border: .013333rem solid $mainColor;
+                border-radius: .133333rem;
+                text-align: center;
+                line-height: .8rem;
+                color: $mainColor;
+                margin-top: .746667rem;                
             }
         }
     }

@@ -14,20 +14,12 @@
     $goodsid = isset($_POST['goodsid']) ? $_POST['goodsid'] : '';
 
     $start = ($pageNo-1)*$qty;
-    if($type == 'new'){
+    if($type == 'init'){
         $sql = "select * from goods where addtime < '$addtime' order by addtime desc limit ".$start.",".$qty;
-        
-        $result = query($sql);
-        echo json_encode($result, JSON_UNESCAPED_UNICODE);
-    }else if($type == 'discount'){
-        $sql = "select * from goods where saleprice > 0 order by addtime asc limit ".$start.",".$qty;
-
-        $result = query($sql);
-        echo json_encode($result, JSON_UNESCAPED_UNICODE);
-    }else if($type == 'hot'){
-        $sql = "select * from goods where saleqty order by saleqty desc limit ".$start.",".$qty;
-
-        $result = query($sql);
+        $sql .= ";select * from goods where saleprice > 0 order by addtime asc limit ".$start.",".$qty;
+        $sql .= ";select * from goods where saleqty order by saleqty desc limit ".$start.",".$qty;
+        $sql .= ";select * from active";
+        $result = multi_query_oop($sql);
         echo json_encode($result, JSON_UNESCAPED_UNICODE);
     }else if($type == 'join'){
          //加入购物车

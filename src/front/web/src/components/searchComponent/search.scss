@@ -1,0 +1,52 @@
+@import '../../scss/fontSize.scss';
+#searchGoods{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    #w_header{
+        height:2.0rem;
+        background-color:$mainColor;
+        display:flex;
+        padding:0rem 0.333rem;
+        justify-content:space-between;
+        align-items:center;
+        >i{
+            width:0.8rem;
+            margin-top:0.427rem;
+            font-size:0.533rem;
+            color:#fff;
+        }
+        p{
+            flex:1;
+            position:relative;
+            .icon-search{
+                width:0.64rem;
+                position:absolute;
+                top:0.6133rem;
+                left:0.2667rem;
+                font-size:$titleSize;
+            }
+            input{
+                width:100%;
+                height:0.803rem;
+                border-radius:0.4rem;
+                line-height:0.803rem;
+                background-color: #ECEFE6;
+                padding-left:0.8rem;
+                font-size:$mainSizeBig;
+            }
+            i{
+                position:absolute;
+                font-size:0.4rem;
+                color:#666666;
+                right:0.467rem;
+                top:0.667rem;
+            }
+        }
+        >span{
+            color:#ffffff;
+            margin-top:0.387rem;
+        }
+    }
+    
+}

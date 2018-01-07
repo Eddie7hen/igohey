@@ -14,7 +14,7 @@ const mutations = {
         if (!state.dialogCont.btnEvent){
             setTimeout(()=>{
                 mutations.autoClose(data);
-            },3000)
+            },800)
         }
     },
     autoClose(data){

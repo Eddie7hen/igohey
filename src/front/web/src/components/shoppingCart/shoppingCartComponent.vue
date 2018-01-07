@@ -9,12 +9,17 @@
             element-loading-background="rgba(255, 255, 255, 0.8)"
             style="width: 100%"
         >
-            <div class='EdCartAddress' >
+            <p class="EdCartNothing" v-if="this.$store.state.shoppingCart.dataset.length <= 0"  >
+                <i class="iconfont icon-publishgoods_fill" ></i>
+                <span>亲，购物车空空的耶~赶紧去挑好吃的吧</span>
+                <em>去逛逛</em>
+            </p>
+            <div class='EdCartAddress' v-if="this.$store.state.shoppingCart.dataset.length > 0" >
                 <div class='EdCartNon' v-if="this.$store.state.shoppingCart.adres.length < 0" >
                     <P class='Nonp' >iGo瞎需要您的地址坐标</P>
                     <i class="iconfont icon-enter Nonenter"></i>
                 </div>
-                <div class='EdCart' v-for="(obj, index) in this.$store.state.shoppingCart.adres" >
+                <div class='EdCart' v-for="(obj,index) in this.$store.state.shoppingCart.adres" >
                     <h5>
                         <h2><i class="iconfont icon-coordinates" ></i></h2>
                         <h3>
@@ -27,9 +32,6 @@
                         </h4>
                     </h5>
                 </div>
-            </div>
-            <div class='EdflashSend'>
-                <img src="../../assets/flashSend.png" alt="">
             </div>
             <ul class='goodsList' v-if="this.$store.state.shoppingCart.dataset.length > 0" >
                 <li v-for="(obj, index) in this.$store.state.shoppingCart.dataset" :key="index" :id="obj.goodsid" >
@@ -49,7 +51,8 @@
                     <div @click="deletes($event, obj.goodsid)" ><i id="btnDelete" class="iconfont icon-empty" ></i></div>
                 </li>
             </ul>
-            <dl class='settle' >
+
+            <dl class='settle' v-if="this.$store.state.shoppingCart.dataset.length > 0" >
                 <dd @click='iChecksAll' ><i ref='All' class='iconfont icon-success iCheckAll'></i></dd>
                 <dd>全选</dd>
                 <dd>
@@ -75,7 +78,7 @@
         },
         data(){
             return{
-                username:'Ed',
+                username:'',
                 url:this.$store.state.shoppingCart.url,
             }
         },
@@ -240,7 +243,31 @@
                 this.$router.push({name: 'address'});
             }
         },
+        created(){
+            if(!window.sessionStorage.getItem('username')){
+                this.$store.dispatch('createDialog', {
+                content:'亲，请先进行登录',
+                    btnEvent:{
+                        cancel:{
+                            cn:'取消',
+                            event:()=>{
+                                this.$router.push({name: 'index'})
+                            }
+                        },
+                        enter:{
+                            cn:'确定',
+                            event:()=>{
+                                this.$router.push({name: 'login'})
+                            }
+                        }
+                    }
+                })
+            }else if(window.sessionStorage.getItem('username')){
+                this.username = window.sessionStorage.getItem('username');
+            }
+        },
         beforeMount(){
+            console.log(this.username);
             var params = {
                 username:this.username,
                 status:'query',

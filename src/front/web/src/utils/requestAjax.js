@@ -2,11 +2,11 @@
 * @Author: Marte
 * @Date:   2017-12-07 17:33:59
 * @Last Modified by:   Marte
-* @Last Modified time: 2018-01-03 17:27:04
+* @Last Modified time: 2018-01-04 21:45:49
 */
 import axios from 'axios';
 import qs from 'qs';
-var baseUrl = 'http://10.3.135.225:166/';
+var baseUrl = 'http://10.3.135.254:1717/';
 var fliterUrl = function (url) {
     if (url.startsWith('http')) {
         return url;

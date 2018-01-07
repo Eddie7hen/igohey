@@ -2,11 +2,11 @@
     <div id="mycenter">
         <main id="w_main">
             <div id="headTop">
-                <span><i class="iconfont icon-setup"></i></span>
+                <span @click="goSet"><i class="iconfont icon-setup"></i></span>
                 <p>
                     <img :src="userhead" />
-                    <span v-text="username"></span>
-                    <em>V{{member}}会员</em>
+                    <span v-text="this.username"></span>
+                    <em>V{{this.$store.state.setting.userData.integral?parseInt(this.$store.state.setting.userData.integral/1000):0}}会员</em>
                 </p>
                 <span><i class="iconfont icon-systemprompt"></i></span>
             </div>
@@ -28,10 +28,12 @@
             </div>
         </main>
         <commonFoot></commonFoot>
+        <DialogComponent></DialogComponent>
     </div>
 </template>
 <script>
     import commonFoot from '../commonHtml/commonFoot/commonFoot.vue';
+    import DialogComponent from '../dialogComponent/dialogComponent.vue';
     import '../../scss/mycenter.scss';
     import http from '../../utils/requestAjax.js';
     export default {
@@ -60,21 +62,23 @@
                     },
                     {
                         icon:'iconfont icon-coordinates',
-                        text:'收货地址'
+                        text:'收货地址',
+                        'goRoute':'address'
                     },
                     {
                         icon:'iconfont icon-barrage_fill',
-                        text:'历史足迹'
+                        text:'历史足迹',
+                        'goRoute':'history'
                     }
                 ],
                 userhead:'./src/assets/userhead/defultHead.jpg',
-                username:'18688554911',
-                member:'0',
+                username:'未登录',
                 adverList:[]
             }
         },
         components:{
-            commonFoot
+            commonFoot,
+            DialogComponent
         },
         methods:{
             leaveIcur(target,params){
@@ -82,12 +86,52 @@
                     name:target,
                     params:{'iCurShow':params}
                 })
+            },
+            goSet(){
+                if(window.sessionStorage.getItem('username')){
+                    this.$router.push({
+                        name:'setting'
+                    })
+                }else{
+                    this.$store.dispatch('createDialog',{
+                        content:'你还没有登录帐号哦~',
+                        btnEvent:{
+                            cancel:{
+                                cn:'取消',
+                                event:()=>{
+                                    this.checkAll = false;
+                                    this.$store.dispatch('autoClose');
+                                }
+                            },
+                            gologin:{
+                                cn:'去登录',
+                                event:()=>{
+                                    this.checkAll = false;
+                                    this.$router.push({
+                                        name:'login'
+                                    })
+                                }
+                            }
+                        }
+                    })
+                }
+                    
             }
         },
         mounted(){
             http.post({url:'adver.php',params:{type:'mycenter'}}).then((res)=>{
-               this.adverList = res.data; 
+                this.adverList = res.data; 
             })
+            if(window.sessionStorage.getItem('username')){
+                this.username = window.sessionStorage.getItem('username');
+                this.$store.dispatch('getUser',{
+                    url:'useData.php',
+                    params:{
+                        type:'get',
+                        username:this.username
+                    }
+                })
+            }
         }
     }
 </script>
