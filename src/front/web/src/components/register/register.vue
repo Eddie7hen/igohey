@@ -9,7 +9,7 @@
             <div class="form">
                 <p>
                     <label>帐号</label>
-                    <input type="text" placeHolder="手机/邮箱" v-model="registMation.username" @blur="testName" />
+                    <input type="text" placeHolder="手机" v-model="registMation.username" @blur="testName" />
                     <span v-if="test.name">
                         <i v-if="show.name" class="el-icon-success"></i>
                         <i v-else class="el-icon-error"></i>      
@@ -24,13 +24,13 @@
                     </span>
                 </p>
                 <p>
-                    <input type="text" @blur="testCode($event)" placeHolder="请输入验证码" />
+                    <input type="text" @blur="testCode($event)" v-model="userCode" placeHolder="请输入验证码" />
                     <em @click="getCode" :class="{active: this.codeStatus == '已发送'}">{{codeStatus}}</em>
                 </p>
             </div>
             <p class="disUser" v-if="disName">该帐号已注册,请直接登录!</p>
             <p>
-                <span>* 帐号注册请输入手机/邮箱注册</span>    
+                <span>* 帐号注册请输入手机注册</span>    
                 <span>* 密码长度7-12个字符,支持下数字、字母、下划线</span>    
             </p>
         </main>
@@ -41,6 +41,7 @@
             <el-button class="regist disregist" type="success" disabled v-if="btn">同意协议并注册</el-button>
             <el-button class="regist" type="success" v-else @click="clickLogin">同意协议并注册</el-button>
         </footer>
+        <DialogComponent></DialogComponent>
     </div> 
 </template>
 
@@ -49,6 +50,7 @@
     import md5 from 'js-md5';
     import getDate from '../../utils/getDate.js';
     import http from '../../utils/requestAjax.js';
+    import DialogComponent from '../dialogComponent/dialogComponent.vue';
     export default{
         data:function(){
             return {
@@ -69,13 +71,17 @@
                     password:'',
                     checkcode:''
                 },
-                codeStatus:'获取验证码'
+                codeStatus:'获取验证码',
+                code:'',
+                userCode:''
             }
+        },
+        components:{
+            DialogComponent
         },
         methods:{
             testName:function(ev){
-                console.log(this.registMation.username)
-                var reg = /(^1[34578]{1}\d{9}$)|(^[a-z\d][\w\-\.]{2,}@[\d\w]+(\.[a-z]{2,})+$)/;
+                var reg = /(^1[34578]{1}\d{9}$)/;
                 if(reg.test(this.registMation.username)){
                     var opt = {
                         url:'user.php',
@@ -129,12 +135,21 @@
                 }
             },
             getCode:function(){
+                if(this.registMation.username == ""){
+                    this.$store.dispatch('createDialog',{
+                        iCon:'iconfont icon-delete',
+                        content:'您还未输入手机号码!'
+                    })
+                    return;
+                }
                 this.codeStatus = "已发送"; 
-                var accountSid = '4ba2b102bb8843cf910abc70ce0ae660';
-                var token = '4fc2b75b7b53426e824ae0c24028d69f';
+                var accountSid = '320ebf2ce0424066ab250dc181d8daa6';
+                var token = 'a6af8d19cb6947599b170bc51fdac7ab';
                 var times = getDate();
                 var md55 = accountSid + token + times;
                 var codes = this.randomNumber(999999,100000);
+                this.code = codes;
+                var time = '30';
                 this.registMation.checkcode = codes;
                 let opt = {
                     url:'https://api.miaodiyun.com/20150822/industrySMS/sendSMS',
@@ -143,37 +158,38 @@
                         to:this.registMation.username,
                         timestamp:times,
                         sig:md5(md55),
-                        smsContent:'【韩梅梅科技】您的验证码为'+ codes +'，请于5分钟内正确输入，如非本人操作，请忽略此短信。'
+                        templateid: '146790384',
+                        param: `${codes}`,
                     }
                 }
-                        // smsContent:'【果汇科技】尊敬的用户，您好，您正在注册果汇用户，验证码为:'+ codes +'，若非本人操作请忽略此短信。'
                 this.$store.dispatch('getCode',opt);
-            },
-            testCode:function(){
-
             },
             randomNumber(min,max){
                 return parseInt(Math.random()*(max-min+1)+min);
             },
             clickLogin:function(){
-                // if(!this.code){
-                //     return;
-                // }
-                this.loading = true;
-                var opt = {
-                    url:'user.php',
-                    params:{
-                        type:'register',
-                        username:this.registMation.username,
-                        password:this.registMation.password
+                if(this.userCode != this.code){
+                    this.$store.dispatch('createDialog',{
+                        iCon:'iconfont icon-delete',
+                        content:'您输入的验证码有误,请重新输入!'
+                    })
+                }else{
+                    this.loading = true;
+                    var opt = {
+                        url:'user.php',
+                        params:{
+                            type:'register',
+                            username:this.registMation.username,
+                            password:this.registMation.password
+                        }
                     }
+                    http.post(opt).then((res)=>{
+                        this.loading = false;
+                        if(res.data === 'ok'){
+                            this.$router.push({name:'login'});
+                        }
+                    })
                 }
-                http.post(opt).then((res)=>{
-                    this.loading = false;
-                    if(res.data === 'ok'){
-                        this.$router.push({name:'login'});
-                    }
-                })
             }
         }
     }

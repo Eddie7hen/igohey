@@ -2,13 +2,13 @@
     <div id="mycenter">
         <main id="w_main">
             <div id="headTop">
-                <span @click="goSet"><i class="iconfont icon-setup"></i></span>
+                <i class="iconfont icon-setup" @click="goSet"></i>
                 <p>
                     <img :src="userhead" />
                     <span v-text="this.username"></span>
                     <em>V{{this.$store.state.setting.userData.integral?parseInt(this.$store.state.setting.userData.integral/1000):0}}会员</em>
                 </p>
-                <span><i class="iconfont icon-systemprompt"></i></span>
+                <i class="iconfont icon-systemprompt"></i>
             </div>
             <div id="main_cont">
                 <div class="carousel">
