@@ -59,17 +59,19 @@
             </dl>
         </div>
         <Ed-footer></Ed-footer>
+        <DialogComponent></DialogComponent>
     </div>
 </template>
 
 <script>
     import '../shoppingCart/shoppingCartComponent.scss';
     import footer from '../commonHtml/commonFoot/commonFoot.vue';
-    import http from '../../utils/requestAjax';
+    import DialogComponent from '../dialogComponent/dialogComponent.vue';
     import msec from '../../utils/getMsec';
     export default {
         components:{
             'Ed-footer': footer,
+            DialogComponent,
         },
         data(){
             return{
@@ -156,12 +158,28 @@
             },
             //删除购物车商品
             deletes(event, goodsid){
-                var params = {
-                    goodsid:goodsid,
-                    username:this.username,
-                    status:'delete',
-                }
-                this.$store.dispatch('deleteCart', params);
+                this.$store.dispatch('createDialog', {
+                content:'你确定要删除吗?',
+                    btnEvent:{
+                        cancel:{
+                            cn:'取消',
+                            event:()=>{
+                                this.$store.dispatch('autoClose');
+                            }
+                        },
+                        enter:{
+                            cn:'确定',
+                            event:()=>{
+                                var params = {
+                                    goodsid:goodsid,
+                                    username:this.username,
+                                    status:'delete',
+                                }
+                                this.$store.dispatch('deleteCart', params);
+                            }
+                        }
+                    }
+                })
             },
             //计算总价
             total(){
@@ -190,13 +208,23 @@
                         dataset.push(opt);
                     }
                 }
+                var orderno = msec();
                 //生成订单
                 var params = {
                     type:'create',
-                    orderno:msec(),
+                    orderno: orderno,
                     username:this.username,
                     status:'2',
                     dataset:JSON.stringify(dataset),
+                    jumpEvent:()=>{
+                        this.$router.push({
+                            name:'paied',
+                            query:{
+                                orderno: orderno,
+                                username:this.username,
+                            }
+                        })
+                    }
                 }
                 this.$store.dispatch('createOrder', params);
                 //生成订单后,删除购物车勾选状态的商品

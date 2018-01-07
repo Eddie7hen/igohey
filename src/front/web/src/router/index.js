@@ -13,12 +13,15 @@ import CreateAddressComponent from '../components/addressComponent/createAddress
 import order from '../components/orderComponent/orderComponent.vue';
 import collect from '../components/collectComponent/collectComponent.vue';
 import history from '../components/historyComponent/historyComponent.vue';
-Vue.use(VueRouter);
-Vue.use(ElementUI);
 
 import indexMainComponent from '../components/indexMain/indexMain.vue'
 import classifyComponent from '../components/classifyMain/classifyMain.vue'
 import detailsComponent from '../components/details_p/details.vue'
+import PaiedComponent from '../components/paiedComponent/paiedComponent.vue';
+import BillPayComponent from '../components/billPayComponent/billPayComponent.vue';
+Vue.use(VueRouter);
+Vue.use(ElementUI);
+
 let router = new VueRouter({
     mode: 'history',
     routes:[
@@ -71,6 +74,16 @@ let router = new VueRouter({
             path: '/createaddress',
             name: 'createaddress',
             component: CreateAddressComponent
+        },
+        {
+            path: '/paied',
+            name: 'paied',
+            component: PaiedComponent
+        },
+        {
+            path: '/billpay',
+            name: 'billpay',
+            component: BillPayComponent
         }
     ]
 })

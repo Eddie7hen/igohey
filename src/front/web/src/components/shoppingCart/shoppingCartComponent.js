@@ -28,8 +28,11 @@ const mutations = {
     },
     createOrder:(arg1, params, arg3)=>{
         http.post({url:state.api,params:params}).then(res=>{
-            state.createRes = res.data;
-            state.loading = false;            
+            if(res.data){
+                state.createRes = res.data;
+                params.jumpEvent()
+                state.loading = false;            
+            }
         })
     },
     getData:(arg1, params, arg3)=>{

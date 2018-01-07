@@ -56,14 +56,17 @@ $cartTitleFontSize:.453333rem;
                     >h3{
                         width: 6.986667rem;
                         padding-left: .133333rem;
+                        display:flex;
+                        flex-direction: column;
                         >p{
-                            height:1.173333rem;
-                            display:flex;
-                            align-items:center;
+                            height:1.146667rem;
+                            color:#000;
+                            font-size:0.3733rem;
+                            &:first-child{
+                                line-height: 1.6rem;
+                            }
                             >span{
-                                font-size:$mainSizeCenter;
-                                color:#666;
-                                padding-left: .133333rem;
+                                margin-right: .4rem;
                             }
                         }
                     }
@@ -118,7 +121,7 @@ $cartTitleFontSize:.453333rem;
                     >img{
                         width: 2.053333rem;
                         align-self: center;
-                        
+                        border-radius: 50%;
                     }
                 }
                 >h4{

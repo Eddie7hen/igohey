@@ -15,6 +15,7 @@ import cretAdres from '../components/addressComponent/createAddressComponent/cre
 import collect from '../components/collectComponent/collectComponent.js';
 import dialog from '../components/dialogComponent/dialog';
 import viewHistory from '../components/historyComponent/history';
+import paied from '../components/paiedComponent/paiedComponent';
 Vue.use(Vuex);
 export default new Vuex.Store({
     modules: {
@@ -26,6 +27,7 @@ export default new Vuex.Store({
         cretAdres,
         collect,
         dialog,
-        viewHistory
+        viewHistory,
+        paied
     }
 })
