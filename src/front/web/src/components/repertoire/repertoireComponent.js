@@ -6,7 +6,7 @@ const state = {
 }
 
 const mutations = {
-    initdata: function(arg1,params,arg2){
+    initRep: function(arg1,params,arg2){
         http.post({url:'repertoire_p.php',params:params}).then(res => {
             if(res.data){
                 state.loading = false;
@@ -19,7 +19,7 @@ const mutations = {
 const actions = {
     initRep: function(context,params){
         state.loading = true;
-        context.commit('initdata',params);
+        context.commit('initRep',params);
     }
 }
 

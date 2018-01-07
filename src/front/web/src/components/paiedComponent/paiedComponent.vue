@@ -5,15 +5,15 @@
             element-loading-background="rgba(255, 255, 255, 0.8)"
             style="width: 100%" >
         <header class="headerPaied" >
-            <i class="iconfont icon-return" ></i>
+            <i @click="goback" class="iconfont icon-return" ></i>
             <p>结算付款</p>
         </header>
         <main class="mainPaied" >
             <ul class="mainPaiedAdres" >
                 <li class="iconfont icon-coordinates" ></li>
-                <li class="adresInfo" >
-                    <p><span>Eddie Chen</span><span>18829882056</span></p>
-                    <p>智汇Park创意园-元岗路</p>
+                <li class="adresInfo" v-for="(obj,index) in this.$store.state.shoppingCart.adres" >
+                    <p><span v-text="obj.nickname" ></span><span v-text="obj.phone" ></span></p>
+                    <p v-text="obj.address" ></p>
                 </li>
             </ul>
             <p>
@@ -43,7 +43,7 @@
         </main>
         <footer class="footerPaied" >
             <p>应付金额：<span class="moneyPaied" >{{getTotalMoney() >= 100 ? getTotalMoney() : (getTotalMoney()-0+20).toFixed(2) }}</span></p>
-            <div class="btnPaied" >提交订单</div>
+            <div class="btnPaied" @click="btnPaied" >提交订单</div>
         </footer>
     </div>
 </template>
@@ -53,12 +53,31 @@
     export default {
         data(){
             return{
-                total:0
+                total:0,
+                username: '',
             }
         },
         methods:{
-            getDetails(event, orderno){
-                console.log(orderno);
+            btnPaied(){
+                var totalMoney = this.getTotalMoney();
+                this.$router.push({
+                    name: 'billpay',
+                    query: {
+                        totalMoney: totalMoney
+                    }
+                })
+            },
+            goback(){
+                this.$router.go(-1);
+            },
+            getDetails(){
+                var orderno = this.$store.state.paied.dataset[0].orderno;
+                this.$router.push({
+                    name:'repertoire',
+                    query:{
+                        orderno: orderno,
+                    }
+                })
             },
             getTotalNumber(){
                 if(this.$store.state.paied.dataset.length > 0){
@@ -102,6 +121,9 @@
                 }
             }
         },
+        created(){
+            this.username = window.sessionStorage.getItem('username');
+        },
         beforeMount(){
             var params = {
                 orderno: this.$route.query.orderno,
@@ -109,6 +131,12 @@
                 type: 'query',
             }
             this.$store.dispatch('getOrderNo', params);
+            var getAdres = {
+                username: this.username,
+                type: 'defaultAdres',
+                status: '1'
+            }
+            this.$store.dispatch('getAdres', getAdres);
         }
     }
 </script>

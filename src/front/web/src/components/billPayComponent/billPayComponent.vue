@@ -1,7 +1,7 @@
 <template>
     <div id="billpay" >
         <header class="billpayHeader" >
-            <i class="iconfont icon-return" ></i>
+            <i @click="goback" class="iconfont icon-return" ></i>
             <p>订单支付</p>
         </header>
         <main class="billpayMain" >
@@ -26,7 +26,7 @@
         </main>
         <footer class="billpayFooter" >
             <div class="billpaybtn" >
-                确认支付￥18.00
+                {{ '确认支付￥' + totalMoney }}
             </div>
         </footer>
     </div>
@@ -36,7 +36,17 @@
     import '../billPayComponent/billPayComponent.scss';
     export default {
         data(){
-            return{}
+            return{
+                totalMoney:0,
+            }
+        },
+        methods:{
+            goback(){
+                this.$router.go(-1);
+            }
+        },
+        beforeMount(){
+            this.totalMoney = this.$route.query.totalMoney;
         }
     }
 </script>

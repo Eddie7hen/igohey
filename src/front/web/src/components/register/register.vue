@@ -135,6 +135,7 @@
                 var times = getDate();
                 var md55 = accountSid + token + times;
                 var codes = this.randomNumber(999999,100000);
+                var time = '30';
                 this.registMation.checkcode = codes;
                 let opt = {
                     url:'https://api.miaodiyun.com/20150822/industrySMS/sendSMS',
@@ -143,10 +144,10 @@
                         to:this.registMation.username,
                         timestamp:times,
                         sig:md5(md55),
-                        smsContent:'【韩梅梅科技】您的验证码为'+ codes +'，请于5分钟内正确输入，如非本人操作，请忽略此短信。'
+                        templateid: '113994847',
+                        param: `${codes},${time}`,
                     }
                 }
-                        // smsContent:'【果汇科技】尊敬的用户，您好，您正在注册果汇用户，验证码为:'+ codes +'，若非本人操作请忽略此短信。'
                 this.$store.dispatch('getCode',opt);
             },
             testCode:function(){

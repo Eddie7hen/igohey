@@ -15,9 +15,9 @@
                 <em>去逛逛</em>
             </p>
             <div class='EdCartAddress' v-if="this.$store.state.shoppingCart.dataset.length > 0" >
-                <div class='EdCartNon' v-if="this.$store.state.shoppingCart.adres.length < 0" >
+                <div class='EdCartNon' v-if="this.$store.state.shoppingCart.adres.length <= 0" >
                     <P class='Nonp' >iGo瞎需要您的地址坐标</P>
-                    <i class="iconfont icon-enter Nonenter"></i>
+                    <i @click="jumpRouter" class="iconfont icon-enter Nonenter"></i>
                 </div>
                 <div class='EdCart' v-for="(obj,index) in this.$store.state.shoppingCart.adres" >
                     <h5>
@@ -36,10 +36,10 @@
             <ul class='goodsList' v-if="this.$store.state.shoppingCart.dataset.length > 0" >
                 <li v-for="(obj, index) in this.$store.state.shoppingCart.dataset" :key="index" :id="obj.goodsid" >
                     <h2 @click='iChecks' ><i :ref="index+1" class='iconfont icon-success iCheck' ></i></h2>
-                    <h3>
+                    <h3 @click="jumpDetails($event, obj.goodsid)" >
                         <img :src="obj.imgurl" alt="">
                     </h3>
-                    <h4>
+                    <h4 @click="jumpDetails($event, obj.goodsid)" >
                         <em v-text="obj.details" ></em>
                         <em>￥<span>{{obj.price}}</span></em>
                     </h4>
@@ -113,7 +113,7 @@
                     event.target.classList.remove('icon-success');
                     event.target.classList.add('icon-success_fill');
                     event.target.classList.add('iCheckAllActive');
-                    for(var i=0;i<this.dataset.length;i++){
+                    for(var i=0;i<this.$store.state.shoppingCart.dataset.length;i++){
                         this.$refs[i+1][0].classList.remove('icon-success')
                         this.$refs[i+1][0].classList.add('icon-success_fill');
                         this.$refs[i+1][0].classList.add('iCheckActive');
@@ -122,7 +122,7 @@
                     event.target.classList.remove('icon-success_fill');
                     event.target.classList.remove('iCheckAllActive');
                     event.target.classList.add('icon-success');
-                    for(var i=0;i<this.dataset.length;i++){
+                    for(var i=0;i<this.$store.state.shoppingCart.dataset.length;i++){
                         this.$refs[i+1][0].classList.remove('icon-success_fill');
                         this.$refs[i+1][0].classList.remove('iCheckActive');
                         this.$refs[i+1][0].classList.add('icon-success');
@@ -241,6 +241,14 @@
             //跳转选择地址页面
             jumpRouter(){
                 this.$router.push({name: 'address'});
+            },
+            jumpDetails(event, goodsid){
+                this.$router.push({
+                    name: 'details',
+                    query:{
+                        goodsid: goodsid,
+                    }
+                })
             }
         },
         created(){
@@ -267,7 +275,6 @@
             }
         },
         beforeMount(){
-            console.log(this.username);
             var params = {
                 username:this.username,
                 status:'query',
