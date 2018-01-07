@@ -50,15 +50,11 @@
             return {
                 type: '',
                 sortType:0,
-                // dataset:[],
-                // classifyParent:'',
-                // componentArr: ['classifyParent1','classifyParent2']
                 params:{},
             }
         },
         methods:{
             cut(txt){
-                
                 var classifyLi = document.querySelectorAll('.classifyLi');
                 var sortLi = document.querySelectorAll('.main_rt ul li');
                 var target = event.target;
@@ -72,11 +68,6 @@
                 sortLi[0].classList.add('liactive');
                 target.classList.add('li_active');
                 sortLi[1].firstElementChild.firstElementChild.classList.remove('iactive');
-                // this.type = txt;
-                // http.post({url:'classify_p.php',params:{type:this.type,sortType:'综合'}}).then(res => {
-                //     this.dataset = res.data;
-                //     this.sortType = 0;
-                // })
                 this.params = {};
                 this.params['type'] = txt;
                 this.params['sortType'] = 'synthesize';
@@ -90,7 +81,6 @@
                 this.$store.dispatch('increment',this.params);
             },
             sortCut(txt){
-                // console.log(this.type)
                 var sortLi = document.querySelectorAll('.main_rt ul li');
                 var target = event.target;
                 for(var i=0;i<sortLi.length;i++){
@@ -106,28 +96,18 @@
                         target.firstElementChild.firstElementChild.classList.add('iactive');
                         target.classList.add('liactive');
                         this.sortType = 1;
-                        // http.post({url:'classify_p.php',params:{type:this.type,sortType:txt}}).then(res => {
-                        //     this.dataset = res.data;
-                        // })
                     }else if(txt == 1){
                         target.classList.add('liactive');
                         target.firstElementChild.firstElementChild.classList.remove('iactive');
                         target.classList.add('liactive');
                         target.firstElementChild.lastElementChild.classList.add('iactive');
                         this.sortType = 0;
-                        // http.post({url:'classify_p.php',params:{type:this.type,sortType:txt}}).then(res => {
-                        //     this.dataset = res.data;
-                        // })
                     }
                 }else{
                     sortLi[1].firstElementChild.firstElementChild.classList.remove('iactive');
                     sortLi[1].firstElementChild.lastElementChild.classList.remove('iactive');
                     target.classList.add('liactive');
                     this.sortType = 0;
-                    // http.post({url:'classify_p.php',params:{type:this.type,sortType:txt}}).then(res => {
-                    //     this.dataset = res.data;
-                    //     this.sortType = 0;
-                    // })
                 }
                 this.params['sortType'] = txt;
                 this.$store.dispatch('increment',this.params);
@@ -145,10 +125,6 @@
                 this.$refs.hot.classList.add('li_active');
             }
             document.querySelectorAll('.main_rt ul li')[0].classList.add('liactive');
-            // http.post({url:'classify_p.php',params:{type:this.type,sortType:'综合'}}).then(res => {
-            //     console.log(res.data)
-            //     this.dataset = res.data;
-            // })
         },
         components:{
             foot_p:footer,
@@ -157,17 +133,3 @@
         }
     }
 </script>
-
-<!-- <li>
-    <div class="goodsimg">
-        <img src="src/assets/imgs/caomei.jpg" alt="" />
-    </div>
-    <div class="goodsdetils">
-        <p>商品详情</p>
-        <div>
-            <p>原价：￥<span v-text="22.22" style="text-decoration:line-through;"></span></p>
-            <p>现价：￥<span v-text="15.90"></span></p>
-        </div>
-        <i class="iconfont icon-add"></i>
-    </div>
-</li> -->

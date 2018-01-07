@@ -141,17 +141,24 @@
                 // console.log(event.target);
                 var upwin = document.getElementsByClassName('showupWin')[0];
                 var goodsid = event.target.parentElement.parentElement.dataset.id;
-                http.post({url:'indexMain.php', params:{type:'join', username:'dada', goodsid:goodsid}}).then(res => {
-                    if(res.data == 'ok'){
-                        upwin.classList.add('win_active');  
-                    }else{
-                        upwin.innerHTML = '加入购物车失败';
-                        upwin.classList.add('win_active');  
-                    }
-                })
-                setTimeout(function(){
-                    upwin.classList.remove('win_active');
-                },1000)
+                if(window.sessionStorage.getItem('username') != null){
+                    http.post({url:'indexMain.php', params:{type:'join', username:'dada', goodsid:goodsid}}).then(res => {
+                        if(res.data == 'ok'){
+                            upwin.classList.add('win_active');  
+                        }else{
+                            upwin.innerHTML = '加入购物车失败';
+                            upwin.classList.add('win_active');  
+                        }
+                    })
+                    setTimeout(function(){
+                        upwin.classList.remove('win_active');
+                    },1000)
+                    
+                }else{
+                    this.$router.push({
+                        name:'login'
+                    })
+                }
             },
             skipdetails(goodsid){
                 if(event.target.innerHTML !== '加入购物车'){

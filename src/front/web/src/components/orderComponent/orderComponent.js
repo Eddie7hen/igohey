@@ -53,6 +53,17 @@ const mutations = {
                     orders.outList.push(item);
                 }
             })
+        }else{
+            params[0].total = params[0].saleprice ? params[0].saleprice : params[0].price;
+            if (params[0].status == "1") {
+                orders.paidList.push(params);
+            } else if (params[0].status == "2") {
+                orders.pendList.push(params);
+            } else if (params[0].status == "3") {
+                orders.outList.push(params);
+            }
+            orders.orderList.push(params);
+
         }
         return orders;
     },

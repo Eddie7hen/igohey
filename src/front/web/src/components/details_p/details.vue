@@ -3,11 +3,11 @@
         element-loading-text="加载ing..."
         element-loading-spinner="el-icon-loading"
         element-loading-background="rgba(255, 255, 255, 0.8)"
-        style="width: 100%;">
+        style="width: 100%;" v-if="dataset">
         <div class="header">
             <i class="iconfont icon-return" @click="getBack"></i>
             {{dataset.name}}
-            <i class="iconfont icon-share_fill"></i>
+            <i class="iconfont icon-share_fill" @click="show = !show"></i>
         </div> 
         <div class="main">
             <div>
@@ -65,6 +65,15 @@
         </div> 
         <div class="showupWin">
         </div>
+        <div class="maleArea"  v-show="show">
+            <div :class="{maleCont: show}">
+                <div class="transition-box" >微信好友</div>
+                <div class="transition-box" >微信朋友圈</div>
+                <div class="transition-box" >腾讯微博</div>
+                <div class="transition-box" >QQ空间</div>
+                <div class="transition-box" @click="show = !show">取消</div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -78,40 +87,47 @@
                 dataset:{},
                 collect:[],
                 cart:[],
-                params:{}
+                params:{},
+                show:false,
             }
         },
         methods:{
             enshrine(){
                 var collect = document.querySelector('.foot_l');
                 var win = document.querySelector('.showupWin');
-                if(collect.classList.contains('active')){
-                    this.params['type'] = 'del';
-                    http.post({url:'details_p.php',params:this.params}).then(res => {
-                        if(res.data == 'ok'){
-                            collect.classList.remove('active'); 
-                            win.innerHTML = '取消收藏';
-                        }else{
-                            win.innerHTML = '取消失败';
-                        }
-                        win.classList.add('win_active');    
-                    })
+                if(window.sessionStorage.getItem('username') != null){
+                    if(collect.classList.contains('active')){
+                        this.params['type'] = 'del';
+                        http.post({url:'details_p.php',params:this.params}).then(res => {
+                            if(res.data == 'ok'){
+                                collect.classList.remove('active'); 
+                                win.innerHTML = '取消收藏';
+                            }else{
+                                win.innerHTML = '取消失败';
+                            }
+                            win.classList.add('win_active');    
+                        })
+                    }else{
+                        this.params['type'] = 'inc';
+                        http.post({url:'details_p.php',params:this.params}).then(res => {
+                            if(res.data == 'ok'){
+                                collect.classList.add('active'); 
+                                win.innerHTML = '已收藏';
+                            }else{
+                                win.innerHTML = '收藏失败';
+                            }
+                            win.classList.add('win_active');   
+                        })
+                    }
+
+                    setTimeout(function(){
+                        win.classList.remove('win_active');
+                    },1000)
                 }else{
-                    this.params['type'] = 'inc';
-                    http.post({url:'details_p.php',params:this.params}).then(res => {
-                        if(res.data == 'ok'){
-                            collect.classList.add('active'); 
-                            win.innerHTML = '已收藏';
-                        }else{
-                            win.innerHTML = '收藏失败';
-                        }
-                        win.classList.add('win_active');   
+                    this.$router.push({
+                        name:'login'
                     })
                 }
-
-                setTimeout(function(){
-                    win.classList.remove('win_active');
-                },1000)
             },
             qtyChange(txt){
                 var goodsQty = this.$refs.qty.innerHTML*1;
@@ -127,20 +143,30 @@
                 }
             },
             skipCart(){
-                this.params['type'] = 'cartChange';
-                this.params['goodsqty'] = this.$refs.qty.innerHTML;
-                http.post({url:'details_p.php',params:this.params}).then(res => {
-                    this.$router.push({
-                        name:'shoppingcart',
+                if(window.sessionStorage.getItem('username') != null){
+                    this.params['type'] = 'cartChange';
+                    this.params['goodsqty'] = this.$refs.qty.innerHTML;
+                    http.post({url:'details_p.php',params:this.params}).then(res => {
+                        this.$router.push({
+                            name:'shoppingcart',
+                        })
                     })
-                })
+                }else{
+                    this.$router.push({
+                        name:'login'
+                    })
+                }
             },
             getBack(){
-                this.params['type'] = 'cartChange';
-                this.params['goodsqty'] = this.$refs.qty.innerHTML;
-                http.post({url:'details_p.php',params:this.params}).then(res => {
+                if(window.sessionStorage.getItem('username') != null){
+                    this.params['type'] = 'cartChange';
+                    this.params['goodsqty'] = this.$refs.qty.innerHTML;
+                    http.post({url:'details_p.php',params:this.params}).then(res => {
+                        this.$router.go(-1);
+                    })
+                }else{
                     this.$router.go(-1);
-                })
+                }
             }
         },
         updated(){
@@ -160,8 +186,8 @@
         },
         beforeMount(){
             var goodsid = this.$route.query.goodsid;
-            this.params['goodsid'] = goodsid || '1';
-            this.params['username'] = 'Ed';
+            this.params['goodsid'] = goodsid;
+            this.params['username'] = window.sessionStorage.getItem('username');;
             this.$store.dispatch('detailsData',this.params);
         }
     }

@@ -43,24 +43,31 @@
                 })
             },
             joinCart(id){
-                var win = document.querySelector('.showupWin');
-                this.params['goodsid'] = id;
-                this.params['username'] = 'Ed';
-                this.params['goodsqty'] = 1;
-                this.params['type'] = 'join';
-                http.post({url:'indexMain.php',params:this.params}).then(res=>{
-                    if(res.data == 'ok'){
-                        win.innerHTML = '加入成功';
-                        win.classList.add('win_active');
-                    }else if(res.data == 'no'){
-                        win.innerHTML = '加入失败';
-                        win.classList.add('win_active'); 
-                    }
+                if(window.sessionStorage.getItem('username') != null){
+                    var win = document.querySelector('.showupWin');
+                    this.params['goodsid'] = id;
+                    this.params['username'] = window.sessionStorage.getItem('username');
+                    this.params['goodsqty'] = 1;
+                    this.params['type'] = 'join';
+                    http.post({url:'indexMain.php',params:this.params}).then(res=>{
+                        if(res.data == 'ok'){
+                            win.innerHTML = '加入成功';
+                            win.classList.add('win_active');
+                        }else if(res.data == 'no'){
+                            win.innerHTML = '加入失败';
+                            win.classList.add('win_active'); 
+                        }
 
-                    setTimeout(function(){
-                        win.classList.remove('win_active'); 
-                    },1000)
-                })
+                        setTimeout(function(){
+                            win.classList.remove('win_active'); 
+                        },1000)
+                    })
+                    
+                }else{
+                    this.$router.push({
+                        name:'login'
+                    })
+                }
             }
         },
         beforeUpdate(){
