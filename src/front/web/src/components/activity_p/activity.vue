@@ -67,7 +67,7 @@
             joinCart(goodsid){
                 var upwin = document.getElementsByClassName('showupWin')[0];
                 if(window.sessionStorage.getItem('username') != null){
-                    http.post({url:'active_p.php', params:{type:'join', username:'Ed', goodsid:goodsid}}).then(res => {
+                    http.post({url:'active_p.php', params:{type:'join', username:window.sessionStorage.getItem('username'), goodsid:goodsid}}).then(res => {
                         if(res.data == 'ok'){
                             upwin.classList.add('win_active');  
                             var active = this.$route.query.active;
