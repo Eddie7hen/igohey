@@ -3,7 +3,7 @@
             <div class="sortTip" v-if="this.$store.state.search.searchList[0]">
                 <span @click="sortList('syn')" :class="{active : limit === 'syn'}">综合</span>
                 <span @click="sortList('sale')" :class="{active : limit === 'sale'}">销量</span>
-                <span @click="priceSort" :class="{active : limit === 'price'}">价格<i class="el-icon-d-caret"></i></span>
+                <span @click="priceSort" :class="{active : limit === 'price'}">价格<i>▲</i><i>▼</i></span>
             </div>
             <div v-if="this.$store.state.search.searchList[0]">
                 <div class="goodsList" v-for="(item) in this.$store.state.search.searchList" :key="item.id" ref="item.id" @click="goDetails(item.id)">
@@ -69,8 +69,12 @@
             },
             goDetails:function(id){
                 // 点击生成的数据类型,跳转到详情页;
-                this.$router.push({name:'goods',params:{goodId:id}});
-                window.sessionStorage.setItem('save',id);
+                this.$router.push({
+                    name:'details',
+                    query:{
+                        goodsid:id,
+                    }
+                })
             }
         },
         mounted:function(){

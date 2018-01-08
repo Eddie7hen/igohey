@@ -1,7 +1,7 @@
 <template>
     <div id="w_login" v-loading="loading" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.5)">
         <header id="w_header">
-            <span class="el-icon-arrow-left" @click="goBack"></span>    
+            <span class="iconfont icon-return" @click="goBack"></span>    
             <span>帮助</span>    
         </header>
         <main id="w_main">
@@ -11,12 +11,12 @@
             <div class="form">
                 <p>
                     <input type="text" ref="userName" placeHolder="手机/邮箱" v-model="user.userName" @input="testName" @blur="clearClose('userName')" />
-                    <i class="el-icon-circle-close-outline" v-if="show.userName" @click="clearVal('userName')"></i>
+                    <i class="iconfont icon-delete" v-if="show.userName" @click="clearVal('userName')"></i>
                 </p>
                 <p>
                     <input :type="type" ref="password" placeHolder="输入密码" v-model="user.password" @input="testpsw" @blur="clearClose('password')" />
-                    <i class="el-icon-circle-close-outline" v-if="show.password" @click="clearVal('password')" ></i>
-                    <i class="el-icon-view" @click="viewPsw"></i>
+                    <i class="iconfont icon-delete" v-if="show.password" @click="clearVal('password')" ></i>
+                    <i class="iconfont icon-browse" @click="viewPsw"></i>
                 </p>
                 <p><a href="#">忘记密码?</a></p>
             </div>
@@ -36,7 +36,7 @@
     export default{
         data:function(){
             return {
-                imgUrl:require('../../assets/images/logo.png'),
+                imgUrl:'src/assets/images/logo.png',
                 user:{
                     userName:'',
                     password:''

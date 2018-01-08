@@ -41,13 +41,13 @@
             >p{
                 text-align:center;
                 line-height:0.8rem;//60
-                font-size:$titleSize;
+                font-size:$mainSizeBig;
                 span:nth-child(1){
                     color:#FF4401;
                     margin-right:0.266667rem;
                 }
                 span:nth-child(2){
-                    font-size:$mainSizeBig;
+                    font-size:$mainSizeCenter;
                     text-decoration:line-through;
                 }
             }

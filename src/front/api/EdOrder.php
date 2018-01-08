@@ -2,8 +2,9 @@
     header('Access-Control-Allow-Origin:*');
     
     include "DBHelper.php";
-
+    
     $type = isset($_POST['type']) ? $_POST['type'] : '';//生成订单的标识符
+    
     $status = isset($_POST['status']) ? $_POST['status'] : '2';//1:已支付,2:未支付,3:退货
     $orderno = isset($_POST['orderno']) ? $_POST['orderno'] : '';
     $username = isset($_POST['username']) ? $_POST['username'] : '';
@@ -26,8 +27,12 @@
             $result = "Error: " .$sql ."<br>" .$cont->error;  
         }
         break;
+        case 'query':
+        $sql = "SELECT * FROM orders AS o inner join goods AS gds ON o.goodsid = gds.id WHERE username='$username' AND orderno='$orderno'";
+        $result = query_oop($sql);
+        break;
     }
 
-    echo $result;
+    echo json_encode($result, JSON_UNESCAPED_UNICODE);
 
 ?>

@@ -58,9 +58,9 @@
             </div>
             <div class="foot_r">
                 <span>添加商品：</span>
-                <i class="el-icon-minus" @click="qtyChange('sub')"></i>
+                <i @click="qtyChange('sub')">&minus;</i>
                 <span class="qty" ref="qty">0</span>
-                <i class="el-icon-plus" @click="qtyChange('add')"></i>
+                <i @click="qtyChange('add')">&plus;</i>
             </div>
         </div> 
         <div class="showupWin">
@@ -149,7 +149,7 @@
                     this.params['goodsqty'] = this.$refs.qty.innerHTML;
                     http.post({url:'details_p.php',params:this.params}).then(res => {
                         this.$router.push({
-                            name:'shoppingcart',
+                            name:'cart',
                         })
                     })
                 }else{

@@ -22,7 +22,7 @@
                 <div>
                     <span>性别</span>
                     <div>
-                        <span @click="show = !show;save=true" >{{this.$store.state.setting.userData.male ? this.$store.state.setting.userData.male : this.male}}</span>
+                        <span @click="show = !show;save=true">{{this.male}}</span>
                         <i class="iconfont icon-enter"></i>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                 save:false,
                 show:false,
                 dataShow:true,
-                male:'请选择',
+                male:this.$store.state.setting.userData.male || '请选择',
                 showData:true,
                 dataVal:'',
                 username:''

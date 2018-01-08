@@ -3,13 +3,13 @@ import http from '../../utils/requestAjax';
 const state = {
     url:'EdAddress.php',
     dataset:[],
-    loading:true,
+    loading:false,
 }
 
 const mutations = {
     getAddress:(arg1, params, arg2)=>{
         http.post({url:state.url,params:params}).then(res=>{
-            if(res.status == 200 && res.data.length > 0){
+            if(res.status == 200){
                 state.dataset = res.data;
                 state.loading = false;
             }

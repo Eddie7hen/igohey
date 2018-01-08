@@ -5,7 +5,7 @@
         element-loading-background="rgba(255, 255, 255, 0.8)"
         style="width: 100%;">
         <div class="header">
-            <i class="iconfont icon-return"></i>
+            <i @click="goback" class="iconfont icon-return"></i>
             商品清单
         </div>
         <div class="main">
@@ -30,6 +30,11 @@
         data(){
             return {
                 dataset: [],
+            }
+        },
+        methods:{
+            goback(){
+                this.$router.go(-1);
             }
         },
         updated(){

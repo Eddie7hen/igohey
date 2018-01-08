@@ -14,11 +14,9 @@ $mainSizeSmall:0.2933rem;
             background-color:#FFDA21;
             display:flex;
             justify-content: space-between;
-            >span{
-                width:1.3333rem;
-                height:0.64rem;
-                text-align:center;
-            }
+           i{
+               margin:0.5333rem 0.3467rem;
+           }
             p{
                 flex:1;
                 padding-top:1.1333rem;
@@ -58,6 +56,11 @@ $mainSizeSmall:0.2933rem;
                     height:100%;
                     >.el-carousel__container{
                         height:100% !important;
+                        img{
+                            width:100%;
+                            background-size:cover;
+                            background-position:center;
+                        }
                     }
                     .el-carousel__button{
                         display:none;

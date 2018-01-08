@@ -169,6 +169,9 @@
                 }
             },
             skiplist(txt){
+                this.$store.dispatch('leaveIcur',{
+                    iCur:1
+                })
                 this.$router.push({
                     name:'classify',
                     query:{type:txt}

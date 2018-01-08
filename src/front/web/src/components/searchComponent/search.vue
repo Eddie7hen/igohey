@@ -1,10 +1,10 @@
 <template>
     <div id="searchGoods">
         <header id="w_header">
-            <i class="el-icon-arrow-left" v-if="backSearch" @click="goback"></i>
+            <i class="iconfont icon-return" v-if="backSearch" @click="goback"></i>
             <p>
                 <i class="iconfont icon-search"></i>
-                <input type="text" placeHolder="请输入商品名称" @input="clear=true" @blur="hideClear" @click="upload" v-model="keyWord" /><i class="el-icon-circle-close-outline" v-if="clear" @click="clearWord"></i></p>
+                <input type="text" placeHolder="请输入商品名称" @input="clear=true" @blur="hideClear" @click="upload" v-model="keyWord" /><i class="iconfont icon-delete" v-if="clear" @click="clearWord"></i></p>
             <span @click="goback">取消</span>
         </header>
         <router-view></router-view>

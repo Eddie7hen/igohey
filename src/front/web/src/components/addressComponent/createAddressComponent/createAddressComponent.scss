@@ -9,17 +9,18 @@
         display: flex;
         flex-direction: column;
         .CretAdresHeader{
-            height: 1.706667rem;
+            height: 1.253333rem;
             border-bottom: .013333rem solid #AEAEAD;
-            padding-top: 0.92rem;
             letter-spacing: .026667rem;
+            align-items: center;
             display: flex;
             .headerLeft{
                 width: 1.52rem;
-                padding-left: .4rem;
+                padding-left: 0.24rem;
             }
             .headerCent{
                 width: 6.96rem;
+                height: .6rem;            
                 >p{
                     font-size: .453333rem;
                     text-align: center;
@@ -28,6 +29,7 @@
             }
             .headerRight{
                 width: 1.52rem;
+                height: .6rem;            
                 >p{
                     font-size: .4rem;
                     color:$mainColor;

@@ -18,6 +18,7 @@ import indexMain from '../components/indexMain/indexMain.js';
 import activity from '../components/activity_p/activity.js';
 import dialog from '../components/dialogComponent/dialog';
 import viewHistory from '../components/historyComponent/history';
+import paied from '../components/paiedComponent/paiedComponent';
 import setting from '../components/settingComponent/setting';
 import search from '../components/searchComponent/search';
 import register from '../components/register/register';
@@ -39,6 +40,7 @@ export default new Vuex.Store({
         collect,
         dialog,
         viewHistory,
+        paied,
         setting,
         search,
         register,

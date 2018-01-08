@@ -26,7 +26,7 @@ export default {
                     tip:'购物车'
                 },
                 {
-                    icon:'iconfont icon-feedback_fill',
+                    icon:'iconfont icon-mine',
                     tip:'我的'
                 }
             ]

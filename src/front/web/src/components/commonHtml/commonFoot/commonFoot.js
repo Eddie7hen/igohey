@@ -12,7 +12,9 @@ const state = {
 const mutations = {
     leaveThis(data,params){
         state.limit = params.iCur;
-        params.route.push({name:state.routeList[state.limit],params:state.limit}); 
+        if (params.route){     
+            params.route.push({name:state.routeList[state.limit],params:state.limit}); 
+        }
     },
     pageInit(data){
         state.limit = 0;
