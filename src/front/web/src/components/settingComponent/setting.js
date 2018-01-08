@@ -31,9 +31,10 @@ const actions = {
         http.post(data).then(res =>{
             if(res.data == "ok"){
                 event.commit('saveData', data)
+            }else{
+                event.commit('saveData', 'fail');
             }
         })
-        event.commit('saveData', 'fail');
     },
     getUser(event,data){
         http.post(data).then(res => {
