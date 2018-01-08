@@ -22,8 +22,19 @@
                 text-align:center;
                 color:#666;
                 line-height:1.067rem;
+                position: relative;
                 >i{
-                    margin-left:0.067rem;
+                    font-size:0.2133rem;
+                    &:nth-child(1){
+                        position: absolute;
+                        right:0.9333rem;
+                        top:-0.0533rem;
+                    }
+                    &:nth-child(2){
+                        position: absolute;
+                        right:0.9333rem;
+                        top:0.1333rem;
+                    }
                 }
                 &.active{
                     color:$mainColor;

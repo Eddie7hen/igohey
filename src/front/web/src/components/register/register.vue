@@ -11,16 +11,16 @@
                     <label>帐号</label>
                     <input type="text" placeHolder="手机" v-model="registMation.username" @blur="testName" />
                     <span v-if="test.name">
-                        <i v-if="show.name" class="el-icon-success"></i>
-                        <i v-else class="el-icon-error"></i>      
+                        <i v-if="show.name" class="iconfont icon-success"></i>
+                        <i v-else class="iconfont icon-delete"></i>      
                     </span>
                 </p>
                 <p>
                     <label>密码</label>
                     <input type="password" placeHolder="输入密码" v-model="registMation.password" @input="testPsw" />
                     <span v-if="test.psw">
-                        <i v-if="show.psw" class="el-icon-success"></i>
-                        <i v-else class="el-icon-error"></i>      
+                        <i v-if="show.psw" class="iconfont icon-success"></i>
+                        <i v-else class="iconfont icon-delete"></i>      
                     </span>
                 </p>
                 <p>
@@ -54,7 +54,7 @@
     export default{
         data:function(){
             return {
-                icon:'el-icon-arrow-left',
+                icon:'iconfont icon-return',
                 test:{
                     name:false,
                     psw:false
@@ -90,6 +90,7 @@
                             username:this.registMation.username
                         }
                     }
+                    console.log(opt.params.username)
                     http.post(opt).then((response)=>{
                         if(response.data == "ok"){
                             this.test.name = true;
@@ -148,10 +149,7 @@
                 var times = getDate();
                 var md55 = accountSid + token + times;
                 var codes = this.randomNumber(999999,100000);
-<<<<<<< HEAD
                 this.code = codes;
-=======
->>>>>>> 68325956c39f4f05ab2051ba6bbb562f129d9858
                 var time = '30';
                 this.registMation.checkcode = codes;
                 let opt = {
@@ -161,13 +159,8 @@
                         to:this.registMation.username,
                         timestamp:times,
                         sig:md5(md55),
-<<<<<<< HEAD
                         templateid: '146790384',
                         param: `${codes}`,
-=======
-                        templateid: '113994847',
-                        param: `${codes},${time}`,
->>>>>>> 68325956c39f4f05ab2051ba6bbb562f129d9858
                     }
                 }
                 this.$store.dispatch('getCode',opt);

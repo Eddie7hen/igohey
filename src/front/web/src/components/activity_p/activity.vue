@@ -89,7 +89,7 @@
             },
             skipCart(){
                 this.$router.push({
-                    name:'shoppingcart'
+                    name:'cart'
                 })
             },
             getBack(){

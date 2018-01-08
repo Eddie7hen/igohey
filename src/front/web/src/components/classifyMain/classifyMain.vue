@@ -24,8 +24,8 @@
                         <li @click="sortCut(sortType)">
                             按价格
                             <div>
-                                <i class="el-icon-caret-top"></i>
-                                <i class="el-icon-caret-bottom"></i>
+                                <i>▲</i>
+                                <i>▼</i>
                             </div>
                         </li>
                         <li @click="sortCut('sales')">按销量</li>

@@ -5,7 +5,7 @@ import store from './store/store';
 import rem from './utils/getRem';
 import './scss/base.scss';
 import './libs/iconFont/iconfont.css';
-
+// import './libs/iconFonts_1/iconfont.css';
 
 rem.rem();
 new Vue({
