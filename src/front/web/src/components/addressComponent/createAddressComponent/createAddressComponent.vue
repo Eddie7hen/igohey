@@ -13,7 +13,7 @@
             <main class="CretAdresMain" >
                 <ul class="CretAdresInfo" >
                     <li><h3>联系人</h3><input type="text" placeholder="收货人姓名" v-model="nickname" ></li>
-                    <li><h3>手机号码</h3><input type="text" placeholder="iGo瞎联系您的电话" v-model="phone" ></li>
+                    <li><h3>手机号码</h3><input type="text" placeholder="您的电话" v-model="phone" ></li>
                     <li><h3>收货地址</h3><input type="text" placeholder="请选择您的住宅小区、大厦或学校" v-model="address" ></li>
                 </ul>
             </main>

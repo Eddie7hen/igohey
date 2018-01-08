@@ -32,6 +32,7 @@
                 params:{},
             }
         },
+        props:['type'],
         methods:{
             skipDetails(goodsid){
                 if(event.target.tagName.toLowerCase() == 'i'){
@@ -39,7 +40,7 @@
                 }
                 this.$router.push({
                     name:'details',
-                    query:{goodsid: goodsid}
+                    query:{classify:this.type,goodsid: goodsid}
                 })
             },
             joinCart(id){

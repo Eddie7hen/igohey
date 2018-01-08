@@ -11,10 +11,10 @@
                     <li @click="cut('hot')" class="classifyLi" ref="hot">热销果类</li>
                     <li @click="cut('discount')" class="classifyLi" ref="discount">折扣果类</li>
                     <li @click="cut('new')" class="classifyLi" ref="new">新品果类</li>
-                    <li @click="cut('tropic')" class="classifyLi">热带果类</li>
-                    <li @click="cut('seasonal')" class="classifyLi">应季果类</li>
-                    <li @click="cut('entrance')" class="classifyLi">进口果类</li>
-                    <li @click="cut('domestic')" class="classifyLi">国产果类</li>
+                    <li @click="cut('tropic')" class="classifyLi" ref="tropic">热带果类</li>
+                    <li @click="cut('seasonal')" class="classifyLi" ref="seasonal">应季果类</li>
+                    <li @click="cut('entrance')" class="classifyLi" ref="entrance">进口果类</li>
+                    <li @click="cut('domestic')" class="classifyLi" ref="domestic">国产果类</li>
                 </ul>
             </div>
             <div class="main_r">
@@ -31,7 +31,7 @@
                         <li @click="sortCut('sales')">按销量</li>
                     </ul>
                 </div>
-                <classifyChild></classifyChild>
+                <classifyChild :type="classify"></classifyChild>
             </div>
         </div>
         <foot_p class="footer_p"></foot_p>
@@ -51,6 +51,7 @@
                 type: '',
                 sortType:0,
                 params:{},
+                classify:'',
             }
         },
         methods:{
@@ -58,6 +59,7 @@
                 var classifyLi = document.querySelectorAll('.classifyLi');
                 var sortLi = document.querySelectorAll('.main_rt ul li');
                 var target = event.target;
+                this.classify = txt;
                 for(var i=0;i<classifyLi.length;i++){
                     classifyLi[i].classList.remove('li_active');
                 }
@@ -115,12 +117,18 @@
 
         },
         mounted(){
-            var classify = this.$route.query.type;
-            this.params['type'] = classify || 'hot';
+            if(this.classify == ''){
+                this.classify = this.$route.query.type;
+            }
+            this.params['type'] = this.classify || 'hot';
             this.params['sortType'] = 'synthesize';
+            if(this.classify == 'seasonal'){
+                var dateObj = dateNow();
+                this.params['season'] = Math.ceil(dateObj.month/3);
+            }
             this.$store.dispatch('increment',this.params);
-            if(classify){
-                this.$refs[classify].classList.add('li_active');
+            if(this.classify){
+                this.$refs[this.classify].classList.add('li_active');
             }else{
                 this.$refs.hot.classList.add('li_active');
             }

@@ -37,9 +37,6 @@ const mutations = {
     sortList(data,res){
         state.loading = false;
         state.searchList = res;
-    },
-    clearList(data){
-        state.searchList = [];
     }
 }
 
@@ -83,9 +80,6 @@ const actions = {
                 state.searchList = [];
             }
         })
-    },
-    clearList(event){
-        event.commit('clearList');
     }
 
 }

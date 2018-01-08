@@ -78,27 +78,28 @@
             }
         },
         mounted:function(){
-            this.$store.dispatch('getSearchlist',{
-                url:'search.php',
-                params:{
-                    type:'syn',
-                    keyWord:this.$route.params.keyWord
-                }
-            }) 
+            if(this.$route.params.keyWord){
+                this.$store.dispatch('getSearchlist',{
+                    url:'search.php',
+                    params:{
+                        type:'syn',
+                        keyWord:this.$route.params.keyWord
+                    }
+                }) 
+            }
             if(window.sessionStorage.getItem('username')){
                 this.user = window.sessionStorage.getItem('username');
             }
-            this.$store.dispatch('addKeyWord',{
-                url:'keyWord.php',
-                params:{
-                    type:'add',
-                    user:this.user,
-                    keyWord:this.$route.params.keyWord
-                }
-            })
-        },
-        beforeDestroy(){
-            this.$store.dispatch('clearList');
+            if(this.$route.params.keyWord){
+                this.$store.dispatch('addKeyWord',{
+                    url:'keyWord.php',
+                    params:{
+                        type:'add',
+                        user:this.user,
+                        keyWord:this.$route.params.keyWord
+                    }
+                })
+            }
         }
     }
 </script>

@@ -159,15 +159,22 @@
                 }
             },
             getBack(){
-                if(window.sessionStorage.getItem('username') != null){
-                    this.params['type'] = 'cartChange';
-                    this.params['username'] = window.sessionStorage.getItem('username');
-                    this.params['goodsqty'] = this.$refs.qty.innerHTML;
-                    http.post({url:'details_p.php',params:this.params}).then(res => {
-                        this.$router.go(-1);
+                if(this.$route.query.classify){
+                    this.$router.push({
+                        name:'classify',
+                        query:{type:this.$route.query.classify}
                     })
                 }else{
-                    this.$router.go(-1);
+                    if(window.sessionStorage.getItem('username') != null){
+                        this.params['type'] = 'cartChange';
+                        this.params['username'] = window.sessionStorage.getItem('username');
+                        this.params['goodsqty'] = this.$refs.qty.innerHTML;
+                        http.post({url:'details_p.php',params:this.params}).then(res => {
+                            this.$router.go(-1);
+                        })
+                    }else{
+                        this.$router.go(-1);
+                    } 
                 }
             }
         },

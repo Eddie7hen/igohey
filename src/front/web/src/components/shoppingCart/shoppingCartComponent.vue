@@ -16,7 +16,7 @@
             </p>
             <div class='EdCartAddress' v-if="this.$store.state.shoppingCart.dataset.length > 0" >
                 <div class='EdCartNon' v-if="this.$store.state.shoppingCart.adres.length <= 0" >
-                    <P class='Nonp' >iGo瞎需要您的地址坐标</P>
+                    <P class='Nonp' >需要您的地址坐标</P>
                     <i @click="jumpRouter" class="iconfont icon-enter Nonenter"></i>
                 </div>
                 <div class='EdCart' v-for="(obj,index) in this.$store.state.shoppingCart.adres" >
