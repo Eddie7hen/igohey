@@ -66,10 +66,13 @@
             },
             joinCart(goodsid){
                 var upwin = document.getElementsByClassName('showupWin')[0];
+                var active = this.$route.query.active;
                 if(window.sessionStorage.getItem('username') != null){
                     http.post({url:'active_p.php', params:{type:'join', username:window.sessionStorage.getItem('username'), goodsid:goodsid}}).then(res => {
                         if(res.data == 'ok'){
                             upwin.classList.add('win_active');  
+                            var params = {active: active, username: window.sessionStorage.getItem('username')};
+                            this.$store.dispatch('initactive',params);
                         }else{
                             upwin.innerHTML = '加入购物车失败';
                             upwin.classList.add('win_active');  

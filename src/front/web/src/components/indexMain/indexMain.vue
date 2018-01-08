@@ -142,7 +142,7 @@
                 var upwin = document.getElementsByClassName('showupWin')[0];
                 var goodsid = event.target.parentElement.parentElement.dataset.id;
                 if(window.sessionStorage.getItem('username') != null){
-                    http.post({url:'indexMain.php', params:{type:'join', username:'dada', goodsid:goodsid}}).then(res => {
+                    http.post({url:'indexMain.php', params:{type:'join', username:window.sessionStorage.getItem('username'), goodsid:goodsid}}).then(res => {
                         if(res.data == 'ok'){
                             upwin.classList.add('win_active');  
                         }else{
