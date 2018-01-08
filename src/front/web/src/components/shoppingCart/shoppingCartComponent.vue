@@ -199,6 +199,21 @@
             },
             createBill(){
                 var liAll = document.querySelectorAll('li');
+                var check = false; //假设所有都没勾
+                for(var j = 0; j<liAll.length;j++){
+                    if(liAll[j].children[0].children[0].classList.contains('icon-success_fill')){
+                        check = true;
+                    }
+                }
+
+                if(!check){
+                     this.$store.dispatch('createDialog', {
+                        content:'请选择您要的商品',
+                        iCon: 'iconfont icon-delete',
+                    })
+                    return false;
+                }
+
                 var dataset = [];
                 var strId = '';
                 for(var i=0;i<liAll.length;i++){

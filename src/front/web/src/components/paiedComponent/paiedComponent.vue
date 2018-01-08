@@ -24,7 +24,7 @@
                 <h4>普通商品</h4>
                 <dl class="goodsList" >
                     <dt>
-                        <ul class="imgList" :style="{width: getUlWidth() + 'px' }" >
+                        <ul class="imgList" :style="{width: getUlWidth() + 'rem' }" >
                             <li v-for="(obj, index) in this.$store.state.paied.dataset" ><img :key="obj.id" :src="obj.imgurl" ></li>
                         </ul>
                     </dt>
@@ -93,7 +93,7 @@
                 var widthLi = 170;
                 var digit = this.getDigit();
                 if(this.$store.state.paied.dataset.length > 0){
-                    return widthLi * this.$store.state.paied.dataset.length + 124 + digit * 10
+                    return (widthLi * this.$store.state.paied.dataset.length + 124 + digit * 20)/75
                 }
             },
             getDigit(){
