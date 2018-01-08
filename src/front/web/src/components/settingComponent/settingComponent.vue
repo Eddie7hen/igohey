@@ -136,10 +136,9 @@
             },
             loginOut(){
                 window.sessionStorage.clear();
-                this.$store.dispatch('pageInit');
-                this.$router.push({
-                    name:'index'
-                })
+                this.$store.dispatch('pageInit',{
+                    route:this.$router
+                });
             }
         },
         computed:{
