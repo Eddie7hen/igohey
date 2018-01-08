@@ -16,8 +16,11 @@ const mutations = {
             params.route.push({name:state.routeList[state.limit],params:state.limit}); 
         }
     },
-    pageInit(data){
+    pageInit(data, params){
         state.limit = 0;
+        params.route.push({
+            name: 'index'
+        })
     }
 }
 
@@ -25,7 +28,7 @@ const actions = {
     leaveIcur(event,params){
         event.commit('leaveThis',params);
     },
-    pageInit(event){
+    pageInit(event, params){
         event.commit('pageInit', params);
     }
 
