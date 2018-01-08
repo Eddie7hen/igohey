@@ -3,7 +3,7 @@ import http from '../../utils/requestAjax';
 const state = {
     url:'EdOrder.php',
     dataset:[],
-    loading: true,
+    loading: false,
 }
 
 const mutations = {

@@ -1,15 +1,9 @@
 <?php
     function connect_oop() {
         // 配置参数
-<<<<<<< HEAD
-        $servername = '10.3.135.225';
-        $username = 'huwanwan';
-        $password = '123';
-=======
         $servername = 'localhost';
         $username = 'root';
         $password = '';
->>>>>>> 68325956c39f4f05ab2051ba6bbb562f129d9858
         $database = 'igohey';
         header('Access-Control-Allow-Origin:*');
         //连接数据库
@@ -84,15 +78,9 @@ function multi_excute_oop($sql){
 
 //初始化连接对象方法
 function connect() {
-<<<<<<< HEAD
-    $servername = '10.3.135.225';
-    $username = 'huwanwan';
-    $password = '123';
-=======
     $servername = 'localhost';
     $username = 'root';
     $password = '';
->>>>>>> 68325956c39f4f05ab2051ba6bbb562f129d9858
     $dbname = 'igohey';
     //初始化连接，返回一个连接对象(包含所连接数据库的信息)
     $con = mysqli_connect($servername, $username, $password, $dbname);

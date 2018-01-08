@@ -12,7 +12,7 @@
             <p class="EdCartNothing" v-if="this.$store.state.shoppingCart.dataset.length <= 0"  >
                 <i class="iconfont icon-publishgoods_fill" ></i>
                 <span>亲，购物车空空的耶~赶紧去挑好吃的吧</span>
-                <em>去逛逛</em>
+                <em @click="shopping" >去逛逛</em>
             </p>
             <div class='EdCartAddress' v-if="this.$store.state.shoppingCart.dataset.length > 0" >
                 <div class='EdCartNon' v-if="this.$store.state.shoppingCart.adres.length <= 0" >
@@ -248,6 +248,14 @@
                     query:{
                         goodsid: goodsid,
                     }
+                })
+            },
+            shopping(){
+                this.$store.dispatch('leaveIcur',{
+                    iCur:1
+                })
+                this.$router.push({
+                    name: 'classify'
                 })
             }
         },
