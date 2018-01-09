@@ -29,7 +29,7 @@
                 </ul>
                 <div class="rule">
                     <p :style="{color:activeData.titlecolor}">活动规则</p>
-                    <p>本次活动新老用户均可参与，最终解释权归爱果汇所有</p>
+                    <p>本次活动新老用户均可参与，最终解释权归果汇科技所有</p>
                 </div>
             </div>
             <div class="carts" @click="skipCart">

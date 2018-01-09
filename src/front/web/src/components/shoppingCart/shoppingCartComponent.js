@@ -45,7 +45,7 @@ const mutations = {
     },
     getAdres:(arg1, params, arg3)=>{
         http.post({url: state.adresApi, params: params}).then(res=>{
-            if(res.status == '200' && res.data.length > 0){
+            if(res.status == '200'){
                 state.adres = res.data;
             }
         })

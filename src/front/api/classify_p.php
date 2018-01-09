@@ -13,7 +13,11 @@
     }else if($type == 'discount'){
         $sql = "select * from goods where saleprice > 0 order by";
     }else if($type == 'new'){
-        $sql = "select * from goods order by addtime,";
+        if($sortType >=0){
+            $sql = "select * from goods order by";
+        }else{
+            $sql = "select * from goods order by addtime";
+        }
     }else if($type == 'entrance'){
         $sql = "select * from goods where area != '中国' order by";
     }else if($type == 'domestic'){
